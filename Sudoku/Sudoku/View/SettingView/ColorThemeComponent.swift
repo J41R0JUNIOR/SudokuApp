@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct ColorThemeComponent: View {
-    @AppStorage("isDarkMode") private var isDarkMode: Bool = false
-    
+//    @AppStorage("isDarkMode") private var isDarkMode: Bool = false
+    @EnvironmentObject var themeManager: ThemeManager
+
     var body: some View {
         HStack{
             Text("Color Theme")
@@ -25,7 +26,7 @@ struct ColorThemeComponent: View {
                         .stroke(Color.black, lineWidth: 2)
                 )
                 .onTapGesture {
-                    isDarkMode = false
+                    themeManager.isDarkMode = false
                 }
             
             Rectangle()
@@ -37,10 +38,10 @@ struct ColorThemeComponent: View {
                         .stroke(Color.white, lineWidth: 2)
                 )
                 .onTapGesture {
-                    isDarkMode = true
+                    themeManager.isDarkMode = true
                 }
         }
-        .preferredColorScheme(isDarkMode ? .dark : .light)
+//        .preferredColorScheme(themeManager.isDarkMode ? .dark : .light)
     }
 }
 

@@ -34,6 +34,7 @@
 		B3DE978B2C7653EC00AEFFB9 /* Grid3x3View.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DE978A2C7653EC00AEFFB9 /* Grid3x3View.swift */; };
 		B3DE97972C766BCB00AEFFB9 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DE97962C766BCB00AEFFB9 /* HomeViewModel.swift */; };
 		B3F7DCD22C768CD20045F22E /* ColorThemeComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F7DCD12C768CD20045F22E /* ColorThemeComponent.swift */; };
+		B3F7DCD52C768F430045F22E /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F7DCD42C768F430045F22E /* ThemeManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +85,7 @@
 		B3DE978A2C7653EC00AEFFB9 /* Grid3x3View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grid3x3View.swift; sourceTree = "<group>"; };
 		B3DE97962C766BCB00AEFFB9 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		B3F7DCD12C768CD20045F22E /* ColorThemeComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorThemeComponent.swift; sourceTree = "<group>"; };
+		B3F7DCD42C768F430045F22E /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -211,6 +213,7 @@
 		B3DE97282C75129400AEFFB9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B3F7DCD32C768F2F0045F22E /* Controls */,
 				B3DE97892C76530A00AEFFB9 /* Api */,
 				B3DE97822C76524F00AEFFB9 /* Coordinator */,
 				B3DE977E2C76524F00AEFFB9 /* SwiftData */,
@@ -321,6 +324,14 @@
 				B3DE978A2C7653EC00AEFFB9 /* Grid3x3View.swift */,
 			);
 			path = component;
+			sourceTree = "<group>";
+		};
+		B3F7DCD32C768F2F0045F22E /* Controls */ = {
+			isa = PBXGroup;
+			children = (
+				B3F7DCD42C768F430045F22E /* ThemeManager.swift */,
+			);
+			path = Controls;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -453,6 +464,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3F7DCD52C768F430045F22E /* ThemeManager.swift in Sources */,
 				B3DE97552C7571A900AEFFB9 /* SudokuModel.swift in Sources */,
 				B3DE97262C7510D300AEFFB9 /* HomeView.swift in Sources */,
 				B3DE97482C75310400AEFFB9 /* SettingView.swift in Sources */,
