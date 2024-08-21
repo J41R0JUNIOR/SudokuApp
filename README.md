@@ -30,7 +30,7 @@ A aplicação utiliza a seguinte API para gerar e resolver os tabuleiros de Sudo
 
 1. Clone este repositório:
    ```bash
-   git clone <https://github.com/J41R0JUNIOR/SudokuApp>
+   git clone https://github.com/J41R0JUNIOR/SudokuApp
    ```
 
 2. Navegue até o diretório do projeto:
