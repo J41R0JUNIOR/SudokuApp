@@ -13,17 +13,32 @@ struct HomeView: View {
 //    @Bindable var games: [GameBoard]?
     @Bindable var viewModel = HomeViewModel()
     
-    
+    var frameWidth = UIScreen.main.bounds.width  * 0.3
+//    var frameHeight = UIScreen.main.bounds.width  * 1
     
     var body: some View {
         VStack {
+            Spacer()
+            
+            Image("Logo")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: frameWidth, height: frameWidth)
+//                .cornerRadius(20)
+              
+            
+            Text("iSudoku")
+                .bold()
+                .padding()
+            
+            Spacer()
+            
             if !games.isEmpty {
                 NavigationLink(value: NavigationContentViewCoordinator.sudoku(selectedMode: viewModel.choice)) {
                     Text("Continue")
                 }
-            }
-            
-            if !games.isEmpty{
+                .buttonStyle(.borderedProminent)
+     
                 Button("New game") {
                     viewModel.showAlert.toggle()
                 }
@@ -42,8 +57,12 @@ struct HomeView: View {
                     Text("New game")
                 } asyncFunction: {}
             }
+            
+            Spacer()
+            
         }
-        .buttonStyle(.borderedProminent)
+        .padding()
+        .buttonStyle(.bordered)
         .onAppear(perform: {
             viewModel.dataManager = DataManager(modelContext: modelContext)
         })
