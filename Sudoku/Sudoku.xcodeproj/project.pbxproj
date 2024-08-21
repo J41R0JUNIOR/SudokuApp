@@ -171,6 +171,7 @@
 				B3DE97562C75724200AEFFB9 /* viewModel */,
 				B3DE97532C75718800AEFFB9 /* view */,
 				B3DE97522C75717E00AEFFB9 /* model */,
+				B3DE97982C7679B700AEFFB9 /* component */,
 			);
 			path = SudokuView;
 			sourceTree = "<group>";
@@ -243,9 +244,6 @@
 			isa = PBXGroup;
 			children = (
 				B3DE97222C73CFCE00AEFFB9 /* SudokuView.swift */,
-				B3DE97592C757E9100AEFFB9 /* SudokuNumbersComponent.swift */,
-				B3DE975B2C75848F00AEFFB9 /* SudokuKeyBoard.swift */,
-				B3DE978A2C7653EC00AEFFB9 /* Grid3x3View.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -310,6 +308,16 @@
 				B3DE97962C766BCB00AEFFB9 /* HomeViewModel.swift */,
 			);
 			path = viewModel;
+			sourceTree = "<group>";
+		};
+		B3DE97982C7679B700AEFFB9 /* component */ = {
+			isa = PBXGroup;
+			children = (
+				B3DE97592C757E9100AEFFB9 /* SudokuNumbersComponent.swift */,
+				B3DE975B2C75848F00AEFFB9 /* SudokuKeyBoard.swift */,
+				B3DE978A2C7653EC00AEFFB9 /* Grid3x3View.swift */,
+			);
+			path = component;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
