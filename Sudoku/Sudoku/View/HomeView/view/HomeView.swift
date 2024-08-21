@@ -37,7 +37,7 @@ struct HomeView: View {
                 NavigationLink(value: NavigationContentViewCoordinator.sudoku(selectedMode: viewModel.choice)) {
                     Text("Continue")
                 }
-                .buttonStyle(.bordered)
+                .buttonStyle(.borderedProminent)
      
                 Button("New game") {
                     viewModel.showAlert.toggle()
