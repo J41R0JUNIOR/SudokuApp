@@ -22,7 +22,7 @@ struct SudokuKeyBoard: View {
                         Text("\(number)")
                             .font(.title)
                             .frame(width: UIScreen.main.bounds.width / 10, height: 50)
-                            .background(Color.gray.opacity(0.2))
+                            .background(Color.gray.opacity(0.5))
                             .clipShape(Circle())
                             .foregroundColor(.black)
                     }

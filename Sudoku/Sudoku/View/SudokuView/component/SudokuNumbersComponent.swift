@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct SudokuNumbersComponent: View {
     @Binding var number: Int
@@ -25,9 +26,17 @@ struct SudokuNumbersComponent: View {
                 }, asyncFunction: {})
             }
         }
+//        .fontWidth(.expanded)
+        .font(.system(size: 30, weight: .bold))
+        
     }
 }
 
+//#Preview {
+//    SudokuNumbersComponent(number: .constant(5), correctNumber: .constant(4))
+//}
+
 #Preview {
-    SudokuNumbersComponent(number: .constant(5), correctNumber: .constant(4))
+    let modelContent: ModelContainer = .appContainer
+    return SudokuView(selectedMode: .medium).modelContainer(modelContent)
 }

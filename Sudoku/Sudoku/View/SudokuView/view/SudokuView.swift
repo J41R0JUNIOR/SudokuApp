@@ -46,7 +46,7 @@ struct SudokuView: View {
                                     
                                     SudokuNumbersComponent(number: numberBinding, correctNumber: correctNumberBinding)
                                         .frame(width: frameWidth, height: frameHeight)
-                                        .border(Color.primary, width: 0.2)
+                                        .border(Color.secondary, width: 0.25)
                                 }
                             }
                         }
