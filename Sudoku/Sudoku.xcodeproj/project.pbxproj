@@ -187,9 +187,9 @@
 		B3DE97242C7510A000AEFFB9 /* HomeView */ = {
 			isa = PBXGroup;
 			children = (
+				B3DE97932C766B7700AEFFB9 /* view */,
 				B3DE97952C766BB800AEFFB9 /* viewModel */,
 				B3DE97942C766B8600AEFFB9 /* component */,
-				B3DE97932C766B7700AEFFB9 /* view */,
 			);
 			path = HomeView;
 			sourceTree = "<group>";
