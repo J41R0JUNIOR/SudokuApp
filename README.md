@@ -1,58 +1,50 @@
-Aqui está um exemplo de README para o seu projeto "SudokuApp":
-
----
-
 # SudokuApp
 
-## Descrição
+## Description
 
-O **SudokuApp** é um jogo de Sudoku desenvolvido com o objetivo de revisar o uso de APIs. A aplicação permite que os usuários joguem Sudoku gerado dinamicamente a partir de uma API e que eles resolvam os tabuleiros usando as funcionalidades do próprio aplicativo.
+**SudokuApp** is a Sudoku game developed with the goal of refreshing knowledge on API usage. The application allows users to play Sudoku generated dynamically from an API and solve the puzzles using the app's features.
 
-## API Utilizada
+## API Used
 
-A aplicação utiliza a seguinte API para gerar e resolver os tabuleiros de Sudoku:
+The application uses the following API to generate and solve Sudoku puzzles:
 
 - **API:** [Sudoku Game and API](https://sudoku-game-and-api.netlify.app)
 
-## Funcionalidades
+## Features
 
-- Gerar tabuleiros de Sudoku aleatórios.
-- Interface intuitiva para a jogabilidade.
+- Generate random Sudoku puzzles.
+- Intuitive interface for gameplay.
 
-## Tecnologias Utilizadas
+## Technologies Used
 
 - SwiftUI
 - Swift
-- API RESTful
+- RESTful API
 - SwiftData
 
-## Navegação
+## Navigation
 
 - Enum Navigator
 
-## Como Executar
+## How to Run
 
-1. Clone este repositório:
+1. Clone this repository:
    ```bash
    git clone https://github.com/J41R0JUNIOR/SudokuApp
    ```
 
-2. Navegue até o diretório do projeto:
+2. Navigate to the project directory:
    ```bash
    cd SudokuApp
    ```
 
-3. Abra o projeto no Xcode:
+3. Open the project in Xcode:
    ```bash
    open SudokuApp.xcodeproj
    ```
 
-4. Execute o projeto em um simulador ou dispositivo iOS.
+4. Run the project on a simulator or iOS device.
 
-## Licença
+## License
 
-Este projeto está licenciado sob a [MIT License](LICENSE).
-
----
-
-Esse README fornece uma visão geral do projeto, destacando a API usada, as funcionalidades e as instruções de execução. Sinta-se à vontade para adaptar conforme necessário!
+This project is licensed under the [MIT License](LICENSE).
