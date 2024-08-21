@@ -1,4 +1,4 @@
-# SudokuApp
+# iSudoku
 
 ## Description
 
