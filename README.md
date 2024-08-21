@@ -2,7 +2,7 @@
 
 ## Description
 
-**SudokuApp** is a Sudoku game developed with the goal of refreshing knowledge on API usage. The application allows users to play Sudoku generated dynamically from an API and solve the puzzles using the app's features.
+**iSudoku** is a Sudoku game developed with the goal of refreshing knowledge on API usage. The application allows users to play Sudoku generated dynamically from an API and solve the puzzles using the app's features.
 
 ## API Used
 
