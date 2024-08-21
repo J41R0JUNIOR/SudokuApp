@@ -17,7 +17,6 @@ A aplicação utiliza a seguinte API para gerar e resolver os tabuleiros de Sudo
 ## Funcionalidades
 
 - Gerar tabuleiros de Sudoku aleatórios.
-- Resolver automaticamente os tabuleiros gerados.
 - Interface intuitiva para a jogabilidade.
 
 ## Tecnologias Utilizadas
@@ -25,6 +24,11 @@ A aplicação utiliza a seguinte API para gerar e resolver os tabuleiros de Sudo
 - SwiftUI
 - Swift
 - API RESTful
+- SwiftData
+
+## Navegação
+
+- Enum Navigator
 
 ## Como Executar
 
