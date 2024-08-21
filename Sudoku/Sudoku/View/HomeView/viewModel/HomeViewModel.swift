@@ -9,8 +9,8 @@ import Foundation
 
 @Observable
 class HomeViewModel{
-    @State var choice: GameSelectionMode = .medium
-    @State var showAlert = false
-    @State var showNewGameSheet = false
-    @State var dataManager: DataManager?
+    var choice: GameSelectionMode = .medium
+    var showAlert = false
+    var showNewGameSheet = false
+    var dataManager: DataManager?
 }
