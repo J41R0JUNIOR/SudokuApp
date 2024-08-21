@@ -32,6 +32,7 @@
 		B3DE97872C76524F00AEFFB9 /* NavigationModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DE97802C76524F00AEFFB9 /* NavigationModal.swift */; };
 		B3DE97882C76524F00AEFFB9 /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DE97812C76524F00AEFFB9 /* View+.swift */; };
 		B3DE978B2C7653EC00AEFFB9 /* Grid3x3View.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DE978A2C7653EC00AEFFB9 /* Grid3x3View.swift */; };
+		B3DE97972C766BCB00AEFFB9 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DE97962C766BCB00AEFFB9 /* HomeViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +81,7 @@
 		B3DE97802C76524F00AEFFB9 /* NavigationModal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationModal.swift; sourceTree = "<group>"; };
 		B3DE97812C76524F00AEFFB9 /* View+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
 		B3DE978A2C7653EC00AEFFB9 /* Grid3x3View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grid3x3View.swift; sourceTree = "<group>"; };
+		B3DE97962C766BCB00AEFFB9 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,9 +187,9 @@
 		B3DE97242C7510A000AEFFB9 /* HomeView */ = {
 			isa = PBXGroup;
 			children = (
-				B3DE97252C7510D300AEFFB9 /* HomeView.swift */,
-				B3DE97502C753B6100AEFFB9 /* HomeSelectionMode.swift */,
-				B3DE97642C762CB300AEFFB9 /* HomeActionButton.swift */,
+				B3DE97952C766BB800AEFFB9 /* viewModel */,
+				B3DE97942C766B8600AEFFB9 /* component */,
+				B3DE97932C766B7700AEFFB9 /* view */,
 			);
 			path = HomeView;
 			sourceTree = "<group>";
@@ -195,8 +197,8 @@
 		B3DE97272C75112E00AEFFB9 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				B3DE97462C7530FB00AEFFB9 /* SettingView */,
 				B3DE97362C752CB100AEFFB9 /* ContentView */,
+				B3DE97462C7530FB00AEFFB9 /* SettingView */,
 				B3DE97242C7510A000AEFFB9 /* HomeView */,
 				B3DE97202C73BDAB00AEFFB9 /* SudokuView */,
 			);
@@ -283,6 +285,31 @@
 				B3DE972B2C75153B00AEFFB9 /* Info.swift */,
 			);
 			path = Api;
+			sourceTree = "<group>";
+		};
+		B3DE97932C766B7700AEFFB9 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				B3DE97252C7510D300AEFFB9 /* HomeView.swift */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		B3DE97942C766B8600AEFFB9 /* component */ = {
+			isa = PBXGroup;
+			children = (
+				B3DE97502C753B6100AEFFB9 /* HomeSelectionMode.swift */,
+				B3DE97642C762CB300AEFFB9 /* HomeActionButton.swift */,
+			);
+			path = component;
+			sourceTree = "<group>";
+		};
+		B3DE97952C766BB800AEFFB9 /* viewModel */ = {
+			isa = PBXGroup;
+			children = (
+				B3DE97962C766BCB00AEFFB9 /* HomeViewModel.swift */,
+			);
+			path = viewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -431,6 +458,7 @@
 				B3DE97852C76524F00AEFFB9 /* ModelContainerExtension.swift in Sources */,
 				B3DE97582C75724F00AEFFB9 /* SudokuViewModel.swift in Sources */,
 				B3DE97652C762CB300AEFFB9 /* HomeActionButton.swift in Sources */,
+				B3DE97972C766BCB00AEFFB9 /* HomeViewModel.swift in Sources */,
 				B3DE972C2C75153B00AEFFB9 /* Info.swift in Sources */,
 				B3DE975C2C75848F00AEFFB9 /* SudokuKeyBoard.swift in Sources */,
 				B3DE96F72C73BD8000AEFFB9 /* SudokuApp.swift in Sources */,

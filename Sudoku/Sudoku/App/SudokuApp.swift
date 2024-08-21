@@ -9,11 +9,6 @@ import SwiftUI
 
 @main
 struct SudokuApp: App {
-    
-//    init(){
-//        UIView.appearance(whenContainedInInstancesOf: [UIAlertController.self]).tintColor = .red
-//    }
-    
     var body: some Scene {
         WindowGroup {
             ContentView()
