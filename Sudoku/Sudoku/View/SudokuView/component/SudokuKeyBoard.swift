@@ -17,7 +17,11 @@ struct SudokuKeyBoard: View {
             LazyVGrid(columns: [GridItem](repeating: GridItem(.flexible(), spacing: 10), count: 9)) {
                 ForEach(1..<10) { number in
                     Button(action: {
-                        selectedNumber = number
+                        if selectedNumber == number{
+                            selectedNumber = 0
+                        }else{
+                            selectedNumber = number
+                        }
                         presentationMode.wrappedValue.dismiss()
                         
                         haptics.callVibration()
