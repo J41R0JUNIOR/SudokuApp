@@ -36,13 +36,16 @@ struct HomeView: View {
             if !games.isEmpty {
                 NavigationLink(value: NavigationContentViewCoordinator.sudoku(selectedMode: viewModel.choice)) {
                     Text("Continue")
+                        .foregroundStyle(.background)
                 }
                 .buttonStyle(.borderedProminent)
+                
      
                 Button("New game") {
                     viewModel.showAlert.toggle()
                 }
-                .alert("Are you sure? It'll delete your progress", isPresented: $viewModel.showAlert) {
+             
+                .alert("It'll delete your progress. \nAre you sure?", isPresented: $viewModel.showAlert) {
                     Button("Yes") {
                         viewModel.showAlert.toggle()
                         viewModel.showNewGameSheet.toggle()
@@ -61,6 +64,7 @@ struct HomeView: View {
             Spacer()
             
         }
+        .tint(.primary)
         .padding()
         .buttonStyle(.bordered)
         .onAppear(perform: {

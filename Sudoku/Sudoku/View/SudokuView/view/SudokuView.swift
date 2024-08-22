@@ -19,11 +19,11 @@ struct SudokuView: View {
     var frameHeight = (UIScreen.main.bounds.width / 9) * 1
     
     var body: some View {
-        VStack{
+        VStack {
             Text("Mode: \(games.first?.mode ?? "")")
             Spacer()
             
-            ZStack{
+            ZStack {
                 Grid3x3View()
                 VStack(spacing: 0) {
                     ForEach(games.first?.grid.indices ?? [].indices, id: \.self) { rowIndex in
@@ -44,9 +44,17 @@ struct SudokuView: View {
                                         set: { _ in }
                                     )
                                     
-                                    SudokuNumbersComponent(number: numberBinding, correctNumber: correctNumberBinding)
-                                        .frame(width: frameWidth, height: frameHeight)
-                                        .border(Color.secondary, width: 0.25)
+                                    if game.grid[rowIndex][columnIndex] == game.gridCopy[rowIndex][columnIndex] && game.grid[rowIndex][columnIndex] != 0 {
+                                        
+                                        SudokuFinalNumbers(finalNumbeer: numberBinding)
+                                            .frame(width: frameWidth, height: frameHeight)
+                                            .border(Color.secondary, width: 0.25)
+                                    } else {
+//                                        
+                                        SudokuNumbersComponent(number: numberBinding, correctNumber: correctNumberBinding)
+                                            .frame(width: frameWidth, height: frameHeight)
+                                            .border(Color.secondary, width: 0.25)
+                                    }
                                 }
                             }
                         }
