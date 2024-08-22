@@ -11,6 +11,7 @@ import SwiftData
 struct SudokuNumbersComponent: View {
     @Binding var number: Int
     @Binding var correctNumber: Int
+    @Binding var maxQtd: Int
     @EnvironmentObject var haptics: HapticsManager
 
     
@@ -18,15 +19,16 @@ struct SudokuNumbersComponent: View {
         VStack{
             if number == correctNumber {
                 Text("\(number)").foregroundStyle(.blue)
-            } else if number == 0 {
-                NavigationModal(.sheet, value: NavigationContentViewCoordinator.sudokuNumbers(number: $number), data: NavigationContentViewCoordinator.self, presentationDetents: [.fraction(0.1)], label: {
-                    Text(" ")
-                }, asyncFunction: {
-                    haptics.callVibration()
-                })
+                
             } else {
                 NavigationModal(.sheet, value: NavigationContentViewCoordinator.sudokuNumbers(number: $number), data: NavigationContentViewCoordinator.self, presentationDetents: [.fraction(0.1)], label: {
-                    Text("\(number)").foregroundStyle(.red)
+                    
+                    if number == 0 {
+                        Text(" ")
+                    }else{
+                        Text("\(number)").foregroundStyle(.red)
+                    }
+                    
                 }, asyncFunction: {
                     haptics.callVibration()
                 })

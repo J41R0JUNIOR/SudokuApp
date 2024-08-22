@@ -14,6 +14,7 @@ class GameBoard {
     private var gridCopyData: Data
     private var solutionData: Data
     var mode: String
+    var maxQtd: Int
 
     var grid: [[Int]] {
         get { (try? JSONDecoder().decode([[Int]].self, from: gridData)) ?? [[]] }
@@ -30,11 +31,12 @@ class GameBoard {
         set { solutionData = (try? JSONEncoder().encode(newValue)) ?? Data() }
     }
     
-    init(grid: [[Int]] = [[]], solution: [[Int]] = [[]], mode: String = "") {
+    init(grid: [[Int]] = [[]], solution: [[Int]] = [[]], mode: String = "", maxQtd: Int = 3) {
         self.gridData = (try? JSONEncoder().encode(grid)) ?? Data()
         self.gridCopyData = (try? JSONEncoder().encode(grid)) ?? Data()
         self.solutionData = (try? JSONEncoder().encode(solution)) ?? Data()
         self.mode = mode
+        self.maxQtd = maxQtd
     }
 }
 

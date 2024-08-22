@@ -21,6 +21,8 @@ struct SudokuView: View {
     var body: some View {
         VStack {
             Text("Mode: \(games.first?.mode ?? "")")
+            Text("Quantity \(games.first?.maxQtd ?? 0)")
+            
             Spacer()
             
             ZStack {
@@ -41,8 +43,19 @@ struct SudokuView: View {
                                     
                                     let correctNumberBinding = Binding(
                                         get: { game.solution[rowIndex][columnIndex] },
-                                        set: { _ in }
+                                        set: { _ in}
                                     )
+                                    
+                                    let maxQtdBinding = Binding (
+                                        get: { game.solution[rowIndex][columnIndex] },
+                                        set: { newValue in
+                                            game.maxQtd = newValue
+                                            try? modelContext.save()
+                                        }
+                                    )
+                                    
+                                    
+                                    
                                     
                                     if game.grid[rowIndex][columnIndex] == game.gridCopy[rowIndex][columnIndex] && game.grid[rowIndex][columnIndex] != 0 {
                                         
@@ -50,8 +63,9 @@ struct SudokuView: View {
                                             .frame(width: frameWidth, height: frameHeight)
                                             .border(Color.secondary, width: 0.25)
                                     } else {
-//                                        
-                                        SudokuNumbersComponent(number: numberBinding, correctNumber: correctNumberBinding)
+                                        //
+                                        //                                        SudokuNumbersComponent(number: numberBinding, correctNumber: correctNumberBinding, maxQtd: maxQtdBinding)
+                                        SudokuNumbersComponent(number: numberBinding, correctNumber: correctNumberBinding, maxQtd: maxQtdBinding)
                                             .frame(width: frameWidth, height: frameHeight)
                                             .border(Color.secondary, width: 0.25)
                                     }
