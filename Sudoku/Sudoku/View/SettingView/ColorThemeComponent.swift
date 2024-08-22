@@ -10,6 +10,8 @@ import SwiftUI
 struct ColorThemeComponent: View {
 //    @AppStorage("isDarkMode") private var isDarkMode: Bool = false
     @EnvironmentObject var themeManager: ThemeManager
+    @EnvironmentObject var haptics: HapticsManager
+
 
     var body: some View {
         HStack{
@@ -26,6 +28,7 @@ struct ColorThemeComponent: View {
                         .stroke(Color.black, lineWidth: 2)
                 )
                 .onTapGesture {
+                    haptics.callVibration()
                     themeManager.isDarkMode = false
                 }
             
@@ -38,10 +41,10 @@ struct ColorThemeComponent: View {
                         .stroke(Color.white, lineWidth: 2)
                 )
                 .onTapGesture {
+                    haptics.callVibration()
                     themeManager.isDarkMode = true
                 }
         }
-//        .preferredColorScheme(themeManager.isDarkMode ? .dark : .light)
     }
 }
 

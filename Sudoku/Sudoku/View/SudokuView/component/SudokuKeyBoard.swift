@@ -10,6 +10,7 @@ import SwiftUI
 struct SudokuKeyBoard: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @Binding var selectedNumber: Int
+    @EnvironmentObject var haptics: HapticsManager
     
     var body: some View {
         HStack(spacing: 10) {
@@ -18,6 +19,8 @@ struct SudokuKeyBoard: View {
                     Button(action: {
                         selectedNumber = number
                         presentationMode.wrappedValue.dismiss()
+                        
+                        haptics.callVibration()
                     }) {
                         Text("\(number)")
                             .font(.title)

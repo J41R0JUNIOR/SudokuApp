@@ -6,18 +6,17 @@
 //
 
 import Foundation
-
 import SwiftUI
 
 class ThemeManager: ObservableObject {
-    @AppStorage("isDarkMode") var isDarkMode: Bool = false {
+    @AppStorage(EnumModel.darkMode.rawValue) var isDarkMode: Bool = false {
         didSet {
-            UserDefaults.standard.set(isDarkMode, forKey: "isDarkMode")
+            UserDefaults.standard.set(isDarkMode, forKey: EnumModel.darkMode.rawValue)
         }
     }
 
     init() {
-        if let savedTheme = UserDefaults.standard.value(forKey: "isDarkMode") as? Bool {
+        if let savedTheme = UserDefaults.standard.value(forKey: EnumModel.darkMode.rawValue) as? Bool {
             self.isDarkMode = savedTheme
         }
     }

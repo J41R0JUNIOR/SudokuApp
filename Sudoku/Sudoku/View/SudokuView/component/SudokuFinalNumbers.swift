@@ -13,18 +13,13 @@ struct SudokuFinalNumbers: View {
     
     var body: some View {
         VStack{
-         
-                Text("\(finalNumbeer)").foregroundStyle(.primary)
-           
+            Text("\(finalNumbeer)").foregroundStyle(.primary)
         }
         .font(.system(size: 30, weight: .bold))
         
     }
 }
- 
-//#Preview(body: {
-//    SudokuFinalNumbers(finalNumbeer: .constant(3))
-//})
+
 
 
 #Preview {

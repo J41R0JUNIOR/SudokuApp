@@ -9,8 +9,8 @@ import SwiftData
 
 struct HomeView: View {
     @Environment(\.modelContext) var modelContext
+    @EnvironmentObject var haptics: HapticsManager
     @Query(sort: [SortDescriptor(\GameBoard.mode, order: .reverse)]) var games: [GameBoard]
-//    @Bindable var games: [GameBoard]?
     @Bindable var viewModel = HomeViewModel()
     
     var frameWidth = UIScreen.main.bounds.width  * 0.3
@@ -23,9 +23,7 @@ struct HomeView: View {
             Image("Logo")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .frame(width: frameWidth, height: frameWidth)
-//                .cornerRadius(20)
-              
+                .frame(width: frameWidth, height: frameWidth)              
             
             Text("iSudoku")
                 .bold()
@@ -43,14 +41,18 @@ struct HomeView: View {
      
                 Button("New game") {
                     viewModel.showAlert.toggle()
+                    haptics.callVibration()
                 }
              
                 .alert("It'll delete your progress. \nAre you sure?", isPresented: $viewModel.showAlert) {
                     Button("Yes") {
+                        haptics.callVibration()
                         viewModel.showAlert.toggle()
                         viewModel.showNewGameSheet.toggle()
                     }
-                    Button("No", role: .cancel, action: {})
+                    Button("No", role: .cancel, action: {
+                        haptics.callVibration()
+                    })
                 }
                 .sheet(isPresented: $viewModel.showNewGameSheet) {
                     HomeSelectionMode().presentationDetents([.fraction(0.3)])
@@ -58,7 +60,9 @@ struct HomeView: View {
             }else{
                 NavigationModal(.sheet, value: NavigationContentViewCoordinator.homeSelectionMode, data: NavigationContentViewCoordinator.self, presentationDetents: [.fraction(0.3)]) {
                     Text("New game")
-                } asyncFunction: {}
+                } asyncFunction: {
+                    haptics.callVibration()
+                }
             }
             
             Spacer()
