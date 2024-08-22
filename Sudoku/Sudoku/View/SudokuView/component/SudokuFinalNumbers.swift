@@ -14,7 +14,7 @@ struct SudokuFinalNumbers: View {
     var body: some View {
         VStack{
          
-                Text("\(finalNumbeer)").foregroundStyle(.black)
+                Text("\(finalNumbeer)").foregroundStyle(.primary)
            
         }
         .font(.system(size: 30, weight: .bold))
