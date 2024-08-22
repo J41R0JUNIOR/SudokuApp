@@ -8,19 +8,17 @@
 import SwiftUI
 
 struct SettingComponents: View {
-    @State var vibration: Bool = false
-    @State var notification: Bool = false
-    
+    @StateObject var vibration = HapticsManager()
+    @State private var notification: Bool = false
+   
     var body: some View {
         VStack {
             ListSelector
         }
-        
     }
-    
 }
-extension SettingComponents{
-    
+
+extension SettingComponents {
     @ViewBuilder
     private var ListSelector: some View {
         Text("Settings")
@@ -33,7 +31,7 @@ extension SettingComponents{
             Section(header: Text("Your style")) {
                 ColorThemeComponent()
                 
-                Toggle("Vibration", isOn: $vibration)
+                Toggle("Vibration", isOn: $vibration.isOnVibrationMode)
                     .toggleStyle(.switch)
                 
                 Toggle("Notification", isOn: $notification)

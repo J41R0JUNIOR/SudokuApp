@@ -10,6 +10,7 @@ import SwiftData
 
 struct HomeActionButton: View {
     @Query(sort: [SortDescriptor(\GameBoard.mode, order: .reverse)]) var games: [GameBoard]
+    @EnvironmentObject var haptics: HapticsManager
     var title: String
     var mode: GameSelectionMode
     var dataManager: DataManager?
@@ -19,6 +20,7 @@ struct HomeActionButton: View {
     
     var body: some View {
         Button(action: {
+            haptics.callVibration()
             Task {
                 do {
                     await apiCall.newGame(mode: mode)
@@ -33,6 +35,7 @@ struct HomeActionButton: View {
             }
         }, label: {
             Text(title)
+                .foregroundStyle(.background)
                 .frame(width: UIScreen.main.bounds.width * labelWidth)
         })
     }
