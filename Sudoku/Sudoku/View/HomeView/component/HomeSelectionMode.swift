@@ -20,9 +20,9 @@ struct HomeSelectionMode: View {
 
     var body: some View {
         VStack {
-            HomeActionButton(title: "Easy", mode: .easy, dataManager: dataManager, apiCall: apiCall, presentationMode: presentationMode,labelWidth: 0.7)
+            HomeActionButton(title: "Easy", mode: .easy, dataManager: dataManager, apiCall: apiCall, presentationMode: presentationMode,labelWidth: 0.8)
             HomeActionButton(title: "Medium", mode: .medium, dataManager: dataManager, apiCall: apiCall, presentationMode: presentationMode, labelWidth: 0.8)
-            HomeActionButton(title: "Hard", mode: .hard, dataManager: dataManager, apiCall: apiCall, presentationMode: presentationMode, labelWidth: 0.7)
+            HomeActionButton(title: "Hard", mode: .hard, dataManager: dataManager, apiCall: apiCall, presentationMode: presentationMode, labelWidth: 0.8)
         }
         .buttonStyle(.borderedProminent)
         .onAppear(perform: {

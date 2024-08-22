@@ -7,7 +7,7 @@
 
 import Foundation
 
-class BringInfo: Codable, ObservableObject {
+struct BringInfo: Codable {
     let game: String
     let info: String
     let data: [[Int]]

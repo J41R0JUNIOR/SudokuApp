@@ -10,7 +10,7 @@ import SwiftData
 
 struct SudokuView: View {
     var selectedMode: GameSelectionMode?
-    @Bindable private var viewModel = SudokuViewModel()
+    @State private var viewModel = SudokuViewModel()
     @Environment(\.modelContext) var modelContext
     
     @Query(sort: [SortDescriptor(\GameBoard.mode, order: .reverse)]) var games: [GameBoard] = []
@@ -19,6 +19,7 @@ struct SudokuView: View {
     var frameHeight = (UIScreen.main.bounds.width / 9) * 1
     
     var body: some View {
+//        @Bindable viewModel = viewModel
         VStack {
             Text("Mode: \(games.first?.mode ?? "")")
             Text("Quantity \(games.first?.maxQtd ?? 0)")
@@ -33,26 +34,33 @@ struct SudokuView: View {
                             ForEach(games.first?.grid[rowIndex].indices ?? [].indices, id: \.self) { columnIndex in
                                 
                                 if let game = games.first {
-                                    let numberBinding = Binding(
-                                        get: { game.grid[rowIndex][columnIndex] },
-                                        set: { newValue in
-                                            game.grid[rowIndex][columnIndex] = newValue
-                                            try? modelContext.save()
-                                        }
-                                    )
                                     
-                                    let correctNumberBinding = Binding(
-                                        get: { game.solution[rowIndex][columnIndex] },
-                                        set: { _ in}
-                                    )
+                                    let numberBinding = viewModel.numberToBinding(rowIndex: rowIndex, columnIndex: columnIndex, game: game, modelContext: modelContext)
                                     
-                                    let maxQtdBinding = Binding (
-                                        get: { game.solution[rowIndex][columnIndex] },
-                                        set: { newValue in
-                                            game.maxQtd = newValue
-                                            try? modelContext.save()
-                                        }
-                                    )
+                                    let correctNumberBinding = viewModel.correctNumberToBinding(rowIndex: rowIndex, columnIndex: columnIndex, game: game)
+                                    
+                                    let maxQtdBinding = viewModel.maxQtdToBinding(rowIndex: rowIndex, columnIndex: columnIndex, game: game, modelContext: modelContext)
+                                    
+//                                    let numberBinding = Binding(
+//                                        get: { game.grid[rowIndex][columnIndex] },
+//                                        set: { newValue in
+//                                            game.grid[rowIndex][columnIndex] = newValue
+//                                            try? modelContext.save()
+//                                        }
+//                                    ) 
+//                                    
+//                                    let correctNumberBinding = Binding(
+//                                        get: { game.solution[rowIndex][columnIndex] },
+//                                        set: { _ in}
+//                                    )
+//                                    
+//                                    let maxQtdBinding = Binding (
+//                                        get: { game.solution[rowIndex][columnIndex] },
+//                                        set: { newValue in
+//                                            game.maxQtd = newValue
+//                                            try? modelContext.save()
+//                                        }
+//                                    )
                                     
                                     
                                     

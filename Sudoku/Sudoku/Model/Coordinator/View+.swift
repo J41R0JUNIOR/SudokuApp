@@ -9,7 +9,7 @@ import SwiftUI
 
 extension View {
     func navigationLinkValues<D>(_ data: D.Type) -> some View where D: Hashable & View{
-        NavigationStack{
+        NavigationStack {
           self.navigationDestination(for: data.self, destination: { $0 })
         }
     }
