@@ -15,7 +15,7 @@ struct ContentView: View {
                 .tabItem {
                     Image(systemName: "house")
                 }
-            SettingView()
+            SettingComponents()
                 .tabItem {
                     Image(systemName: "gear")
                 }

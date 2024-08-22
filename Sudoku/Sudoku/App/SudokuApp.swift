@@ -14,8 +14,9 @@ struct SudokuApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environmentObject(themeManager) 
+                .environmentObject(themeManager)
                 .preferredColorScheme(themeManager.isDarkMode ? .dark : .light)
         }.modelContainer(for: GameBoard.self)
     }
 }
+

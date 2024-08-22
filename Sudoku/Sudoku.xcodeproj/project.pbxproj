@@ -18,7 +18,7 @@
 		B3DE972A2C75129E00AEFFB9 /* ApiCall.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DE97292C75129E00AEFFB9 /* ApiCall.swift */; };
 		B3DE972C2C75153B00AEFFB9 /* Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DE972B2C75153B00AEFFB9 /* Info.swift */; };
 		B3DE97382C752CC100AEFFB9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DE97372C752CC100AEFFB9 /* ContentView.swift */; };
-		B3DE97482C75310400AEFFB9 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DE97472C75310400AEFFB9 /* SettingView.swift */; };
+		B3DE97482C75310400AEFFB9 /* SettingComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DE97472C75310400AEFFB9 /* SettingComponents.swift */; };
 		B3DE97512C753B6100AEFFB9 /* HomeSelectionMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DE97502C753B6100AEFFB9 /* HomeSelectionMode.swift */; };
 		B3DE97552C7571A900AEFFB9 /* SudokuModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DE97542C7571A900AEFFB9 /* SudokuModel.swift */; };
 		B3DE97582C75724F00AEFFB9 /* SudokuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DE97572C75724F00AEFFB9 /* SudokuViewModel.swift */; };
@@ -35,6 +35,7 @@
 		B3DE97972C766BCB00AEFFB9 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DE97962C766BCB00AEFFB9 /* HomeViewModel.swift */; };
 		B3F7DCD22C768CD20045F22E /* ColorThemeComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F7DCD12C768CD20045F22E /* ColorThemeComponent.swift */; };
 		B3F7DCD52C768F430045F22E /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F7DCD42C768F430045F22E /* ThemeManager.swift */; };
+		B3F7DCD72C769F9F0045F22E /* SudokuFinalNumbers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F7DCD62C769F9F0045F22E /* SudokuFinalNumbers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,7 +70,7 @@
 		B3DE97292C75129E00AEFFB9 /* ApiCall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiCall.swift; sourceTree = "<group>"; };
 		B3DE972B2C75153B00AEFFB9 /* Info.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Info.swift; sourceTree = "<group>"; };
 		B3DE97372C752CC100AEFFB9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		B3DE97472C75310400AEFFB9 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
+		B3DE97472C75310400AEFFB9 /* SettingComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingComponents.swift; sourceTree = "<group>"; };
 		B3DE97502C753B6100AEFFB9 /* HomeSelectionMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSelectionMode.swift; sourceTree = "<group>"; };
 		B3DE97542C7571A900AEFFB9 /* SudokuModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuModel.swift; sourceTree = "<group>"; };
 		B3DE97572C75724F00AEFFB9 /* SudokuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuViewModel.swift; sourceTree = "<group>"; };
@@ -86,6 +87,7 @@
 		B3DE97962C766BCB00AEFFB9 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		B3F7DCD12C768CD20045F22E /* ColorThemeComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorThemeComponent.swift; sourceTree = "<group>"; };
 		B3F7DCD42C768F430045F22E /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
+		B3F7DCD62C769F9F0045F22E /* SudokuFinalNumbers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuFinalNumbers.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -232,7 +234,7 @@
 		B3DE97462C7530FB00AEFFB9 /* SettingView */ = {
 			isa = PBXGroup;
 			children = (
-				B3DE97472C75310400AEFFB9 /* SettingView.swift */,
+				B3DE97472C75310400AEFFB9 /* SettingComponents.swift */,
 				B3F7DCD12C768CD20045F22E /* ColorThemeComponent.swift */,
 			);
 			path = SettingView;
@@ -322,6 +324,7 @@
 				B3DE97592C757E9100AEFFB9 /* SudokuNumbersComponent.swift */,
 				B3DE975B2C75848F00AEFFB9 /* SudokuKeyBoard.swift */,
 				B3DE978A2C7653EC00AEFFB9 /* Grid3x3View.swift */,
+				B3F7DCD62C769F9F0045F22E /* SudokuFinalNumbers.swift */,
 			);
 			path = component;
 			sourceTree = "<group>";
@@ -467,7 +470,8 @@
 				B3F7DCD52C768F430045F22E /* ThemeManager.swift in Sources */,
 				B3DE97552C7571A900AEFFB9 /* SudokuModel.swift in Sources */,
 				B3DE97262C7510D300AEFFB9 /* HomeView.swift in Sources */,
-				B3DE97482C75310400AEFFB9 /* SettingView.swift in Sources */,
+				B3DE97482C75310400AEFFB9 /* SettingComponents.swift in Sources */,
+				B3F7DCD72C769F9F0045F22E /* SudokuFinalNumbers.swift in Sources */,
 				B3DE978B2C7653EC00AEFFB9 /* Grid3x3View.swift in Sources */,
 				B3DE97832C76524F00AEFFB9 /* DataManager.swift in Sources */,
 				B3DE97232C73CFCE00AEFFB9 /* SudokuView.swift in Sources */,

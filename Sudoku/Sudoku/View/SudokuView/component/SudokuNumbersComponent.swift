@@ -15,7 +15,7 @@ struct SudokuNumbersComponent: View {
     var body: some View {
         VStack{
             if number == correctNumber {
-                Text("\(number)").foregroundStyle(.primary)
+                Text("\(number)").foregroundStyle(.blue)
             } else if number == 0 {
                 NavigationModal(.sheet, value: NavigationContentViewCoordinator.sudokuNumbers(number: $number), data: NavigationContentViewCoordinator.self, presentationDetents: [.fraction(0.1)], label: {
                     Text(" ")
@@ -26,15 +26,11 @@ struct SudokuNumbersComponent: View {
                 }, asyncFunction: {})
             }
         }
-//        .fontWidth(.expanded)
         .font(.system(size: 30, weight: .bold))
         
     }
 }
 
-//#Preview {
-//    SudokuNumbersComponent(number: .constant(5), correctNumber: .constant(4))
-//}
 
 #Preview {
     let modelContent: ModelContainer = .appContainer
