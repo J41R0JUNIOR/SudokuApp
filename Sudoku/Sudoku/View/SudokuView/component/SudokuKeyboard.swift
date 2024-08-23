@@ -14,7 +14,7 @@ struct SudokuKeyboard: View {
     @Binding var correctNumber: Int
     @Binding var maxQtd: Int
     @Binding var actualQtd: Int
-
+    
     @EnvironmentObject var haptics: HapticsManager
     
     var dataManager: DataManager?
@@ -26,20 +26,20 @@ struct SudokuKeyboard: View {
             LazyVGrid(columns: [GridItem](repeating: GridItem(.flexible(), spacing: 10), count: 9)) {
                 ForEach(1..<10) { number in
                     Button(action: {
+                        
                         if selectedNumber == number {
                             selectedNumber = 0
-                        } else {
+                        }
+                        else if actualQtd < maxQtd{
                             selectedNumber = number
                             
-                            if selectedNumber != correctNumber {
-                                if actualQtd < maxQtd {
-                                    actualQtd += 1
-                                } else {
-                                    showAlert = true
-                                }
+                            if selectedNumber != correctNumber && actualQtd < maxQtd {
+                                actualQtd += 1
                             }
+                        } else {
+                            showAlert = true
                         }
-
+                        
                         haptics.callVibration()
                         
                     }) {
