@@ -14,7 +14,7 @@ struct SudokuKeyboard: View {
     @Binding var correctNumber: Int
     @Binding var maxQtd: Int
     @Binding var actualQtd: Int
-    @Binding var showAlert: Bool
+    @Binding var showGameOverAlert: Bool
     
     @EnvironmentObject var haptics: HapticsManager
     
@@ -37,7 +37,7 @@ struct SudokuKeyboard: View {
                                 actualQtd += 1
                             }
                         } else {
-                            showAlert = true
+                            showGameOverAlert = true
                         }
                         
                         haptics.callVibration()
