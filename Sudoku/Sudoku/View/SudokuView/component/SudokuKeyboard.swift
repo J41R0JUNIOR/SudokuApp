@@ -26,7 +26,7 @@ struct SudokuKeyboard: View {
             LazyVGrid(columns: [GridItem](repeating: GridItem(.flexible(), spacing: 10), count: 9)) {
                 ForEach(1..<10) { number in
                     Button(action: {
-                        
+                        presentationMode.wrappedValue.dismiss()
                         if selectedNumber == number {
                             selectedNumber = 0
                         }
