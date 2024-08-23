@@ -33,6 +33,7 @@
 		B3DE97882C76524F00AEFFB9 /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DE97812C76524F00AEFFB9 /* View+.swift */; };
 		B3DE978B2C7653EC00AEFFB9 /* Grid3x3View.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DE978A2C7653EC00AEFFB9 /* Grid3x3View.swift */; };
 		B3DE97972C766BCB00AEFFB9 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DE97962C766BCB00AEFFB9 /* HomeViewModel.swift */; };
+		B3EC47F72C7822F5002F478A /* SudokuLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3EC47F62C7822F5002F478A /* SudokuLogic.swift */; };
 		B3F23AA72C76D86700E67F01 /* HapticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F23AA62C76D86700E67F01 /* HapticsManager.swift */; };
 		B3F23AA92C76D88C00E67F01 /* EnumModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F23AA82C76D88C00E67F01 /* EnumModel.swift */; };
 		B3F7DCD22C768CD20045F22E /* ColorThemeComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F7DCD12C768CD20045F22E /* ColorThemeComponent.swift */; };
@@ -87,6 +88,7 @@
 		B3DE97812C76524F00AEFFB9 /* View+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
 		B3DE978A2C7653EC00AEFFB9 /* Grid3x3View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grid3x3View.swift; sourceTree = "<group>"; };
 		B3DE97962C766BCB00AEFFB9 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		B3EC47F62C7822F5002F478A /* SudokuLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuLogic.swift; sourceTree = "<group>"; };
 		B3F23AA62C76D86700E67F01 /* HapticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticsManager.swift; sourceTree = "<group>"; };
 		B3F23AA82C76D88C00E67F01 /* EnumModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumModel.swift; sourceTree = "<group>"; };
 		B3F7DCD12C768CD20045F22E /* ColorThemeComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorThemeComponent.swift; sourceTree = "<group>"; };
@@ -293,6 +295,7 @@
 			children = (
 				B3DE97292C75129E00AEFFB9 /* ApiCall.swift */,
 				B3DE972B2C75153B00AEFFB9 /* Info.swift */,
+				B3EC47F62C7822F5002F478A /* SudokuLogic.swift */,
 			);
 			path = Api;
 			sourceTree = "<group>";
@@ -499,6 +502,7 @@
 				B3DE975A2C757E9100AEFFB9 /* SudokuNumbersComponent.swift in Sources */,
 				B3F23AA92C76D88C00E67F01 /* EnumModel.swift in Sources */,
 				B3F7DCD22C768CD20045F22E /* ColorThemeComponent.swift in Sources */,
+				B3EC47F72C7822F5002F478A /* SudokuLogic.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -665,6 +669,7 @@
 				DEVELOPMENT_TEAM = KV78S9S54R;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = SudoKu;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -694,6 +699,7 @@
 				DEVELOPMENT_TEAM = KV78S9S54R;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = SudoKu;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
