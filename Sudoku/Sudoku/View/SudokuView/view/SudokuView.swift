@@ -12,6 +12,8 @@ struct SudokuView: View {
     var selectedMode: GameSelectionMode?
     @State private var viewModel = SudokuViewModel()
     @Environment(\.modelContext) var modelContext
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+
     
    
     
@@ -65,7 +67,10 @@ struct SudokuView: View {
             Spacer()
         }
         .alert("You lost the game", isPresented: $viewModel.model.showGameOverAlert) {
-            Button("Accept"){}
+            Button("Accept"){
+                presentationMode.wrappedValue.dismiss()
+                viewModel.model.dataManager?.deleteAllGameBoards(gameBoards: games)
+            }
             Button("Cancel", role: .cancel) {}
         }
         .onAppear {

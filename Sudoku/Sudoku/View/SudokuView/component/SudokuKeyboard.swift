@@ -53,11 +53,6 @@ struct SudokuKeyboard: View {
                 }
             }
         }
-        
         .padding()
     }
 }
-
-//#Preview {
-//    SudokuKeyBoard(selectedNumber: .constant(0), correctNumber: .constant(1), maxQtd: .constant(3), actualQtd: .constant(2), games: GameBoard()
-//}
