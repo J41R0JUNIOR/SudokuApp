@@ -20,6 +20,7 @@ struct HomeSelectionMode: View {
 
     var body: some View {
         VStack {
+            Text("Chose the gamemode:").bold()
             HomeActionButton(title: "Easy", mode: .easy, dataManager: dataManager, apiCall: apiCall, presentationMode: presentationMode,labelWidth: 0.8)
             HomeActionButton(title: "Medium", mode: .medium, dataManager: dataManager, apiCall: apiCall, presentationMode: presentationMode, labelWidth: 0.8)
             HomeActionButton(title: "Hard", mode: .hard, dataManager: dataManager, apiCall: apiCall, presentationMode: presentationMode, labelWidth: 0.8)

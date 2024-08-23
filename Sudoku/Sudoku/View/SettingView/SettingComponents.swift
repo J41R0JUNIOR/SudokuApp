@@ -34,14 +34,14 @@ extension SettingComponents {
                 Toggle("Vibration", isOn: $vibration.isOnVibrationMode)
                     .toggleStyle(.switch)
                 
-                Toggle("Notification", isOn: $notification)
-                    .toggleStyle(.switch)
+//                Toggle("Notification", isOn: $notification)
+//                    .toggleStyle(.switch)
             }
             
-            Section(header: Text("Game Preferences")) {
-                Text("Auto-complete")
-                Text("etc...")
-            }
+//            Section(header: Text("Game Preferences")) {
+//                Text("Auto-complete")
+//                Text("etc...")
+//            }
         }
         .tint(.black)
         .scrollContentBackground(.hidden)

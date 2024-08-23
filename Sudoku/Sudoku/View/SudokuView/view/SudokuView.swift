@@ -24,11 +24,12 @@ struct SudokuView: View {
     
     var body: some View {
         VStack {
-            Text("Mode: \(games.first?.mode ?? "")")
-            Text("Mistakes \(games.first?.actualQtd ?? 0)/\(games.first?.maxQtd ?? 0)")
-            
+            Text("\(games.first?.mode.uppercased() ?? "") MODE").bold()
             Spacer()
-            
+            HStack{
+                Text("Mistakes \(games.first?.actualQtd ?? 0)/\(games.first?.maxQtd ?? 0)")
+                Spacer()
+            }
             ZStack {
                 Grid3x3View()
                 VStack(spacing: 0) {
@@ -65,13 +66,13 @@ struct SudokuView: View {
             }
             
             Spacer()
-        }
-        .alert("You lost the game", isPresented: $viewModel.model.showGameOverAlert) {
-            Button("Accept"){
+        }.padding()
+        .alert("Game Over\nGet back to menu?", isPresented: $viewModel.model.showGameOverAlert) {
+            Button("Yes"){
                 presentationMode.wrappedValue.dismiss()
                 viewModel.model.dataManager?.deleteAllGameBoards(gameBoards: games)
             }
-            Button("Cancel", role: .cancel) {}
+            Button("No", role: .cancel) {}
         }
         .onAppear {
             viewModel.model.dataManager = DataManager(modelContext: modelContext)
