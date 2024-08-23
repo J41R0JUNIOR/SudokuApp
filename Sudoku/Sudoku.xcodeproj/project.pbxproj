@@ -23,7 +23,7 @@
 		B3DE97552C7571A900AEFFB9 /* SudokuModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DE97542C7571A900AEFFB9 /* SudokuModel.swift */; };
 		B3DE97582C75724F00AEFFB9 /* SudokuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DE97572C75724F00AEFFB9 /* SudokuViewModel.swift */; };
 		B3DE975A2C757E9100AEFFB9 /* SudokuNumbersComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DE97592C757E9100AEFFB9 /* SudokuNumbersComponent.swift */; };
-		B3DE975C2C75848F00AEFFB9 /* SudokuKeyBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DE975B2C75848F00AEFFB9 /* SudokuKeyBoard.swift */; };
+		B3DE975C2C75848F00AEFFB9 /* SudokuKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DE975B2C75848F00AEFFB9 /* SudokuKeyboard.swift */; };
 		B3DE97652C762CB300AEFFB9 /* HomeActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DE97642C762CB300AEFFB9 /* HomeActionButton.swift */; };
 		B3DE97832C76524F00AEFFB9 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DE977B2C76524F00AEFFB9 /* DataManager.swift */; };
 		B3DE97842C76524F00AEFFB9 /* GameBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DE977C2C76524F00AEFFB9 /* GameBoard.swift */; };
@@ -77,7 +77,7 @@
 		B3DE97542C7571A900AEFFB9 /* SudokuModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuModel.swift; sourceTree = "<group>"; };
 		B3DE97572C75724F00AEFFB9 /* SudokuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuViewModel.swift; sourceTree = "<group>"; };
 		B3DE97592C757E9100AEFFB9 /* SudokuNumbersComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuNumbersComponent.swift; sourceTree = "<group>"; };
-		B3DE975B2C75848F00AEFFB9 /* SudokuKeyBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuKeyBoard.swift; sourceTree = "<group>"; };
+		B3DE975B2C75848F00AEFFB9 /* SudokuKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuKeyboard.swift; sourceTree = "<group>"; };
 		B3DE97642C762CB300AEFFB9 /* HomeActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeActionButton.swift; sourceTree = "<group>"; };
 		B3DE977B2C76524F00AEFFB9 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		B3DE977C2C76524F00AEFFB9 /* GameBoard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameBoard.swift; sourceTree = "<group>"; };
@@ -326,7 +326,7 @@
 			isa = PBXGroup;
 			children = (
 				B3DE97592C757E9100AEFFB9 /* SudokuNumbersComponent.swift */,
-				B3DE975B2C75848F00AEFFB9 /* SudokuKeyBoard.swift */,
+				B3DE975B2C75848F00AEFFB9 /* SudokuKeyboard.swift */,
 				B3DE978A2C7653EC00AEFFB9 /* Grid3x3View.swift */,
 				B3F7DCD62C769F9F0045F22E /* SudokuFinalNumbers.swift */,
 			);
@@ -494,7 +494,7 @@
 				B3DE97652C762CB300AEFFB9 /* HomeActionButton.swift in Sources */,
 				B3DE97972C766BCB00AEFFB9 /* HomeViewModel.swift in Sources */,
 				B3DE972C2C75153B00AEFFB9 /* Info.swift in Sources */,
-				B3DE975C2C75848F00AEFFB9 /* SudokuKeyBoard.swift in Sources */,
+				B3DE975C2C75848F00AEFFB9 /* SudokuKeyboard.swift in Sources */,
 				B3DE96F72C73BD8000AEFFB9 /* SudokuApp.swift in Sources */,
 				B3DE975A2C757E9100AEFFB9 /* SudokuNumbersComponent.swift in Sources */,
 				B3F23AA92C76D88C00E67F01 /* EnumModel.swift in Sources */,

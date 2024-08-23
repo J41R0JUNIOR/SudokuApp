@@ -21,7 +21,7 @@ struct HomeActionButton: View {
     var body: some View {
         Button(action: {
             haptics.callVibration()
-            Task {
+            Task { 
                 do {
                     await apiCall.newGame(mode: mode)
                     let grid = apiCall.gameGrid

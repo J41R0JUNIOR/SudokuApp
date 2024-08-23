@@ -47,7 +47,6 @@ class ApiCall{
 
 
     func newBoard() async throws -> BringInfo {
-//        let endpoint = "https://sudoku-api.vercel.app/api/dosuku"
         let endpoint = "https://sudoku-game-and-api.netlify.app/api/sudoku"
 
         guard let url = URL(string: endpoint) else {

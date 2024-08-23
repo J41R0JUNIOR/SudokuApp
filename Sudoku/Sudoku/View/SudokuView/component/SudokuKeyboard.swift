@@ -6,21 +6,42 @@
 //
 
 import SwiftUI
+import SwiftData
 
-struct SudokuKeyBoard: View {
+struct SudokuKeyboard: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @Binding var selectedNumber: Int
+    @Binding var correctNumber: Int
+    @Binding var maxQtd: Int
+    @Binding var actualQtd: Int
+    @Binding var showGameOverAlert: Bool
+    
     @EnvironmentObject var haptics: HapticsManager
+    
+    var dataManager: DataManager?
+    
     
     var body: some View {
         HStack(spacing: 10) {
             LazyVGrid(columns: [GridItem](repeating: GridItem(.flexible(), spacing: 10), count: 9)) {
                 ForEach(1..<10) { number in
                     Button(action: {
-                        selectedNumber = number
                         presentationMode.wrappedValue.dismiss()
+                        if selectedNumber == number {
+                            selectedNumber = 0
+                        }
+                        else if actualQtd < maxQtd{
+                            selectedNumber = number
+                            
+                            if selectedNumber != correctNumber && actualQtd < maxQtd {
+                                actualQtd += 1
+                            }
+                        } else {
+                            showGameOverAlert = true
+                        }
                         
                         haptics.callVibration()
+                        
                     }) {
                         Text("\(number)")
                             .font(.title)
@@ -34,8 +55,4 @@ struct SudokuKeyBoard: View {
         }
         .padding()
     }
-}
-
-#Preview {
-    SudokuKeyBoard(selectedNumber: .constant(0))
 }

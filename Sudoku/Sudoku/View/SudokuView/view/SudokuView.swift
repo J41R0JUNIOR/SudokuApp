@@ -10,8 +10,12 @@ import SwiftData
 
 struct SudokuView: View {
     var selectedMode: GameSelectionMode?
-    @Bindable private var viewModel = SudokuViewModel()
+    @State private var viewModel = SudokuViewModel()
     @Environment(\.modelContext) var modelContext
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+
+    
+   
     
     @Query(sort: [SortDescriptor(\GameBoard.mode, order: .reverse)]) var games: [GameBoard] = []
     
@@ -21,6 +25,8 @@ struct SudokuView: View {
     var body: some View {
         VStack {
             Text("Mode: \(games.first?.mode ?? "")")
+            Text("Mistakes \(games.first?.actualQtd ?? 0)/\(games.first?.maxQtd ?? 0)")
+            
             Spacer()
             
             ZStack {
@@ -31,18 +37,13 @@ struct SudokuView: View {
                             ForEach(games.first?.grid[rowIndex].indices ?? [].indices, id: \.self) { columnIndex in
                                 
                                 if let game = games.first {
-                                    let numberBinding = Binding(
-                                        get: { game.grid[rowIndex][columnIndex] },
-                                        set: { newValue in
-                                            game.grid[rowIndex][columnIndex] = newValue
-                                            try? modelContext.save()
-                                        }
-                                    )
+                                    let numberBinding = viewModel.numberToBinding(rowIndex: rowIndex, columnIndex: columnIndex, game: game, modelContext: modelContext)
+                                    let correctNumberBinding = viewModel.correctNumberToBinding(rowIndex: rowIndex, columnIndex: columnIndex, game: game)
+                                    let maxQtdBinding = viewModel.maxQtdToBinding(rowIndex: rowIndex, columnIndex: columnIndex, game: game)
+                                    let actualQtdBinding = viewModel.actualQtdBinding(rowIndex: rowIndex, columnIndex: columnIndex, game: game, modelContext: modelContext)
+//                                    let gamesBinding = viewModel.gamesBinding(rowIndex: rowIndex, columnIndex: columnIndex, game: games, modelContext: modelContext)
                                     
-                                    let correctNumberBinding = Binding(
-                                        get: { game.solution[rowIndex][columnIndex] },
-                                        set: { _ in }
-                                    )
+                                    
                                     
                                     if game.grid[rowIndex][columnIndex] == game.gridCopy[rowIndex][columnIndex] && game.grid[rowIndex][columnIndex] != 0 {
                                         
@@ -50,11 +51,12 @@ struct SudokuView: View {
                                             .frame(width: frameWidth, height: frameHeight)
                                             .border(Color.secondary, width: 0.25)
                                     } else {
-//                                        
-                                        SudokuNumbersComponent(number: numberBinding, correctNumber: correctNumberBinding)
+                                
+                                        SudokuNumbersComponent(number: numberBinding, correctNumber: correctNumberBinding, maxQtd: maxQtdBinding, actualQtd: actualQtdBinding, showGameOverAlert: $viewModel.model.showGameOverAlert)
                                             .frame(width: frameWidth, height: frameHeight)
                                             .border(Color.secondary, width: 0.25)
                                     }
+                                    
                                 }
                             }
                         }
@@ -63,6 +65,13 @@ struct SudokuView: View {
             }
             
             Spacer()
+        }
+        .alert("You lost the game", isPresented: $viewModel.model.showGameOverAlert) {
+            Button("Accept"){
+                presentationMode.wrappedValue.dismiss()
+                viewModel.model.dataManager?.deleteAllGameBoards(gameBoards: games)
+            }
+            Button("Cancel", role: .cancel) {}
         }
         .onAppear {
             viewModel.model.dataManager = DataManager(modelContext: modelContext)
