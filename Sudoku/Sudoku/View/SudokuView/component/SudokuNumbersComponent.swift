@@ -13,7 +13,8 @@ struct SudokuNumbersComponent: View {
     @Binding var correctNumber: Int
     @Binding var maxQtd: Int
     @Binding var actualQtd: Int
-//    @Binding var games: [GameBoard]
+    @Binding var showAlert: Bool
+
     @EnvironmentObject var haptics: HapticsManager
 
     
@@ -23,7 +24,7 @@ struct SudokuNumbersComponent: View {
                 Text("\(number)").foregroundStyle(.blue)
                 
             } else {
-                NavigationModal(.sheet, value: NavigationContentViewCoordinator.sudokuNumbers(number: $number, correctNumber: $correctNumber, maxQtd: $maxQtd, actualQtd: $actualQtd), data: NavigationContentViewCoordinator.self, presentationDetents: [.fraction(0.1)], label: {
+                NavigationModal(.sheet, value: NavigationContentViewCoordinator.sudokuNumbers(number: $number, correctNumber: $correctNumber, maxQtd: $maxQtd, actualQtd: $actualQtd, showAlert: $showAlert), data: NavigationContentViewCoordinator.self, presentationDetents: [.fraction(0.1)], label: {
                     
                     if number == 0 {
                         Text(" ")

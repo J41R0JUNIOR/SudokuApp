@@ -13,6 +13,8 @@ struct SudokuView: View {
     @State private var viewModel = SudokuViewModel()
     @Environment(\.modelContext) var modelContext
     
+    @State var showAlert: Bool = false
+    
     @Query(sort: [SortDescriptor(\GameBoard.mode, order: .reverse)]) var games: [GameBoard] = []
     
     var frameWidth = (UIScreen.main.bounds.width / 9) * 0.95
@@ -48,7 +50,7 @@ struct SudokuView: View {
                                             .border(Color.secondary, width: 0.25)
                                     } else {
                                 
-                                        SudokuNumbersComponent(number: numberBinding, correctNumber: correctNumberBinding, maxQtd: maxQtdBinding, actualQtd: actualQtdBinding/*, games: gamesBinding*/)
+                                        SudokuNumbersComponent(number: numberBinding, correctNumber: correctNumberBinding, maxQtd: maxQtdBinding, actualQtd: actualQtdBinding, showAlert: $showAlert)
                                             .frame(width: frameWidth, height: frameHeight)
                                             .border(Color.secondary, width: 0.25)
                                     }
@@ -61,6 +63,10 @@ struct SudokuView: View {
             }
             
             Spacer()
+        }
+        .alert("You lost the game", isPresented: $showAlert) {
+            Button("Accept"){}
+            Button("Cancel", role: .cancel) {}
         }
         .onAppear {
             viewModel.model.dataManager = DataManager(modelContext: modelContext)

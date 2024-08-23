@@ -14,12 +14,12 @@ struct SudokuKeyboard: View {
     @Binding var correctNumber: Int
     @Binding var maxQtd: Int
     @Binding var actualQtd: Int
+    @Binding var showAlert: Bool
     
     @EnvironmentObject var haptics: HapticsManager
     
     var dataManager: DataManager?
     
-    @State var showAlert = false
     
     var body: some View {
         HStack(spacing: 10) {
@@ -53,10 +53,7 @@ struct SudokuKeyboard: View {
                 }
             }
         }
-        .alert("You lost the game", isPresented: $showAlert) {
-            Button("Aceitar"){}
-            Button("Fechar", role: .cancel) {}
-        }
+        
         .padding()
     }
 }
