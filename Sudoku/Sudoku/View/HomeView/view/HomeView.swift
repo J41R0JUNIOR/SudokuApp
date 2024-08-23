@@ -25,7 +25,7 @@ struct HomeView: View {
                 .aspectRatio(contentMode: .fit)
                 .frame(width: frameWidth, height: frameWidth)              
             
-            Text("iSudoku")
+            Text("SudoKu")
                 .bold()
                 .padding()
             

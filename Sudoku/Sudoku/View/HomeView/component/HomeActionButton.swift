@@ -35,6 +35,7 @@ struct HomeActionButton: View {
             }
         }, label: {
             Text(title)
+                .bold()
                 .foregroundStyle(.background)
                 .frame(width: UIScreen.main.bounds.width * labelWidth)
         })
