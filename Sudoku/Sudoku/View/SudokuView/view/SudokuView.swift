@@ -19,10 +19,9 @@ struct SudokuView: View {
     var frameHeight = (UIScreen.main.bounds.width / 9) * 1
     
     var body: some View {
-//        @Bindable viewModel = viewModel
         VStack {
             Text("Mode: \(games.first?.mode ?? "")")
-            Text("Quantity \(games.first?.maxQtd ?? 0)")
+            Text("Mistakes \(games.first?.actualQtd ?? 0)/\(games.first?.maxQtd ?? 0)")
             
             Spacer()
             
@@ -34,34 +33,11 @@ struct SudokuView: View {
                             ForEach(games.first?.grid[rowIndex].indices ?? [].indices, id: \.self) { columnIndex in
                                 
                                 if let game = games.first {
-                                    
                                     let numberBinding = viewModel.numberToBinding(rowIndex: rowIndex, columnIndex: columnIndex, game: game, modelContext: modelContext)
-                                    
                                     let correctNumberBinding = viewModel.correctNumberToBinding(rowIndex: rowIndex, columnIndex: columnIndex, game: game)
-                                    
-                                    let maxQtdBinding = viewModel.maxQtdToBinding(rowIndex: rowIndex, columnIndex: columnIndex, game: game, modelContext: modelContext)
-                                    
-//                                    let numberBinding = Binding(
-//                                        get: { game.grid[rowIndex][columnIndex] },
-//                                        set: { newValue in
-//                                            game.grid[rowIndex][columnIndex] = newValue
-//                                            try? modelContext.save()
-//                                        }
-//                                    ) 
-//                                    
-//                                    let correctNumberBinding = Binding(
-//                                        get: { game.solution[rowIndex][columnIndex] },
-//                                        set: { _ in}
-//                                    )
-//                                    
-//                                    let maxQtdBinding = Binding (
-//                                        get: { game.solution[rowIndex][columnIndex] },
-//                                        set: { newValue in
-//                                            game.maxQtd = newValue
-//                                            try? modelContext.save()
-//                                        }
-//                                    )
-                                    
+                                    let maxQtdBinding = viewModel.maxQtdToBinding(rowIndex: rowIndex, columnIndex: columnIndex, game: game)
+                                    let actualQtdBinding = viewModel.actualQtdBinding(rowIndex: rowIndex, columnIndex: columnIndex, game: game, modelContext: modelContext)
+//                                    let gamesBinding = viewModel.gamesBinding(rowIndex: rowIndex, columnIndex: columnIndex, game: games, modelContext: modelContext)
                                     
                                     
                                     
@@ -71,12 +47,12 @@ struct SudokuView: View {
                                             .frame(width: frameWidth, height: frameHeight)
                                             .border(Color.secondary, width: 0.25)
                                     } else {
-                                        //
-                                        //                                        SudokuNumbersComponent(number: numberBinding, correctNumber: correctNumberBinding, maxQtd: maxQtdBinding)
-                                        SudokuNumbersComponent(number: numberBinding, correctNumber: correctNumberBinding, maxQtd: maxQtdBinding)
+                                
+                                        SudokuNumbersComponent(number: numberBinding, correctNumber: correctNumberBinding, maxQtd: maxQtdBinding, actualQtd: actualQtdBinding/*, games: gamesBinding*/)
                                             .frame(width: frameWidth, height: frameHeight)
                                             .border(Color.secondary, width: 0.25)
                                     }
+                                    
                                 }
                             }
                         }

@@ -14,4 +14,5 @@ class SudokuModel{
     var mode: String = ""
     var apiCall: ApiCall = .init()
     var dataManager: DataManager?
+//    var showGameOverAlert: Bool = false
 }
