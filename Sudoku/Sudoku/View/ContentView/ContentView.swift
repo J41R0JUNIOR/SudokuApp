@@ -20,11 +20,14 @@ struct ContentView: View {
                     Image(systemName: "gear")
                 }
         }.navigationLinkValues(NavigationContentViewCoordinator.self)
+            .accentColor(.primary)
     }
 }
 
 #Preview {
     let modelContent: ModelContainer = .appContainer
     
-    return ContentView().modelContainer(modelContent)
+    return ContentView()
+        .navigationLinkValues(NavigationContentViewCoordinator.self)
+        .modelContainer(modelContent)
 }
