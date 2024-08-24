@@ -29,6 +29,23 @@ struct SudokuView: View {
             HStack{
                 Text("Mistakes \(games.first?.actualQtd ?? 0)/\(games.first?.maxQtd ?? 0)")
                 Spacer()
+                
+                Button {
+                    viewModel.model.editMode.toggle()
+                } label: {
+                    HStack{
+                        if viewModel.model.editMode{
+                            Image(systemName: "pencil") 
+                            Text("On")
+                        }else{
+                            Image(systemName: "pencil")
+                            Text("Off")
+                        }
+                    }  .foregroundStyle(.background)
+                }
+                
+                .buttonStyle(.borderedProminent)
+
             }
             ZStack {
                 Grid3x3View()
@@ -40,9 +57,9 @@ struct SudokuView: View {
                                 if let game = games.first {
                                     let numberBinding = viewModel.numberToBinding(rowIndex: rowIndex, columnIndex: columnIndex, game: game, modelContext: modelContext)
                                     let correctNumberBinding = viewModel.correctNumberToBinding(rowIndex: rowIndex, columnIndex: columnIndex, game: game)
-                                    let maxQtdBinding = viewModel.maxQtdToBinding(rowIndex: rowIndex, columnIndex: columnIndex, game: game)
-                                    let actualQtdBinding = viewModel.actualQtdBinding(rowIndex: rowIndex, columnIndex: columnIndex, game: game, modelContext: modelContext)
-//                                    let gamesBinding = viewModel.gamesBinding(rowIndex: rowIndex, columnIndex: columnIndex, game: games, modelContext: modelContext)
+                                    let maxQtdBinding = viewModel.maxQtdToBinding(game: game)
+                                    let actualQtdBinding = viewModel.actualQtdBinding(game: game, modelContext: modelContext)
+                                    let additionalBinding = viewModel.additionalBinding(rowIndex: rowIndex, columnIndex: columnIndex, game: game, modelContext: modelContext)
                                     
                                     
                                     
@@ -53,7 +70,7 @@ struct SudokuView: View {
                                             .border(Color.secondary, width: 0.25)
                                     } else {
                                 
-                                        SudokuNumbersComponent(number: numberBinding, correctNumber: correctNumberBinding, maxQtd: maxQtdBinding, actualQtd: actualQtdBinding, showGameOverAlert: $viewModel.model.showGameOverAlert)
+                                        SudokuNumbersComponent(number: numberBinding, correctNumber: correctNumberBinding, maxQtd: maxQtdBinding, actualQtd: actualQtdBinding, showGameOverAlert: $viewModel.model.showGameOverAlert, additional: additionalBinding, editMode: $viewModel.model.editMode)
                                             .frame(width: frameWidth, height: frameHeight)
                                             .border(Color.secondary, width: 0.25)
                                     }
