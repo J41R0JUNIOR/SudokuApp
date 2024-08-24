@@ -21,7 +21,7 @@ struct NavigationModal<Value: View, Label: View, D: Hashable & View>: View {
     let data: D.Type
     var presentationDetents: Set<PresentationDetent>?
     var onDismiss: (() -> Void)?
-    var asyncFunction: () async -> Any 
+    var anyFunction: () -> Any
     @ViewBuilder var label: () -> Label
     
     init(_ type: NavigationModalType,
@@ -30,21 +30,20 @@ struct NavigationModal<Value: View, Label: View, D: Hashable & View>: View {
          presentationDetents: Set<PresentationDetent>? = nil,
          onDismiss: (() -> Void)? = nil,
          @ViewBuilder label: @escaping () -> Label,
-         asyncFunction: @escaping () async -> Any) { // Adiciona a função assíncrona
+         anyFunction: @escaping () -> Any) { // Adiciona a função assíncrona
         self.type = type
         self.value = value
         self.data = data
         self.presentationDetents = presentationDetents
         self.onDismiss = onDismiss
-        self.asyncFunction = asyncFunction
+        self.anyFunction = anyFunction
         self.label = label
     }
     
     var body: some View {
         Button(action: {
-            Task {
-                await asyncFunction() // Chama a função assíncrona
-            }
+            anyFunction() // Chama a função assíncrona
+            
             isPresented.toggle()
         }, label: {
             label()
