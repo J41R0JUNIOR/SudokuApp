@@ -35,8 +35,13 @@ struct SudokuKeyboard: View {
                             
                             if selectedNumber != correctNumber && actualQtd < maxQtd {
                                 actualQtd += 1
+                                
+                                if actualQtd == maxQtd{
+                                    showGameOverAlert = true
+                                }
                             }
-                        } else {
+                        }
+                            else {
                             showGameOverAlert = true
                         }
                         
