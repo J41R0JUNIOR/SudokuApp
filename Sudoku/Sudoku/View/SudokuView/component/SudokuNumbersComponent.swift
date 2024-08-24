@@ -32,7 +32,7 @@ struct SudokuNumbersComponent: View {
                         Text("\(number)").foregroundStyle(.red)
                     }
                     
-                }, asyncFunction: {
+                }, anyFunction: {
                     haptics.callVibration()
                 })
             }
