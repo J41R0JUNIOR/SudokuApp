@@ -20,6 +20,7 @@ struct ContentView: View {
                     Image(systemName: "gear")
                 }
         }.navigationLinkValues(NavigationContentViewCoordinator.self)
+            .accentColor(.primary)
     }
 }
 
