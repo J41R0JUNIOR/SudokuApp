@@ -35,12 +35,13 @@ struct SudokuNumbersComponent: View {
                     
                     if number == 0 {
 //                        Text("")
-                        ArrayOfNumbers().foregroundStyle(.primary).border(.brown)
+                        ArrayOfNumbers()
+                            .foregroundStyle(.primary)
+                            .border(.brown)
                         
                     }else{
                         Text("\(number)").foregroundStyle(.red)
 //                        ArrayOfNumbers(array: [1,4,3,6])
-
                     }
                     
                 }, anyFunction: {
