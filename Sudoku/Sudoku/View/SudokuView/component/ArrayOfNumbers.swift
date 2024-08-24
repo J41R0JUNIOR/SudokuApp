@@ -9,7 +9,8 @@ import SwiftUI
 import SwiftData
 
 struct ArrayOfNumbers: View {
-    @State var array = [1, 3, 5, 2, 7, 8, 9, 4, 6]
+    @State var array2 = [1, 3, 5, 2, 7, 8, 9, 4, 6]
+    @Binding var array: [Int]
     
     let columns = [
         GridItem(.flexible()),
@@ -20,7 +21,7 @@ struct ArrayOfNumbers: View {
     var body: some View {
         
         LazyVGrid(columns: columns) {
-            ForEach(array, id: \.self) { number in
+            ForEach(array2, id: \.self) { number in
                 Text("\(number)")
                     .font(.system(size: 10))
                     .foregroundStyle(.primary)

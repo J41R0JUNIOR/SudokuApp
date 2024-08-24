@@ -16,6 +16,7 @@ struct SudokuKeyboard: View {
     @Binding var actualQtd: Int
     @Binding var showGameOverAlert: Bool
     
+    
     @EnvironmentObject var haptics: HapticsManager
     
     var dataManager: DataManager?
