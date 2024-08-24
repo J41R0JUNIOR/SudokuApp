@@ -21,7 +21,7 @@ struct ArrayOfNumbers: View {
     var body: some View {
         
         LazyVGrid(columns: columns) {
-            ForEach(array2, id: \.self) { number in
+            ForEach(array, id: \.self) { number in
                 Text("\(number)")
                     .font(.system(size: 10))
                     .foregroundStyle(.primary)

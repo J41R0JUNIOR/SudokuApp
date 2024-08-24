@@ -15,8 +15,9 @@ struct SudokuKeyboard: View {
     @Binding var maxQtd: Int
     @Binding var actualQtd: Int
     @Binding var showGameOverAlert: Bool
+    @Binding var additional: [Int]
     
-    
+    @Binding var editMode: Bool
     @EnvironmentObject var haptics: HapticsManager
     
     var dataManager: DataManager?
@@ -28,22 +29,33 @@ struct SudokuKeyboard: View {
                 ForEach(1..<10) { number in
                     Button(action: {
                         presentationMode.wrappedValue.dismiss()
-                        if selectedNumber == number {
-                            selectedNumber = 0
-                        }
-                        else if actualQtd < maxQtd{
-                            selectedNumber = number
-                            
-                            if selectedNumber != correctNumber && actualQtd < maxQtd {
-                                actualQtd += 1
+                        
+                        if !editMode{
+                            if selectedNumber == number {
+                                selectedNumber = 0
+                            }
+                            else if actualQtd < maxQtd{
+                                selectedNumber = number
                                 
-                                if actualQtd == maxQtd{
-                                    showGameOverAlert = true
+                                if selectedNumber != correctNumber && actualQtd < maxQtd {
+                                    actualQtd += 1
+                                    
+                                    if actualQtd == maxQtd{
+                                        showGameOverAlert = true
+                                    }
                                 }
                             }
-                        }
                             else {
-                            showGameOverAlert = true
+                                showGameOverAlert = true
+                            }
+                        }else{
+                            if additional.contains(number){
+                                additional.removeAll { n in
+                                    n == number
+                                }
+                            }else{
+                                additional.append(number)
+                            }
                         }
                         
                         haptics.callVibration()

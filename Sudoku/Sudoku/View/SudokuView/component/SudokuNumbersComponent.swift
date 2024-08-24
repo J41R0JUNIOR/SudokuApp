@@ -16,6 +16,10 @@ struct SudokuNumbersComponent: View {
     @Binding var showGameOverAlert: Bool
     @Binding var additional: [Int]
     
+    
+    
+    @Binding var editMode: Bool
+    
     let columns = [
         GridItem(.flexible()),
         GridItem(.flexible()),
@@ -31,14 +35,15 @@ struct SudokuNumbersComponent: View {
                 Text("\(number)").foregroundStyle(.blue)
                 
             } else {
-                NavigationModal(.sheet, value: NavigationContentViewCoordinator.sudokuNumbers(number: $number, correctNumber: $correctNumber, maxQtd: $maxQtd, actualQtd: $actualQtd, showGameOverAlert: $showGameOverAlert), data: NavigationContentViewCoordinator.self, presentationDetents: [.fraction(0.1)], label: {
+                NavigationModal(.sheet, value: NavigationContentViewCoordinator.sudokuNumbers(number: $number, correctNumber: $correctNumber, maxQtd: $maxQtd, actualQtd: $actualQtd, showGameOverAlert: $showGameOverAlert, additional: $additional, editMode: $editMode), data: NavigationContentViewCoordinator.self, presentationDetents: [.fraction(0.1)], label: {
                     
                     if number == 0 && !additional.isEmpty {
 //                        Text("")
                         ArrayOfNumbers(array: $additional)
                             .foregroundStyle(.primary)
-                            .border(.brown)
-                    }else if number == 0 {
+//                            .border(.brown)
+                    }
+                    else if number == 0 && additional.isEmpty {
                         Text(" ")
 
                     }

@@ -29,6 +29,17 @@ struct SudokuView: View {
             HStack{
                 Text("Mistakes \(games.first?.actualQtd ?? 0)/\(games.first?.maxQtd ?? 0)")
                 Spacer()
+//                Toggle("| Edit Mode", isOn: $viewModel.model.editMode)
+                Button {
+                    viewModel.model.editMode.toggle()
+                } label: {
+                    if viewModel.model.editMode{
+                        Text("Edit Mode\nOn")
+                    }else{
+                        Text("Edit Mode\nOff")
+                    }
+                }
+
             }
             ZStack {
                 Grid3x3View()
@@ -53,7 +64,7 @@ struct SudokuView: View {
                                             .border(Color.secondary, width: 0.25)
                                     } else {
                                 
-                                        SudokuNumbersComponent(number: numberBinding, correctNumber: correctNumberBinding, maxQtd: maxQtdBinding, actualQtd: actualQtdBinding, showGameOverAlert: $viewModel.model.showGameOverAlert, additional: additionalBinding)
+                                        SudokuNumbersComponent(number: numberBinding, correctNumber: correctNumberBinding, maxQtd: maxQtdBinding, actualQtd: actualQtdBinding, showGameOverAlert: $viewModel.model.showGameOverAlert, additional: additionalBinding, editMode: $viewModel.model.editMode)
                                             .frame(width: frameWidth, height: frameHeight)
                                             .border(Color.secondary, width: 0.25)
                                     }
