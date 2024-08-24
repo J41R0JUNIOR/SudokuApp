@@ -56,6 +56,7 @@ struct SudokuKeyboard: View {
                             }else{
                                 additional.append(number)
                             }
+
                         }
                         
                         haptics.callVibration()
