@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B359CE572C7972CD008F259F /* ArrayOfNumbers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B359CE562C7972CD008F259F /* ArrayOfNumbers.swift */; };
 		B3DE96F72C73BD8000AEFFB9 /* SudokuApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DE96F62C73BD8000AEFFB9 /* SudokuApp.swift */; };
 		B3DE96FB2C73BD8100AEFFB9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B3DE96FA2C73BD8100AEFFB9 /* Assets.xcassets */; };
 		B3DE96FE2C73BD8100AEFFB9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B3DE96FD2C73BD8100AEFFB9 /* Preview Assets.xcassets */; };
@@ -59,6 +60,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B359CE562C7972CD008F259F /* ArrayOfNumbers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayOfNumbers.swift; sourceTree = "<group>"; };
 		B3DE96F32C73BD8000AEFFB9 /* Sudoku.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sudoku.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3DE96F62C73BD8000AEFFB9 /* SudokuApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuApp.swift; sourceTree = "<group>"; };
 		B3DE96FA2C73BD8100AEFFB9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -329,6 +331,7 @@
 			isa = PBXGroup;
 			children = (
 				B3DE97592C757E9100AEFFB9 /* SudokuNumbersComponent.swift */,
+				B359CE562C7972CD008F259F /* ArrayOfNumbers.swift */,
 				B3DE975B2C75848F00AEFFB9 /* SudokuKeyboard.swift */,
 				B3DE978A2C7653EC00AEFFB9 /* Grid3x3View.swift */,
 				B3F7DCD62C769F9F0045F22E /* SudokuFinalNumbers.swift */,
@@ -476,6 +479,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B359CE572C7972CD008F259F /* ArrayOfNumbers.swift in Sources */,
 				B3F7DCD52C768F430045F22E /* ThemeManager.swift in Sources */,
 				B3DE97552C7571A900AEFFB9 /* SudokuModel.swift in Sources */,
 				B3DE97262C7510D300AEFFB9 /* HomeView.swift in Sources */,

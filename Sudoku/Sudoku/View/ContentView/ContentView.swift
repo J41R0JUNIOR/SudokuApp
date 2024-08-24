@@ -28,7 +28,6 @@ struct ContentView: View {
     let modelContent: ModelContainer = .appContainer
     let themeManager = ThemeManager()
     let hapticsManager = HapticsManager()
-    
     return ContentView()
         .navigationLinkValues(NavigationContentViewCoordinator.self)
         .modelContainer(modelContent)

@@ -14,6 +14,13 @@ struct SudokuNumbersComponent: View {
     @Binding var maxQtd: Int
     @Binding var actualQtd: Int
     @Binding var showGameOverAlert: Bool
+    
+    let columns = [
+        GridItem(.flexible()),
+        GridItem(.flexible()),
+        GridItem(.flexible())
+    ]
+    @State var array = [3,4,2,5,6,9,8,1,7]
 
     @EnvironmentObject var haptics: HapticsManager
 
@@ -27,9 +34,13 @@ struct SudokuNumbersComponent: View {
                 NavigationModal(.sheet, value: NavigationContentViewCoordinator.sudokuNumbers(number: $number, correctNumber: $correctNumber, maxQtd: $maxQtd, actualQtd: $actualQtd, showGameOverAlert: $showGameOverAlert), data: NavigationContentViewCoordinator.self, presentationDetents: [.fraction(0.1)], label: {
                     
                     if number == 0 {
-                        Text(" ")
+//                        Text("")
+                        ArrayOfNumbers().foregroundStyle(.primary).border(.brown)
+                        
                     }else{
                         Text("\(number)").foregroundStyle(.red)
+//                        ArrayOfNumbers(array: [1,4,3,6])
+
                     }
                     
                 }, anyFunction: {
@@ -45,5 +56,10 @@ struct SudokuNumbersComponent: View {
 
 #Preview {
     let modelContent: ModelContainer = .appContainer
+    let themeManager = ThemeManager()
+    let hapticsManager = HapticsManager()
     return SudokuView(selectedMode: .medium).modelContainer(modelContent)
+        .environmentObject(themeManager)
+        .environmentObject(hapticsManager)
+        .preferredColorScheme(themeManager.isDarkMode ? .dark : .light)
 }
