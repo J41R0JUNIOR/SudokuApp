@@ -26,6 +26,12 @@ struct ContentView: View {
 
 #Preview {
     let modelContent: ModelContainer = .appContainer
-    
-    return ContentView().modelContainer(modelContent)
+    let themeManager = ThemeManager()
+    let hapticsManager = HapticsManager()
+    return ContentView()
+        .navigationLinkValues(NavigationContentViewCoordinator.self)
+        .modelContainer(modelContent)
+        .environmentObject(themeManager)
+        .environmentObject(hapticsManager)
+        .preferredColorScheme(themeManager.isDarkMode ? .dark : .light)
 }

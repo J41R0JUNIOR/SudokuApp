@@ -35,7 +35,7 @@ class SudokuViewModel{
         return numberBinding
     }
     
-    func maxQtdToBinding(rowIndex:Int, columnIndex: Int, game: GameBoard) -> Binding<Int>{
+    func maxQtdToBinding(game: GameBoard) -> Binding<Int>{
         let maxQtdBinding = Binding (
             get: { game.maxQtd },
             set: { _ in}
@@ -44,7 +44,7 @@ class SudokuViewModel{
         return maxQtdBinding
     }
     
-    func actualQtdBinding(rowIndex:Int, columnIndex: Int, game: GameBoard, modelContext: ModelContext) -> Binding<Int>{
+    func actualQtdBinding(game: GameBoard, modelContext: ModelContext) -> Binding<Int>{
         let actualQtdBinding = Binding (
             get: { game.actualQtd },
             set: { newValue in
@@ -56,15 +56,19 @@ class SudokuViewModel{
         return actualQtdBinding
     }
     
-//    func gamesBinding(rowIndex: Int, columnIndex: Int, games: [GameBoard], modelContext: ModelContext) -> Binding<[GameBoard]> {
-//        return Binding(
-//            get: { games },
-//            set: { newValue in
-//                games = newValue
-//                try? modelContext.save()
-//            }
-//        )
-//    }
+    func additionalBinding(rowIndex:Int, columnIndex: Int, game: GameBoard, modelContext: ModelContext) -> Binding<[Int]>{
+        let additionalBinding = Binding (
+            get: { game.additional[rowIndex][columnIndex] },
+            set: { newValue in
+                game.additional[rowIndex][columnIndex]  = newValue
+                try? modelContext.save()
+            }
+        )
+        
+        return additionalBinding
+    }
+    
+
 }
 
 

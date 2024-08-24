@@ -11,7 +11,7 @@ enum NavigationContentViewCoordinator: View{
     case home
     case homeSelectionMode
     case sudoku(selectedMode: GameSelectionMode)
-    case sudokuNumbers(number: Binding<Int>, correctNumber: Binding<Int>, maxQtd: Binding<Int>, actualQtd: Binding<Int>, showGameOverAlert: Binding<Bool>)
+    case sudokuNumbers(number: Binding<Int>, correctNumber: Binding<Int>, maxQtd: Binding<Int>, actualQtd: Binding<Int>, showGameOverAlert: Binding<Bool>, additional: Binding<[Int]>, editMode: Binding<Bool>)
     
     
     var body: some View {
@@ -26,8 +26,8 @@ enum NavigationContentViewCoordinator: View{
         case .sudoku(let selectedMode):
             SudokuView(selectedMode: selectedMode)
             
-        case .sudokuNumbers(number: let number, correctNumber: let correctNumber, maxQtd: let maxQtd, actualQtd: let actualQtd, let showGameOverAlert):
-            SudokuKeyboard(selectedNumber: number, correctNumber: correctNumber, maxQtd: maxQtd, actualQtd: actualQtd, showGameOverAlert: showGameOverAlert)
+        case .sudokuNumbers(number: let number, correctNumber: let correctNumber, maxQtd: let maxQtd, actualQtd: let actualQtd, let showGameOverAlert, let additional, let editMode):
+            SudokuKeyboard(selectedNumber: number, correctNumber: correctNumber, maxQtd: maxQtd, actualQtd: actualQtd, showGameOverAlert: showGameOverAlert, additional: additional, editMode: editMode)
             
         }
     }

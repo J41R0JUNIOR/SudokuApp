@@ -14,6 +14,17 @@ struct SudokuNumbersComponent: View {
     @Binding var maxQtd: Int
     @Binding var actualQtd: Int
     @Binding var showGameOverAlert: Bool
+    @Binding var additional: [Int]
+    
+    
+    
+    @Binding var editMode: Bool
+    
+    let columns = [
+        GridItem(.flexible()),
+        GridItem(.flexible()),
+        GridItem(.flexible())
+    ]
 
     @EnvironmentObject var haptics: HapticsManager
 
@@ -24,15 +35,21 @@ struct SudokuNumbersComponent: View {
                 Text("\(number)").foregroundStyle(.blue)
                 
             } else {
-                NavigationModal(.sheet, value: NavigationContentViewCoordinator.sudokuNumbers(number: $number, correctNumber: $correctNumber, maxQtd: $maxQtd, actualQtd: $actualQtd, showGameOverAlert: $showGameOverAlert), data: NavigationContentViewCoordinator.self, presentationDetents: [.fraction(0.1)], label: {
+                NavigationModal(.sheet, value: NavigationContentViewCoordinator.sudokuNumbers(number: $number, correctNumber: $correctNumber, maxQtd: $maxQtd, actualQtd: $actualQtd, showGameOverAlert: $showGameOverAlert, additional: $additional, editMode: $editMode), data: NavigationContentViewCoordinator.self, presentationDetents: [.fraction(0.1)], label: {
                     
-                    if number == 0 {
+                    if number == 0 && !additional.isEmpty {
+                        ArrayOfNumbers(array: $additional)
+                            .foregroundStyle(.primary)
+                    }
+                    else if number == 0 && additional.isEmpty {
                         Text(" ")
-                    }else{
+
+                    }
+                    else{
                         Text("\(number)").foregroundStyle(.red)
                     }
                     
-                }, asyncFunction: {
+                }, anyFunction: {
                     haptics.callVibration()
                 })
             }
@@ -45,5 +62,10 @@ struct SudokuNumbersComponent: View {
 
 #Preview {
     let modelContent: ModelContainer = .appContainer
+    let themeManager = ThemeManager()
+    let hapticsManager = HapticsManager()
     return SudokuView(selectedMode: .medium).modelContainer(modelContent)
+        .environmentObject(themeManager)
+        .environmentObject(hapticsManager)
+        .preferredColorScheme(themeManager.isDarkMode ? .dark : .light)
 }

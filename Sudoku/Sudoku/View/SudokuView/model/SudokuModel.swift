@@ -16,4 +16,5 @@ class SudokuModel{
     var dataManager: DataManager?
     var showGameOverAlert: Bool = false
 //    var showGameOverAlert: Bool = false
+    var editMode: Bool = false
 }
