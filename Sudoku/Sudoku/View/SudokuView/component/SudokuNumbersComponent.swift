@@ -38,10 +38,8 @@ struct SudokuNumbersComponent: View {
                 NavigationModal(.sheet, value: NavigationContentViewCoordinator.sudokuNumbers(number: $number, correctNumber: $correctNumber, maxQtd: $maxQtd, actualQtd: $actualQtd, showGameOverAlert: $showGameOverAlert, additional: $additional, editMode: $editMode), data: NavigationContentViewCoordinator.self, presentationDetents: [.fraction(0.1)], label: {
                     
                     if number == 0 && !additional.isEmpty {
-//                        Text("")
                         ArrayOfNumbers(array: $additional)
                             .foregroundStyle(.primary)
-//                            .border(.brown)
                     }
                     else if number == 0 && additional.isEmpty {
                         Text(" ")
@@ -49,7 +47,6 @@ struct SudokuNumbersComponent: View {
                     }
                     else{
                         Text("\(number)").foregroundStyle(.red)
-//                        ArrayOfNumbers(array: [1,4,3,6])
                     }
                     
                 }, anyFunction: {

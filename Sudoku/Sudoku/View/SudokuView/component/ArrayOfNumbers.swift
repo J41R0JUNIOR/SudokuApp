@@ -9,7 +9,6 @@ import SwiftUI
 import SwiftData
 
 struct ArrayOfNumbers: View {
-    @State var array2 = [1, 3, 5, 2, 7, 8, 9, 4, 6]
     @Binding var array: [Int]
     
     let columns = [

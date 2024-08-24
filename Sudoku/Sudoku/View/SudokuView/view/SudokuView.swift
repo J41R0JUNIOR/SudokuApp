@@ -29,16 +29,22 @@ struct SudokuView: View {
             HStack{
                 Text("Mistakes \(games.first?.actualQtd ?? 0)/\(games.first?.maxQtd ?? 0)")
                 Spacer()
-//                Toggle("| Edit Mode", isOn: $viewModel.model.editMode)
+                
                 Button {
                     viewModel.model.editMode.toggle()
                 } label: {
-                    if viewModel.model.editMode{
-                        Text("Edit Mode\nOn")
-                    }else{
-                        Text("Edit Mode\nOff")
-                    }
+                    HStack{
+                        if viewModel.model.editMode{
+                            Image(systemName: "pencil") 
+                            Text("On")
+                        }else{
+                            Image(systemName: "pencil")
+                            Text("Off")
+                        }
+                    }  .foregroundStyle(.background)
                 }
+                
+                .buttonStyle(.borderedProminent)
 
             }
             ZStack {
