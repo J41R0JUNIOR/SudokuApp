@@ -33,7 +33,7 @@ struct SudokuNumbersComponent: View {
                 Text("\(number)").foregroundStyle(.blue)
                 
             } else {
-                NavigationModal(.sheet, value: NavigationContentViewCoordinator.sudokuNumbers(number: $number, correctNumber: $correctNumber, maxQtd: $maxQtd, actualQtd: $actualQtd, showGameOverAlert: $showGameOverAlert, additional: $additional, editMode: $editMode), data: NavigationContentViewCoordinator.self, presentationDetents: [.fraction(0.1)], label: {
+//                NavigationModal(.sheet, value: NavigationContentViewCoordinator.sudokuNumbersKeyboard(number: $number, correctNumber: $correctNumber, maxQtd: $maxQtd, actualQtd: $actualQtd, showGameOverAlert: $showGameOverAlert, additional: $additional, editMode: $editMode), data: NavigationContentViewCoordinator.self, presentationDetents: [.fraction(0.1)], label: {
                     
                     if number == 0 && !additional.isEmpty {
                         ArrayOfNumbers(array: $additional)
@@ -47,10 +47,10 @@ struct SudokuNumbersComponent: View {
                         Text("\(number)").foregroundStyle(.red)
                     }
                     
-                }, anyFunction: {
-                    haptics.callVibration()
-                    
-                })
+//                }, anyFunction: {
+//                    haptics.callVibration()
+//                    
+//                })
             }
         }
         .font(.system(size: 30, weight: .bold))

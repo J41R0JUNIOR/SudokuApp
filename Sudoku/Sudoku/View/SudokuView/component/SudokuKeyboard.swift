@@ -30,7 +30,7 @@ struct SudokuKeyboard: View {
                     Button(action: {
                         
                         if !editMode{
-                            presentationMode.wrappedValue.dismiss()
+//                            presentationMode.wrappedValue.dismiss()
                             
                             if selectedNumber == number {
                                 selectedNumber = 0
@@ -67,12 +67,12 @@ struct SudokuKeyboard: View {
                             .font(.title)
                             .frame(width: UIScreen.main.bounds.width / 10, height: 50)
                             .background(Color.gray.opacity(0.5))
-                            .clipShape(Circle())
+                            .clipShape(RoundedRectangle(cornerSize: .init(width: UIScreen.main.bounds.width / 10, height: 50), style: .circular))
                             .foregroundColor(.black)
                     }
                 }
             }
         }
-        .padding()
+//        .padding()
     }
 }

@@ -34,16 +34,11 @@ struct SudokuView: View {
                 Button {
                     viewModel.model.editMode.toggle()
                 } label: {
-                    HStack{
-                        if viewModel.model.editMode{
-                            Image(systemName: "pencil")
-                            Text("On")
-                        }else{
-                            Image(systemName: "pencil")
-                            Text("Off")
-                        }
-                    }  .foregroundStyle(.background)
-                }
+                        viewModel.model.editMode ? HStack(content: {Image(systemName: "pencil")
+                            Text("On")}) :  HStack(content: {Image(systemName: "pencil")
+                                Text("Off")})
+                  
+                } .foregroundStyle(.background)
                 
                 .buttonStyle(.borderedProminent)
                 
@@ -105,6 +100,15 @@ struct SudokuView: View {
                     }
                 }
             }
+            
+            
+            let numberBinding = viewModel.numberToBinding(rowIndex: rowIndex, columnIndex: columnIndex, game: games.first ?? .init(), modelContext: modelContext)
+            let correctNumberBinding = viewModel.correctNumberToBinding(rowIndex: rowIndex, columnIndex: columnIndex, game: games.first ?? .init())
+            let maxQtdBinding = viewModel.maxQtdToBinding(game: games.first ?? .init())
+            let actualQtdBinding = viewModel.actualQtdBinding(game: games.first ?? .init(), modelContext: modelContext)
+            let additionalBinding = viewModel.additionalBinding(rowIndex: rowIndex, columnIndex: columnIndex, game: games.first ?? .init(), modelContext: modelContext)
+            
+            SudokuKeyboard(selectedNumber: numberBinding, correctNumber: correctNumberBinding, maxQtd: maxQtdBinding, actualQtd: actualQtdBinding, showGameOverAlert: $viewModel.model.showGameOverAlert, additional: additionalBinding, editMode: $viewModel.model.editMode)
             
             Spacer()
             
