@@ -16,8 +16,6 @@ struct SudokuNumbersComponent: View {
     @Binding var showGameOverAlert: Bool
     @Binding var additional: [Int]
     
-    
-    
     @Binding var editMode: Bool
     
     let columns = [
@@ -51,6 +49,7 @@ struct SudokuNumbersComponent: View {
                     
                 }, anyFunction: {
                     haptics.callVibration()
+                    
                 })
             }
         }
