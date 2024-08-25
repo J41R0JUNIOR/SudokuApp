@@ -21,6 +21,8 @@ struct SudokuView: View {
     @State var rowIndex = 3
     @State var columnIndex = 3
     
+    @State var hilightRC = false
+    
     var body: some View {
         VStack {
             Text("\(games.first?.mode.uppercased() ?? "") MODE").bold()
@@ -60,6 +62,7 @@ struct SudokuView: View {
                                     let actualQtdBinding = viewModel.actualQtdBinding(game: game, modelContext: modelContext)
                                     let additionalBinding = viewModel.additionalBinding(rowIndex: rowIndex, columnIndex: columnIndex, game: game, modelContext: modelContext)
                                     
+                                    
                                     let isHighlighted = rowIndex == self.rowIndex || columnIndex == self.columnIndex ? true:false
                                     
                                     
@@ -68,21 +71,32 @@ struct SudokuView: View {
                                         SudokuFinalNumbers(finalNumbeer: numberBinding)
                                             .frame(width: frameWidth, height: frameHeight)
                                             .border(Color.secondary, width: 0.25)
-                                            .background(isHighlighted ? .gray : .clear)
+                                            .background(isHighlighted && hilightRC ? .gray : .clear)
                                             .onTapGesture {
-                                                self.rowIndex = rowIndex
-                                                self.columnIndex = columnIndex
+                                                if rowIndex == self.rowIndex && columnIndex == self.columnIndex{
+                                                    hilightRC = false
+                                                }else{
+                                                    self.rowIndex = rowIndex
+                                                    self.columnIndex = columnIndex
+                                                    hilightRC = true
+                                                }
                                             }
                                     } else {
                                         
                                         SudokuNumbersComponent(number: numberBinding, correctNumber: correctNumberBinding, maxQtd: maxQtdBinding, actualQtd: actualQtdBinding, showGameOverAlert: $viewModel.model.showGameOverAlert, additional: additionalBinding, editMode: $viewModel.model.editMode)
                                             .frame(width: frameWidth, height: frameHeight)
                                             .border(Color.secondary, width: 0.25)
-                                            .background(isHighlighted ? .gray : .clear)
+                                            .background(isHighlighted && hilightRC ? .gray : .clear)
                                             .contentShape(Rectangle())
                                             .simultaneousGesture(TapGesture().onEnded {
-                                                self.rowIndex = rowIndex
-                                                self.columnIndex = columnIndex
+                                                if rowIndex == self.rowIndex && columnIndex == self.columnIndex{
+                                                    hilightRC = false
+                                                }else{
+                                                    self.rowIndex = rowIndex
+                                                    self.columnIndex = columnIndex
+                                                    hilightRC = true
+
+                                                }
                                             })
                                     }
                                 }
