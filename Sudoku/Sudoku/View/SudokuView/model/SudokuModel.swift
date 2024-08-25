@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 @Observable
 class SudokuModel{
@@ -15,6 +16,11 @@ class SudokuModel{
     var apiCall: ApiCall = .init()
     var dataManager: DataManager?
     var showGameOverAlert: Bool = false
-//    var showGameOverAlert: Bool = false
     var editMode: Bool = false
+    var rowIndex: Int?
+    var columnIndex: Int?
+    var frameWidth = (UIScreen.main.bounds.width / 9) * 0.95
+    var frameHeight = (UIScreen.main.bounds.width / 9) * 1
+     var hilightRC = false
+
 }

@@ -15,13 +15,10 @@ struct SudokuView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @Query(sort: [SortDescriptor(\GameBoard.mode, order: .reverse)]) var games: [GameBoard] = []
     
-    var frameWidth = (UIScreen.main.bounds.width / 9) * 0.95
-    var frameHeight = (UIScreen.main.bounds.width / 9) * 1
     
-    @State var rowIndex = 3
-    @State var columnIndex = 3
     
-    @State var hilightRC = false
+ 
+    
     
     var body: some View {
         VStack {
@@ -34,9 +31,9 @@ struct SudokuView: View {
                 Button {
                     viewModel.model.editMode.toggle()
                 } label: {
-                        viewModel.model.editMode ? HStack(content: {Image(systemName: "pencil")
-                            Text("On")}) :  HStack(content: {Image(systemName: "pencil")
-                                Text("Off")})
+                    Image(systemName: "pencil")
+                    
+                    viewModel.model.editMode ?Text("On") : Text("Off")
                   
                 } .foregroundStyle(.background)
                 
@@ -50,46 +47,74 @@ struct SudokuView: View {
                         HStack(spacing: 0) {
                             ForEach(games.first?.grid[rowIndex].indices ?? [].indices, id: \.self) { columnIndex in
                                 
+//                                if let game = games.first{
+//                                    let cellView = viewModel.cellView(rowIndex: rowIndex, columnIndex: columnIndex, game: game, modelContext: modelContext)
+//
+//                                    
+//                                    cellView
+//                                        .frame(width: viewModel.model.frameWidth, height: viewModel.model.frameHeight)
+//                                        .border(Color.secondary, width: 0.25)
+//                                        .background(viewModel.model.isHighlighted && viewModel.model.hilightRC ? .gray : .clear)
+//                                        .onTapGesture {
+//                                            if rowIndex == viewModel.model.rowIndex && columnIndex == viewModel.model.columnIndex{
+//                                                viewModel.model.hilightRC = false
+//                                            }else{
+//                                                viewModel.model.rowIndex = rowIndex
+//                                                viewModel.model.columnIndex = columnIndex
+//                                                viewModel.model.hilightRC = true
+//                                            }
+//                                        }
+//                                        .simultaneousGesture(TapGesture().onEnded {
+//                                            if rowIndex == self.rowIndex && columnIndex == self.columnIndex{
+//                                                viewModel.model.hilightRC = false
+//                                            }else{
+//                                                viewModel.model.rowIndex = rowIndex
+//                                                viewModel.model.columnIndex = columnIndex
+//                                                viewModel.model.hilightRC = true
+//
+//                                            }
+//                                        })
+//                                }
+                                    
                                 if let game = games.first {
                                     let numberBinding = viewModel.numberToBinding(rowIndex: rowIndex, columnIndex: columnIndex, game: game, modelContext: modelContext)
                                     let correctNumberBinding = viewModel.correctNumberToBinding(rowIndex: rowIndex, columnIndex: columnIndex, game: game)
-                                    let maxQtdBinding = viewModel.maxQtdToBinding(game: game)
-                                    let actualQtdBinding = viewModel.actualQtdBinding(game: game, modelContext: modelContext)
+                                   
                                     let additionalBinding = viewModel.additionalBinding(rowIndex: rowIndex, columnIndex: columnIndex, game: game, modelContext: modelContext)
                                     
                                     
-                                    let isHighlighted = rowIndex == self.rowIndex || columnIndex == self.columnIndex ? true:false
+                                    let isHighlighted = rowIndex == viewModel.model.rowIndex || columnIndex == viewModel.model.columnIndex ? true:false
                                     
                                     
                                     if game.grid[rowIndex][columnIndex] == game.gridCopy[rowIndex][columnIndex] && game.grid[rowIndex][columnIndex] != 0 {
                                         
                                         SudokuFinalNumbers(finalNumbeer: numberBinding)
-                                            .frame(width: frameWidth, height: frameHeight)
+                                            .frame(width: viewModel.model.frameWidth, height: viewModel.model.frameHeight)
                                             .border(Color.secondary, width: 0.25)
-                                            .background(isHighlighted && hilightRC ? .gray : .clear)
+                                            .background(isHighlighted && viewModel.model.hilightRC ? .gray : .clear)
                                             .onTapGesture {
-                                                if rowIndex == self.rowIndex && columnIndex == self.columnIndex{
-                                                    hilightRC = false
+                                                if rowIndex == viewModel.model.rowIndex && columnIndex == viewModel.model.columnIndex{
+                                                    viewModel.model.hilightRC = false
                                                 }else{
-                                                    self.rowIndex = rowIndex
-                                                    self.columnIndex = columnIndex
-                                                    hilightRC = true
+                                                    viewModel.model.rowIndex = rowIndex
+                                                    viewModel.model.columnIndex = columnIndex
+                                                    viewModel.model.hilightRC = true
                                                 }
                                             }
                                     } else {
                                         
-                                        SudokuNumbersComponent(number: numberBinding, correctNumber: correctNumberBinding, maxQtd: maxQtdBinding, actualQtd: actualQtdBinding, showGameOverAlert: $viewModel.model.showGameOverAlert, additional: additionalBinding, editMode: $viewModel.model.editMode)
-                                            .frame(width: frameWidth, height: frameHeight)
+                                        SudokuNumbersComponent(number: numberBinding, correctNumber: correctNumberBinding, additional: additionalBinding)
+                                            .frame(width: viewModel.model.frameWidth, height: viewModel.model.frameHeight)
                                             .border(Color.secondary, width: 0.25)
-                                            .background(isHighlighted && hilightRC ? .gray : .clear)
+                                            .background(isHighlighted && viewModel.model.hilightRC ? .gray : .clear)
                                             .contentShape(Rectangle())
                                             .simultaneousGesture(TapGesture().onEnded {
-                                                if rowIndex == self.rowIndex && columnIndex == self.columnIndex{
-                                                    hilightRC = false
+                                                if rowIndex == viewModel.model.rowIndex && columnIndex == viewModel.model.columnIndex{
+                                                    viewModel.model.hilightRC = false
                                                 }else{
-                                                    self.rowIndex = rowIndex
-                                                    self.columnIndex = columnIndex
-                                                    hilightRC = true
+                                                    viewModel.model.rowIndex = rowIndex
+                                                    viewModel.model.columnIndex = columnIndex
+                                                    viewModel.model.hilightRC = true
 
                                                 }
                                             })
@@ -102,27 +127,28 @@ struct SudokuView: View {
             }
             
             
-            let numberBinding = viewModel.numberToBinding(rowIndex: rowIndex, columnIndex: columnIndex, game: games.first ?? .init(), modelContext: modelContext)
-            let correctNumberBinding = viewModel.correctNumberToBinding(rowIndex: rowIndex, columnIndex: columnIndex, game: games.first ?? .init())
+            let numberBinding = viewModel.numberToBinding(rowIndex: viewModel.model.rowIndex ?? 0, columnIndex: viewModel.model.columnIndex ?? 0, game: games.first ?? .init(), modelContext: modelContext)
+            let correctNumberBinding = viewModel.correctNumberToBinding(rowIndex: viewModel.model.rowIndex ?? 0, columnIndex: viewModel.model.columnIndex ?? 0, game: games.first ?? .init())
             let maxQtdBinding = viewModel.maxQtdToBinding(game: games.first ?? .init())
             let actualQtdBinding = viewModel.actualQtdBinding(game: games.first ?? .init(), modelContext: modelContext)
-            let additionalBinding = viewModel.additionalBinding(rowIndex: rowIndex, columnIndex: columnIndex, game: games.first ?? .init(), modelContext: modelContext)
+            let additionalBinding = viewModel.additionalBinding(rowIndex: viewModel.model.rowIndex ?? 0, columnIndex: viewModel.model.columnIndex ?? 0, game: games.first ?? .init(), modelContext: modelContext)
             
             SudokuKeyboard(selectedNumber: numberBinding, correctNumber: correctNumberBinding, maxQtd: maxQtdBinding, actualQtd: actualQtdBinding, showGameOverAlert: $viewModel.model.showGameOverAlert, additional: additionalBinding, editMode: $viewModel.model.editMode)
             
             Spacer()
             
-        }.padding()
-            .alert("Game Over\nGet back to menu?", isPresented: $viewModel.model.showGameOverAlert) {
-                Button("Yes"){
-                    presentationMode.wrappedValue.dismiss()
-                    viewModel.model.dataManager?.deleteAllGameBoards(gameBoards: games)
-                }
-                Button("No", role: .cancel) {}
+        }
+        .padding()
+        .alert("Game Over\nGet back to menu?", isPresented: $viewModel.model.showGameOverAlert) {
+            Button("Yes"){
+                presentationMode.wrappedValue.dismiss()
+                viewModel.model.dataManager?.deleteAllGameBoards(gameBoards: games)
             }
-            .onAppear {
-                viewModel.model.dataManager = DataManager(modelContext: modelContext)
-            }
+            Button("No", role: .cancel) {}
+        }
+        .onAppear {
+            viewModel.model.dataManager = DataManager(modelContext: modelContext)
+        }
     }
 }
 
