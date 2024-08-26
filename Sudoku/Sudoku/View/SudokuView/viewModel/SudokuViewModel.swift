@@ -81,28 +81,21 @@ class SudokuViewModel {
         return additionalBinding
     }
     
-    func cellView(rowIndex: Int, columnIndex: Int, game: GameBoard, modelContext: ModelContext) -> some View{
-   
-            let numberBinding = numberToBinding(rowIndex: rowIndex, columnIndex: columnIndex, game: game, modelContext: modelContext)
-            let correctNumberBinding = correctNumberToBinding(rowIndex: rowIndex, columnIndex: columnIndex, game: game)
-           
-            let additionalBinding = additionalBinding(rowIndex: rowIndex, columnIndex: columnIndex, game: game, modelContext: modelContext)
-            
-            
-            let isHighlighted = rowIndex == model.rowIndex || columnIndex == model.columnIndex ? true:false
-            
-            
-            if game.grid[rowIndex][columnIndex] == game.gridCopy[rowIndex][columnIndex] && game.grid[rowIndex][columnIndex] != 0 {
-                
-                SudokuFinalNumbers(finalNumbeer: numberBinding)
-                   
-                    
-            } else {
-                
-                SudokuNumbersComponent(number: numberBinding, correctNumber: correctNumberBinding, additional: additionalBinding)
-            }
-        
-        
-        return Color.red
+    @ViewBuilder
+    func cellView(rowIndex: Int, columnIndex: Int, game: GameBoard, modelContext: ModelContext) -> any View {
+        // Criação dos bindings
+        let numberBinding = numberToBinding(rowIndex: rowIndex, columnIndex: columnIndex, game: game, modelContext: modelContext)
+        let correctNumberBinding = correctNumberToBinding(rowIndex: rowIndex, columnIndex: columnIndex, game: game)
+        let additionalBinding = additionalBinding(rowIndex: rowIndex, columnIndex: columnIndex, game: game, modelContext: modelContext)
+
+       
+
+        // Retorna a View correta com base nos valores
+        if game.grid[rowIndex][columnIndex] == game.gridCopy[rowIndex][columnIndex] && game.grid[rowIndex][columnIndex] != 0 {
+             SudokuFinalNumbers(finalNumbeer: numberBinding)
+        } else {
+             SudokuNumbersComponent(number: numberBinding, correctNumber: correctNumberBinding, additional: additionalBinding)
+        }
     }
+
 }
