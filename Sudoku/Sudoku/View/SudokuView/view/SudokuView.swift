@@ -15,11 +15,6 @@ struct SudokuView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @Query(sort: [SortDescriptor(\GameBoard.mode, order: .reverse)]) var games: [GameBoard] = []
     
-    
-    
- 
-    
-    
     var body: some View {
         VStack {
             Text("\(games.first?.mode.uppercased() ?? "") MODE").bold()
@@ -34,10 +29,10 @@ struct SudokuView: View {
                     Image(systemName: "pencil")
                     
                     viewModel.model.editMode ?Text("On") : Text("Off")
-                  
+                    
                 } .foregroundStyle(.background)
                 
-                .buttonStyle(.borderedProminent)
+                    .buttonStyle(.borderedProminent)
                 
             }
             ZStack {
@@ -47,39 +42,11 @@ struct SudokuView: View {
                         HStack(spacing: 0) {
                             ForEach(games.first?.grid[rowIndex].indices ?? [].indices, id: \.self) { columnIndex in
                                 
-//                                if let game = games.first{
-//                                    let cellView = viewModel.cellView(rowIndex: rowIndex, columnIndex: columnIndex, game: game, modelContext: modelContext)
-//
-//                                    
-//                                    cellView
-//                                        .frame(width: viewModel.model.frameWidth, height: viewModel.model.frameHeight)
-//                                        .border(Color.secondary, width: 0.25)
-//                                        .background(viewModel.model.isHighlighted && viewModel.model.hilightRC ? .gray : .clear)
-//                                        .onTapGesture {
-//                                            if rowIndex == viewModel.model.rowIndex && columnIndex == viewModel.model.columnIndex{
-//                                                viewModel.model.hilightRC = false
-//                                            }else{
-//                                                viewModel.model.rowIndex = rowIndex
-//                                                viewModel.model.columnIndex = columnIndex
-//                                                viewModel.model.hilightRC = true
-//                                            }
-//                                        }
-//                                        .simultaneousGesture(TapGesture().onEnded {
-//                                            if rowIndex == self.rowIndex && columnIndex == self.columnIndex{
-//                                                viewModel.model.hilightRC = false
-//                                            }else{
-//                                                viewModel.model.rowIndex = rowIndex
-//                                                viewModel.model.columnIndex = columnIndex
-//                                                viewModel.model.hilightRC = true
-//
-//                                            }
-//                                        })
-//                                }
-                                    
+                                
                                 if let game = games.first {
                                     let numberBinding = viewModel.numberToBinding(rowIndex: rowIndex, columnIndex: columnIndex, game: game, modelContext: modelContext)
                                     let correctNumberBinding = viewModel.correctNumberToBinding(rowIndex: rowIndex, columnIndex: columnIndex, game: game)
-                                   
+                                    
                                     let additionalBinding = viewModel.additionalBinding(rowIndex: rowIndex, columnIndex: columnIndex, game: game, modelContext: modelContext)
                                     
                                     
@@ -108,16 +75,15 @@ struct SudokuView: View {
                                             .border(Color.secondary, width: 0.25)
                                             .background(isHighlighted && viewModel.model.hilightRC ? .gray : .clear)
                                             .contentShape(Rectangle())
-                                            .simultaneousGesture(TapGesture().onEnded {
+                                            .onTapGesture {
                                                 if rowIndex == viewModel.model.rowIndex && columnIndex == viewModel.model.columnIndex{
                                                     viewModel.model.hilightRC = false
                                                 }else{
                                                     viewModel.model.rowIndex = rowIndex
                                                     viewModel.model.columnIndex = columnIndex
                                                     viewModel.model.hilightRC = true
-
                                                 }
-                                            })
+                                            }
                                     }
                                 }
                             }
