@@ -57,7 +57,7 @@ struct SudokuView: View {
                                     if game.grid[rowIndex][columnIndex] == game.gridCopy[rowIndex][columnIndex] && game.grid[rowIndex][columnIndex] != 0 {
                                         
                                         SudokuFinalNumbers(finalNumbeer: numberBinding)
-                                            .frame(width: viewModel.model.frameWidth, height: viewModel.model.frameHeight)
+                                            .frame(width: viewModel.model.info.frameWidth, height: viewModel.model.info.frameHeight)
                                             .border(Color.secondary, width: 0.25)
                                             .background(isHighlighted && viewModel.model.hilightRC ? .gray : .clear)
                                             .onTapGesture {
@@ -72,7 +72,7 @@ struct SudokuView: View {
                                     } else {
                                         
                                         SudokuNumbersComponent(number: numberBinding, correctNumber: correctNumberBinding, additional: additionalBinding)
-                                            .frame(width: viewModel.model.frameWidth, height: viewModel.model.frameHeight)
+                                            .frame(width: viewModel.model.info.frameWidth, height: viewModel.model.info.frameHeight)
                                             .border(Color.secondary, width: 0.25)
                                             .background(isHighlighted && viewModel.model.hilightRC ? .gray : .clear)
                                             .contentShape(Rectangle())
