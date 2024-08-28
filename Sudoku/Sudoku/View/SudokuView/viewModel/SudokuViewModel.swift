@@ -59,6 +59,17 @@ class SudokuViewModel {
         )
         return actualQtdBinding
     }
+    
+    func restNumbersBinding(game: GameBoard, modelContext: ModelContext) -> Binding<Int> {
+        let restNumbersBinding = Binding<Int>(
+            get: { game.restNumbers },
+            set: { newValue in
+                game.restNumbers = newValue
+                try? modelContext.save()
+            }
+        )
+        return restNumbersBinding
+    }
 
     func additionalBinding(rowIndex: Int, columnIndex: Int, game: GameBoard, modelContext: ModelContext) -> Binding<[Int]> {
         let additionalBinding = Binding<[Int]>(

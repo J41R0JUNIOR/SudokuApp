@@ -26,7 +26,7 @@ struct HomeActionButton: View {
             let solution = sudokuGenerator.gameArray
             
             dataManager?.deleteAllGameBoards(gameBoards: games)
-            dataManager?.addGameBoard(grid: grid, solution: solution, mode: String(describing: mode))
+            dataManager?.addGameBoard(grid: grid, solution: solution, mode: mode)
             presentationMode.wrappedValue.dismiss()
         }, label: {
             Text(title)

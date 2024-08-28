@@ -15,7 +15,9 @@ struct SudokuKeyboard: View {
     @Binding var maxQtd: Int
     @Binding var actualQtd: Int
     @Binding var showGameOverAlert: Bool
+    @Binding var showFinishAlert: Bool
     @Binding var additional: [Int]
+    @Binding var restNumber: Int
     
     @Binding var editMode: Bool
     @EnvironmentObject var haptics: HapticsManager
@@ -40,6 +42,11 @@ struct SudokuKeyboard: View {
                             else if actualQtd < maxQtd{
                                 selectedNumber = number
                                 additional = []
+                                restNumber -= 1
+                                
+                                if restNumber == 0{
+                                    showFinishAlert = true
+                                }
                                 
                                 if selectedNumber != correctNumber && actualQtd < maxQtd {
                                     actualQtd += 1

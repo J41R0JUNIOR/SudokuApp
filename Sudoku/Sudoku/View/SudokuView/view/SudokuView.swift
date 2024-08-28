@@ -18,9 +18,10 @@ struct SudokuView: View {
     var body: some View {
         VStack {
             Text("\(games.first?.mode.uppercased() ?? "") MODE").bold()
+            Text("\(String(describing: games.first?.restNumbers))")
             Spacer()
             HStack{
-                Text("Mistakes \(games.first?.actualQtd ?? 0)/\(games.first?.maxQtd ?? 0)")
+                Text("Mistakes \(games.first?.actualQtd ?? 0)/\(games.first?.maxQtd ?? 0)").bold()
                 Spacer()
                 
                 Button {
@@ -66,7 +67,7 @@ struct SudokuView: View {
                                                 }else{
                                                     viewModel.model.rowIndex = rowIndex
                                                     viewModel.model.columnIndex = columnIndex
-                                                    viewModel.model.hilightRC.toggle()
+                                                    viewModel.model.hilightRC = true
                                                 }
                                             }
                                     } else {
@@ -82,14 +83,13 @@ struct SudokuView: View {
                                                 }else{
                                                     viewModel.model.rowIndex = rowIndex
                                                     viewModel.model.columnIndex = columnIndex
-                                                    viewModel.model.hilightRC.toggle()
+                                                    viewModel.model.hilightRC = true
                                                 }
                                             }
                                     }
                                 }
                             }
                         }
-//                        .overlay(.center)
                     }
                 }
             }
@@ -100,13 +100,21 @@ struct SudokuView: View {
             let maxQtdBinding = viewModel.maxQtdToBinding(game: games.first ?? .init())
             let actualQtdBinding = viewModel.actualQtdBinding(game: games.first ?? .init(), modelContext: modelContext)
             let additionalBinding = viewModel.additionalBinding(rowIndex: viewModel.model.rowIndex ?? 0, columnIndex: viewModel.model.columnIndex ?? 0, game: games.first ?? .init(), modelContext: modelContext)
+            let restNumbersBinding = viewModel.restNumbersBinding(game: games.first ?? .init(), modelContext: modelContext)
             
-            SudokuKeyboard(selectedNumber: numberBinding, correctNumber: correctNumberBinding, maxQtd: maxQtdBinding, actualQtd: actualQtdBinding, showGameOverAlert: $viewModel.model.showGameOverAlert, additional: additionalBinding, editMode: $viewModel.model.editMode)
+            SudokuKeyboard(selectedNumber: numberBinding, correctNumber: correctNumberBinding, maxQtd: maxQtdBinding, actualQtd: actualQtdBinding, showGameOverAlert: $viewModel.model.showGameOverAlert, showFinishAlert: $viewModel.model.showFinishAlert, additional: additionalBinding, restNumber: restNumbersBinding, editMode: $viewModel.model.editMode)
             
             Spacer()
             
         }
         .padding()
+        .alert("You made it", isPresented: $viewModel.model.showFinishAlert, actions: {
+            Button("Quit"){
+                presentationMode.wrappedValue.dismiss()
+                viewModel.model.dataManager?.deleteAllGameBoards(gameBoards: games)
+
+            }
+        })
         .alert("Game Over\nGet back to menu?", isPresented: $viewModel.model.showGameOverAlert) {
             Button("Yes"){
                 presentationMode.wrappedValue.dismiss()

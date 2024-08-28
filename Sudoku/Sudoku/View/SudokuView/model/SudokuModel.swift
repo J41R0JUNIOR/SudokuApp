@@ -15,6 +15,7 @@ class SudokuModel{
     var mode: String = ""
     var dataManager: DataManager?
     var showGameOverAlert: Bool = false
+    var showFinishAlert: Bool = false
     var editMode: Bool = false
     var rowIndex: Int?
     var columnIndex: Int?
@@ -22,5 +23,6 @@ class SudokuModel{
     var hilightRC = false
     var rowHilight: Rectangle = .init()
     var columnHilight: Rectangle = .init()
+    
 
 }
