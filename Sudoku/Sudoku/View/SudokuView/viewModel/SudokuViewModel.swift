@@ -5,6 +5,17 @@ import SwiftData
 @Observable
 class SudokuViewModel {
     var model = SudokuModel()
+    
+    func toggleHighlight(rowIndex: Int, columnIndex: Int) {
+        if rowIndex == model.rowIndex && columnIndex == model.columnIndex {
+            model.hilightRC = false
+        } else {
+            model.rowIndex = rowIndex
+            model.columnIndex = columnIndex
+            model.hilightRC = true
+        }
+    }
+
 
     func correctNumberToBinding(rowIndex: Int, columnIndex: Int, game: GameBoard) -> Binding<Int> {
         let correctNumberBinding = Binding<Int>(

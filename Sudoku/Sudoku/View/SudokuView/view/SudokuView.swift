@@ -40,13 +40,13 @@ struct SudokuView: View {
 
                 if let rowIndex = viewModel.model.rowIndex {
                     viewModel.model.rowHilight
-                        .fill(Color.gray)
+                        .fill(viewModel.model.hilightRC ? Color.gray : Color.clear)
                         .frame(width: viewModel.model.info.frameWidth * 9, height: viewModel.model.info.frameHeight)
                         .offset(y: CGFloat(rowIndex - 4) * viewModel.model.info.frameHeight )
                 }
                 if let columnIndex = viewModel.model.columnIndex {
                     viewModel.model.rowHilight
-                        .fill(Color.gray)
+                        .fill(viewModel.model.hilightRC ? Color.gray : Color.clear)
                         .frame(width: viewModel.model.info.frameWidth, height: viewModel.model.info.frameHeight * 9)
                         .offset(x: CGFloat(columnIndex - 4) * viewModel.model.info.frameHeight )
                 }
@@ -59,33 +59,20 @@ struct SudokuView: View {
                                     let numberBinding = viewModel.numberToBinding(rowIndex: rowIndex, columnIndex: columnIndex, game: game, modelContext: modelContext)
                                     let correctNumberBinding = viewModel.correctNumberToBinding(rowIndex: rowIndex, columnIndex: columnIndex, game: game)
                                     let additionalBinding = viewModel.additionalBinding(rowIndex: rowIndex, columnIndex: columnIndex, game: game, modelContext: modelContext)
-                                    let isHighlighted = rowIndex == viewModel.model.rowIndex || columnIndex == viewModel.model.columnIndex
-                                    
+
                                     if game.grid[rowIndex][columnIndex] == game.gridCopy[rowIndex][columnIndex] && game.grid[rowIndex][columnIndex] != 0 {
                                         SudokuFinalNumbers(finalNumbeer: numberBinding)
                                             .frame(width: viewModel.model.info.frameWidth, height: viewModel.model.info.frameHeight)
                                             .border(Color.secondary, width: 0.25)
                                             .onTapGesture {
-                                                if rowIndex == viewModel.model.rowIndex && columnIndex == viewModel.model.columnIndex {
-                                                    viewModel.model.hilightRC = false
-                                                } else {
-                                                    viewModel.model.rowIndex = rowIndex
-                                                    viewModel.model.columnIndex = columnIndex
-                                                    viewModel.model.hilightRC = true
-                                                }
+                                                viewModel.toggleHighlight(rowIndex: rowIndex, columnIndex: columnIndex)
                                             }
                                     } else {
                                         SudokuNumbersComponent(number: numberBinding, correctNumber: correctNumberBinding, additional: additionalBinding)
                                             .frame(width: viewModel.model.info.frameWidth, height: viewModel.model.info.frameHeight)
                                             .border(Color.secondary, width: 0.25)
                                             .onTapGesture {
-                                                if rowIndex == viewModel.model.rowIndex && columnIndex == viewModel.model.columnIndex {
-                                                    viewModel.model.hilightRC = false
-                                                } else {
-                                                    viewModel.model.rowIndex = rowIndex
-                                                    viewModel.model.columnIndex = columnIndex
-                                                    viewModel.model.hilightRC = true
-                                                }
+                                                viewModel.toggleHighlight(rowIndex: rowIndex, columnIndex: columnIndex)
                                             }
                                     }
                                 }
@@ -94,6 +81,8 @@ struct SudokuView: View {
                     }
                 }
             }
+
+
 
             
             
