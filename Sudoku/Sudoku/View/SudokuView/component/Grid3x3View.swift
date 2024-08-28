@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct Grid3x3View: View {
-    var frameWidth = (UIScreen.main.bounds.width / 3) * 0.95
-    var frameHeight = (UIScreen.main.bounds.width / 3) * 1
+    var info: InfoData = .init()
     let rows = 3
     let columns = 3
     
@@ -19,8 +18,8 @@ struct Grid3x3View: View {
                 HStack(spacing: 0) {
                     ForEach(0..<columns, id: \.self) { column in
                         Rectangle()
-                            .stroke(Color.primary, lineWidth: 1) // Desenha a borda com a cor e largura desejada
-                            .frame(width: frameWidth, height: frameHeight)
+                            .stroke(Color.primary, lineWidth: 1) 
+                            .frame(width: info.bigGridFrame, height: info.bigGridFrame)
                     }
                 }
             }

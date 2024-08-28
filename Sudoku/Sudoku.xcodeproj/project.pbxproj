@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B3183D272C7F64AB000D7518 /* InfoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3183D262C7F64AB000D7518 /* InfoData.swift */; };
 		B3209F132C7E0239005EAD4A /* SudokuGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3209F122C7E0239005EAD4A /* SudokuGenerator.swift */; };
 		B359CE572C7972CD008F259F /* ArrayOfNumbers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B359CE562C7972CD008F259F /* ArrayOfNumbers.swift */; };
 		B3DE96F72C73BD8000AEFFB9 /* SudokuApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DE96F62C73BD8000AEFFB9 /* SudokuApp.swift */; };
@@ -59,6 +60,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B3183D262C7F64AB000D7518 /* InfoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoData.swift; sourceTree = "<group>"; };
 		B3209F122C7E0239005EAD4A /* SudokuGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuGenerator.swift; sourceTree = "<group>"; };
 		B359CE562C7972CD008F259F /* ArrayOfNumbers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayOfNumbers.swift; sourceTree = "<group>"; };
 		B3DE96F32C73BD8000AEFFB9 /* Sudoku.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sudoku.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -121,6 +123,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B3183D2A2C7F65FC000D7518 /* General */ = {
+			isa = PBXGroup;
+			children = (
+				B3183D262C7F64AB000D7518 /* InfoData.swift */,
+			);
+			path = General;
+			sourceTree = "<group>";
+		};
 		B3DE96EA2C73BD8000AEFFB9 = {
 			isa = PBXGroup;
 			children = (
@@ -225,6 +235,7 @@
 				B3DE97892C76530A00AEFFB9 /* GridGenerator */,
 				B3DE97822C76524F00AEFFB9 /* Coordinator */,
 				B3DE977E2C76524F00AEFFB9 /* SwiftData */,
+				B3183D2A2C7F65FC000D7518 /* General */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -489,6 +500,7 @@
 				B3F23AA72C76D86700E67F01 /* HapticsManager.swift in Sources */,
 				B3DE97862C76524F00AEFFB9 /* NavigationContentViewCoordinator.swift in Sources */,
 				B3DE97882C76524F00AEFFB9 /* View+.swift in Sources */,
+				B3183D272C7F64AB000D7518 /* InfoData.swift in Sources */,
 				B3DE97872C76524F00AEFFB9 /* NavigationModal.swift in Sources */,
 				B3DE97382C752CC100AEFFB9 /* ContentView.swift in Sources */,
 				B3DE97842C76524F00AEFFB9 /* GameBoard.swift in Sources */,
