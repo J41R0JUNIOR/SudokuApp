@@ -37,6 +37,7 @@ struct SudokuView: View {
             }
             ZStack {
                 Grid3x3View()
+                    
                 VStack(spacing: 0) {
                     ForEach(games.first?.grid.indices ?? [].indices, id: \.self) { rowIndex in
                         HStack(spacing: 0) {
@@ -88,6 +89,7 @@ struct SudokuView: View {
                                 }
                             }
                         }
+//                        .overlay(.center)
                     }
                 }
             }

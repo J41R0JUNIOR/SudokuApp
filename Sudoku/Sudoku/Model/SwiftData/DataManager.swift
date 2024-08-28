@@ -23,7 +23,7 @@ class DataManager {
     }
     
     func addGameBoard(grid: [[Int]] = [[]], solution: [[Int]] = [[]], mode: String = " ") {
-        let gameBoard = GameBoard(grid: grid/*, gridCopy: grid*/, solution: solution, mode: mode)
+        let gameBoard = GameBoard(grid: grid, solution: solution, mode: mode)
         modelContext.insert(gameBoard)
     }
     

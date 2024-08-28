@@ -13,7 +13,6 @@ class SudokuModel{
     var grid: [[Int]] = [[]]
     var solution: [[Int]] = [[]]
     var mode: String = ""
-    var apiCall: ApiCall = .init()
     var dataManager: DataManager?
     var showGameOverAlert: Bool = false
     var editMode: Bool = false

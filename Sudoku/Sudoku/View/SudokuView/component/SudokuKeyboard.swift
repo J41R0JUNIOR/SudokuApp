@@ -68,9 +68,9 @@ struct SudokuKeyboard: View {
                         Text("\(number)")
                             .font(.title)
                             .frame(width: frameWidth, height: frameHeight)
-                            .background(Color.gray.opacity(0.5))
+                            .background(Color.primary)
                             .clipShape(RoundedRectangle(cornerSize: .init(width: frameWidth, height: frameHeight), style: .circular))
-                            .foregroundColor(.black)
+                            .foregroundStyle(.background)
                     }
                 }
             }

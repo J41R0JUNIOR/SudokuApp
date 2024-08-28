@@ -16,14 +16,13 @@ struct HomeSelectionMode: View {
     @State var selectedMode: GameSelectionMode?
     @State var hasChosen: Bool?
     @State var dataManager: DataManager?
-    @State var apiCall = ApiCall()
 
     var body: some View {
         VStack {
             Text("Chose the gamemode:").bold()
-            HomeActionButton(title: "Easy", mode: .easy, dataManager: dataManager, apiCall: apiCall, presentationMode: presentationMode,labelWidth: 0.8)
-            HomeActionButton(title: "Medium", mode: .medium, dataManager: dataManager, apiCall: apiCall, presentationMode: presentationMode, labelWidth: 0.8)
-            HomeActionButton(title: "Hard", mode: .hard, dataManager: dataManager, apiCall: apiCall, presentationMode: presentationMode, labelWidth: 0.8)
+            HomeActionButton(title: "Easy", mode: .easy, dataManager: dataManager, presentationMode: presentationMode,labelWidth: 0.8)
+            HomeActionButton(title: "Medium", mode: .medium, dataManager: dataManager, presentationMode: presentationMode, labelWidth: 0.8)
+            HomeActionButton(title: "Hard", mode: .hard, dataManager: dataManager,presentationMode: presentationMode, labelWidth: 0.8)
         }
         .buttonStyle(.borderedProminent)
         .onAppear(perform: {
