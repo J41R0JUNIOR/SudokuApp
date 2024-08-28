@@ -14,25 +14,20 @@ struct HomeActionButton: View {
     var title: String
     var mode: GameSelectionMode
     var dataManager: DataManager?
-    var apiCall: ApiCall
     var presentationMode: Binding<PresentationMode>
     var labelWidth: Double
+    var sudokuGenerator: SudokuGenerator = .init()
     
     var body: some View {
         Button(action: {
             haptics.callVibration()
-            Task { 
-                do {
-                    await apiCall.newGame(mode: mode)
-                    let grid = apiCall.gameGrid
-                    let solution = apiCall.solutionGrid
-                    
-                    dataManager?.deleteAllGameBoards(gameBoards: games)
-
-                    dataManager?.addGameBoard(grid: grid, solution: solution, mode: String(describing: mode))
-                    presentationMode.wrappedValue.dismiss()
-                }
-            }
+            
+            let grid = sudokuGenerator.getGame(mode: mode)
+            let solution = sudokuGenerator.gameArray
+            
+            dataManager?.deleteAllGameBoards(gameBoards: games)
+            dataManager?.addGameBoard(grid: grid, solution: solution, mode: String(describing: mode))
+            presentationMode.wrappedValue.dismiss()
         }, label: {
             Text(title)
                 .bold()

@@ -22,21 +22,24 @@ struct SudokuKeyboard: View {
     
     var dataManager: DataManager?
     
+    var frameWidth = UIScreen.main.bounds.width / 10
+    var frameHeight = UIScreen.main.bounds.width / 10
+    
     
     var body: some View {
         HStack(spacing: 10) {
             LazyVGrid(columns: [GridItem](repeating: GridItem(.flexible(), spacing: 10), count: 9)) {
                 ForEach(1..<10) { number in
-                    Button(action: {
+                    Button {
                         
                         if !editMode{
-                            presentationMode.wrappedValue.dismiss()
                             
                             if selectedNumber == number {
                                 selectedNumber = 0
                             }
                             else if actualQtd < maxQtd{
                                 selectedNumber = number
+                                additional = []
                                 
                                 if selectedNumber != correctNumber && actualQtd < maxQtd {
                                     actualQtd += 1
@@ -57,22 +60,21 @@ struct SudokuKeyboard: View {
                             }else{
                                 additional.append(number)
                             }
-
                         }
                         
                         haptics.callVibration()
                         
-                    }) {
+                    } label: {
                         Text("\(number)")
                             .font(.title)
-                            .frame(width: UIScreen.main.bounds.width / 10, height: 50)
-                            .background(Color.gray.opacity(0.5))
-                            .clipShape(Circle())
-                            .foregroundColor(.black)
+                            .frame(width: frameWidth, height: frameHeight)
+                            .background(Color.primary)
+                            .clipShape(RoundedRectangle(cornerSize: .init(width: frameWidth, height: frameHeight), style: .circular))
+                            .foregroundStyle(.background)
                     }
                 }
             }
         }
-        .padding()
     }
 }
+
