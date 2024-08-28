@@ -62,11 +62,11 @@ struct SudokuView: View {
                                             .background(isHighlighted && viewModel.model.hilightRC ? .gray : .clear)
                                             .onTapGesture {
                                                 if rowIndex == viewModel.model.rowIndex && columnIndex == viewModel.model.columnIndex{
-                                                    viewModel.model.hilightRC = false
+                                                    viewModel.model.hilightRC.toggle()
                                                 }else{
                                                     viewModel.model.rowIndex = rowIndex
                                                     viewModel.model.columnIndex = columnIndex
-                                                    viewModel.model.hilightRC = true
+                                                    viewModel.model.hilightRC.toggle()
                                                 }
                                             }
                                     } else {
@@ -78,11 +78,11 @@ struct SudokuView: View {
                                             .contentShape(Rectangle())
                                             .onTapGesture {
                                                 if rowIndex == viewModel.model.rowIndex && columnIndex == viewModel.model.columnIndex{
-                                                    viewModel.model.hilightRC = false
+                                                    viewModel.model.hilightRC.toggle()
                                                 }else{
                                                     viewModel.model.rowIndex = rowIndex
                                                     viewModel.model.columnIndex = columnIndex
-                                                    viewModel.model.hilightRC = true
+                                                    viewModel.model.hilightRC.toggle()
                                                 }
                                             }
                                     }
