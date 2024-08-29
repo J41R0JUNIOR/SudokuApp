@@ -124,8 +124,8 @@ struct SudokuView: View {
             
         }
         .padding()
-        .alert("You made it", isPresented: $viewModel.model.showFinishAlert, actions: {
-            Button("Quit"){
+        .alert("You made it.\nGet back to menu?", isPresented: $viewModel.model.showFinishAlert, actions: {
+            Button("Yes"){
                 presentationMode.wrappedValue.dismiss()
                 viewModel.model.dataManager?.deleteAllGameBoards(gameBoards: games)
             }
