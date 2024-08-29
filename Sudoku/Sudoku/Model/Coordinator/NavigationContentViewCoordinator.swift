@@ -11,6 +11,7 @@ enum NavigationContentViewCoordinator: View{
     case home
     case homeSelectionMode
     case sudoku(selectedMode: GameSelectionMode)
+    case settings
 
     
     
@@ -26,7 +27,8 @@ enum NavigationContentViewCoordinator: View{
         case .sudoku(let selectedMode):
             SudokuView(selectedMode: selectedMode)
 
-            
+        case .settings:
+            SettingComponents()
         }
     }
 }

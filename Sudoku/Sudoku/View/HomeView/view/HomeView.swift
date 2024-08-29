@@ -36,12 +36,15 @@ struct HomeView: View {
                     Text("Continue")
                         .foregroundStyle(.background)
                 }
-                .buttonStyle(.borderedProminent)
                 
      
-                Button("New game") {
+                Button{
                     viewModel.showAlert.toggle()
                     haptics.callVibration()
+                    
+                }label: {
+                    Text("New game")
+                        .foregroundStyle(.background)
                 }
              
                 .alert("It'll delete your progress. \nAre you sure?", isPresented: $viewModel.showAlert) {
@@ -60,6 +63,8 @@ struct HomeView: View {
             }else{
                 NavigationModal(.sheet, value: NavigationContentViewCoordinator.homeSelectionMode, data: NavigationContentViewCoordinator.self, presentationDetents: [.fraction(0.3)]) {
                     Text("New game")
+                        .foregroundStyle(.background)
+
                 } anyFunction: {
                     haptics.callVibration()
                 }
@@ -70,7 +75,7 @@ struct HomeView: View {
         }
         .tint(.primary)
         .padding()
-        .buttonStyle(.bordered)
+        .buttonStyle(.borderedProminent)
         .onAppear(perform: {
             viewModel.dataManager = DataManager(modelContext: modelContext)
         })

@@ -17,23 +17,39 @@ struct SudokuView: View {
     
     var body: some View {
         VStack {
-            Text("\(games.first?.mode.uppercased() ?? "") MODE").bold()
-            Text("\(String(describing: games.first?.restNumbers))")
+            HStack{
+                Text("\(games.first?.mode.uppercased() ?? "") MODE").bold()
+                
+                Spacer()
+                
+                NavigationLink(value: NavigationContentViewCoordinator.settings) {
+                    Image(systemName: "gear").bold()
+                        .foregroundStyle(.background)
+                }.buttonStyle(.borderedProminent)
+                    .cornerRadius(50) 
+            }
             Spacer()
             HStack{
-                Text("Mistakes \(games.first?.actualQtd ?? 0)/\(games.first?.maxQtd ?? 0)").bold()
+                
+                Text("Mistakes ")
+                    .bold() +
+                Text("\(games.first?.actualQtd ?? 0)")
+                    .foregroundColor(.red)
+                    .bold() +
+                Text("/\(games.first?.maxQtd ?? 0)")
+                    .bold()
+
                 Spacer()
                 
                 Button {
                     viewModel.model.editMode.toggle()
                 } label: {
                     Image(systemName: "pencil")
-                    
+                        .bold()
                     viewModel.model.editMode ?Text("On") : Text("Off")
                     
                 } .foregroundStyle(.background)
-                
-                    .buttonStyle(.borderedProminent)
+                .buttonStyle(.borderedProminent)
                 
             }
             ZStack {
@@ -60,7 +76,7 @@ struct SudokuView: View {
                                         SudokuFinalNumbers(finalNumbeer: numberBinding)
                                             .frame(width: viewModel.model.info.frameWidth, height: viewModel.model.info.frameHeight)
                                             .border(Color.secondary, width: 0.25)
-                                            .background(isHighlighted && viewModel.model.hilightRC ? .gray : .clear)
+                                            .background(isHighlighted && viewModel.model.hilightRC ? .hilight : .clear)
                                             .onTapGesture {
                                                 if rowIndex == viewModel.model.rowIndex && columnIndex == viewModel.model.columnIndex{
                                                     viewModel.model.hilightRC.toggle()
@@ -75,7 +91,7 @@ struct SudokuView: View {
                                         SudokuNumbersComponent(number: numberBinding, correctNumber: correctNumberBinding, additional: additionalBinding)
                                             .frame(width: viewModel.model.info.frameWidth, height: viewModel.model.info.frameHeight)
                                             .border(Color.secondary, width: 0.25)
-                                            .background(isHighlighted && viewModel.model.hilightRC ? .gray : .clear)
+                                            .background(isHighlighted && viewModel.model.hilightRC ? .hilight : .clear)
                                             .contentShape(Rectangle())
                                             .onTapGesture {
                                                 if rowIndex == viewModel.model.rowIndex && columnIndex == viewModel.model.columnIndex{
