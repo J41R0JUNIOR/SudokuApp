@@ -128,8 +128,9 @@ struct SudokuView: View {
             Button("Quit"){
                 presentationMode.wrappedValue.dismiss()
                 viewModel.model.dataManager?.deleteAllGameBoards(gameBoards: games)
-
             }
+            
+            Button("No", role: .cancel) {}
         })
         .alert("Game Over\nGet back to menu?", isPresented: $viewModel.model.showGameOverAlert) {
             Button("Yes"){

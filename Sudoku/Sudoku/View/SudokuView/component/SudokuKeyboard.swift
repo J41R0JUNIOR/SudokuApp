@@ -39,13 +39,17 @@ struct SudokuKeyboard: View {
                             if selectedNumber == number {
                                 selectedNumber = 0
                             }
-                            else if actualQtd < maxQtd{
+                            else if actualQtd < maxQtd {
                                 selectedNumber = number
                                 additional = []
-                                restNumber -= 1
                                 
-                                if restNumber == 0{
-                                    showFinishAlert = true
+                                if selectedNumber == correctNumber{
+                                    
+                                    if restNumber <= 0{
+                                        showFinishAlert = true
+                                    }else{
+                                        restNumber -= 1
+                                    }
                                 }
                                 
                                 if selectedNumber != correctNumber && actualQtd < maxQtd {
@@ -81,6 +85,10 @@ struct SudokuKeyboard: View {
                     }
                 }
             }
+        }.onAppear {
+            if restNumber == 0{
+               showFinishAlert = true
+           }
         }
     }
 }
