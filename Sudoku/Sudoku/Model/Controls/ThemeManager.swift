@@ -9,14 +9,14 @@ import Foundation
 import SwiftUI
 
 class ThemeManager: ObservableObject {
-    @AppStorage(EnumModel.darkMode.rawValue) var isDarkMode: Bool = false {
+    @AppStorage(UserDefaultsKeysToSave.darkMode.rawValue) var isDarkMode: Bool = false {
         didSet {
-            UserDefaults.standard.set(isDarkMode, forKey: EnumModel.darkMode.rawValue)
+            UserDefaults.standard.set(isDarkMode, forKey: UserDefaultsKeysToSave.darkMode.rawValue)
         }
     }
 
     init() {
-        if let savedTheme = UserDefaults.standard.value(forKey: EnumModel.darkMode.rawValue) as? Bool {
+        if let savedTheme = UserDefaults.standard.value(forKey: UserDefaultsKeysToSave.darkMode.rawValue) as? Bool {
             self.isDarkMode = savedTheme
         }
     }
