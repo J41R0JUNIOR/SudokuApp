@@ -18,12 +18,20 @@ struct HomeSelectionMode: View {
     @State var dataManager: DataManager?
 
     var body: some View {
-        VStack {
+        VStack { 
             Text("Chose the gamemode:").bold()
-            HomeActionButton(title: "Easy", mode: .easy, dataManager: dataManager, presentationMode: presentationMode,labelWidth: 0.8)
-            HomeActionButton(title: "Medium", mode: .medium, dataManager: dataManager, presentationMode: presentationMode, labelWidth: 0.8)
-            HomeActionButton(title: "Hard", mode: .hard, dataManager: dataManager,presentationMode: presentationMode, labelWidth: 0.8)
-        }
+            
+            ForEach(GameSelectionMode.allCases, id: \.self) { mode in
+                HomeActionButton(
+                    title: mode.rawValue,
+                    mode: mode,
+                    dataManager: dataManager,
+                    presentationMode: presentationMode,
+                    labelWidth: 0.8
+                )
+            }
+            
+        }.navigationLinkValues(NavigationContentViewCoordinator.self)
         .buttonStyle(.borderedProminent)
         .onAppear(perform: {
             dataManager = DataManager(modelContext: modelContext)
@@ -33,4 +41,8 @@ struct HomeSelectionMode: View {
 
 #Preview {
     HomeSelectionMode().navigationLinkValues(NavigationContentViewCoordinator.self)
+}
+
+extension NavigationLink{
+    
 }

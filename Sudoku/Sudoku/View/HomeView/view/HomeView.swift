@@ -64,7 +64,6 @@ struct HomeView: View {
                 NavigationModal(.sheet, value: NavigationContentViewCoordinator.homeSelectionMode, data: NavigationContentViewCoordinator.self, presentationDetents: [.fraction(0.3)]) {
                     Text("New game")
                         .foregroundStyle(.background)
-
                 } anyFunction: {
                     haptics.callVibration()
                 }

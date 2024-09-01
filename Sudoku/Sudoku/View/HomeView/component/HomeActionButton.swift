@@ -28,6 +28,8 @@ struct HomeActionButton: View {
             dataManager?.deleteAllGameBoards(gameBoards: games)
             dataManager?.addGameBoard(grid: grid, solution: solution, mode: mode)
             presentationMode.wrappedValue.dismiss()
+            
+
         }, label: {
             Text(title)
                 .bold()
