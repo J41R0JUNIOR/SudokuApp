@@ -13,8 +13,6 @@ enum NavigationContentViewCoordinator: View{
     case sudoku(selectedMode: GameSelectionMode)
     case settings
 
-    
-    
     var body: some View {
         
         switch self {
