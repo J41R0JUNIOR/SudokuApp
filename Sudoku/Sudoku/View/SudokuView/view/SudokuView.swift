@@ -17,22 +17,39 @@ struct SudokuView: View {
     
     var body: some View {
         VStack {
-            Text("\(games.first?.mode.uppercased() ?? "") MODE").bold()
+            HStack{
+                Text("\(games.first?.mode.uppercased() ?? "") MODE").bold()
+                
+                Spacer()
+                
+                NavigationLink(value: NavigationContentViewCoordinator.settings) {
+                    Image(systemName: "gear").bold()
+                        .foregroundStyle(.background)
+                }.buttonStyle(.borderedProminent)
+                    .cornerRadius(50) 
+            }
             Spacer()
             HStack{
-                Text("Mistakes \(games.first?.actualQtd ?? 0)/\(games.first?.maxQtd ?? 0)")
+                
+                Text("Mistakes ")
+                    .bold() +
+                Text("\(games.first?.actualQtd ?? 0)")
+                    .foregroundColor(.red)
+                    .bold() +
+                Text("/\(games.first?.maxQtd ?? 0)")
+                    .bold()
+
                 Spacer()
                 
                 Button {
                     viewModel.model.editMode.toggle()
                 } label: {
                     Image(systemName: "pencil")
-                    
+                        .bold()
                     viewModel.model.editMode ?Text("On") : Text("Off")
                     
                 } .foregroundStyle(.background)
-                
-                    .buttonStyle(.borderedProminent)
+                .buttonStyle(.borderedProminent)
                 
             }
             ZStack {
@@ -65,10 +82,12 @@ struct SudokuView: View {
                                         SudokuFinalNumbers(finalNumbeer: numberBinding)
                                             .frame(width: viewModel.model.info.frameWidth, height: viewModel.model.info.frameHeight)
                                             .border(Color.secondary, width: 0.25)
+                                            .background(isHighlighted && viewModel.model.hilightRC ? .hilight : .clear)
                                             .onTapGesture {
-                                                if rowIndex == viewModel.model.rowIndex && columnIndex == viewModel.model.columnIndex {
-                                                    viewModel.model.hilightRC = false
-                                                } else {
+                                                if rowIndex == viewModel.model.rowIndex && columnIndex == viewModel.model.columnIndex{
+                                                    viewModel.model.hilightRC.toggle()
+                                                }else{
+
                                                     viewModel.model.rowIndex = rowIndex
                                                     viewModel.model.columnIndex = columnIndex
                                                     viewModel.model.hilightRC = true
@@ -78,10 +97,13 @@ struct SudokuView: View {
                                         SudokuNumbersComponent(number: numberBinding, correctNumber: correctNumberBinding, additional: additionalBinding)
                                             .frame(width: viewModel.model.info.frameWidth, height: viewModel.model.info.frameHeight)
                                             .border(Color.secondary, width: 0.25)
+                                            .background(isHighlighted && viewModel.model.hilightRC ? .hilight : .clear)
+                                            .contentShape(Rectangle())
                                             .onTapGesture {
-                                                if rowIndex == viewModel.model.rowIndex && columnIndex == viewModel.model.columnIndex {
-                                                    viewModel.model.hilightRC = false
-                                                } else {
+                                                if rowIndex == viewModel.model.rowIndex && columnIndex == viewModel.model.columnIndex{
+                                                    viewModel.model.hilightRC.toggle()
+                                                }else{
+
                                                     viewModel.model.rowIndex = rowIndex
                                                     viewModel.model.columnIndex = columnIndex
                                                     viewModel.model.hilightRC = true
@@ -102,13 +124,21 @@ struct SudokuView: View {
             let maxQtdBinding = viewModel.maxQtdToBinding(game: games.first ?? .init())
             let actualQtdBinding = viewModel.actualQtdBinding(game: games.first ?? .init(), modelContext: modelContext)
             let additionalBinding = viewModel.additionalBinding(rowIndex: viewModel.model.rowIndex ?? 0, columnIndex: viewModel.model.columnIndex ?? 0, game: games.first ?? .init(), modelContext: modelContext)
+            let restNumbersBinding = viewModel.restNumbersBinding(game: games.first ?? .init(), modelContext: modelContext)
             
-            SudokuKeyboard(selectedNumber: numberBinding, correctNumber: correctNumberBinding, maxQtd: maxQtdBinding, actualQtd: actualQtdBinding, showGameOverAlert: $viewModel.model.showGameOverAlert, additional: additionalBinding, editMode: $viewModel.model.editMode)
-            
+            SudokuKeyboard(selectedNumber: numberBinding, correctNumber: correctNumberBinding, maxQtd: maxQtdBinding, actualQtd: actualQtdBinding, showGameOverAlert: $viewModel.model.showGameOverAlert, showFinishAlert: $viewModel.model.showFinishAlert, additional: additionalBinding, restNumber: restNumbersBinding, editMode: $viewModel.model.editMode)
             Spacer()
             
         }
         .padding()
+        .alert("You made it.\nGet back to menu?", isPresented: $viewModel.model.showFinishAlert, actions: {
+            Button("Yes"){
+                presentationMode.wrappedValue.dismiss()
+                viewModel.model.dataManager?.deleteAllGameBoards(gameBoards: games)
+            }
+            
+            Button("No", role: .cancel) {}
+        })
         .alert("Game Over\nGet back to menu?", isPresented: $viewModel.model.showGameOverAlert) {
             Button("Yes"){
                 presentationMode.wrappedValue.dismiss()

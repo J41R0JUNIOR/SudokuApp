@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum EnumModel: String{
+enum UserDefaultsKeysToSave: String{
     case darkMode = "darkModeKey"
     case haptics = "hapticsKey"
 }

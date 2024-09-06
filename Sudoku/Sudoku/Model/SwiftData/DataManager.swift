@@ -22,8 +22,19 @@ class DataManager {
         // Mock or initial data setup if needed
     }
     
-    func addGameBoard(grid: [[Int]] = [[]], solution: [[Int]] = [[]], mode: String = " ") {
-        let gameBoard = GameBoard(grid: grid, solution: solution, mode: mode)
+    func addGameBoard(grid: [[Int]] = [[]], solution: [[Int]] = [[]], mode: GameSelectionMode) {
+        var value = 0
+        
+        switch mode{
+        case .easy:
+            value = 25
+        case .medium:
+            value = 45
+        case .hard:
+            value = 62
+        }
+        
+        let gameBoard = GameBoard(grid: grid, solution: solution, mode: mode.rawValue, restNumbers: value)
         modelContext.insert(gameBoard)
     }
     

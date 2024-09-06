@@ -10,7 +10,7 @@ import SwiftUI
 
 
 class HapticsManager: ObservableObject {
-    @AppStorage(EnumModel.haptics.rawValue) var isOnVibrationMode: Bool = UserDefaults.standard.bool(forKey: EnumModel.haptics.rawValue)
+    @AppStorage(UserDefaultsKeysToSave.haptics.rawValue) var isOnVibrationMode: Bool = UserDefaults.standard.bool(forKey: UserDefaultsKeysToSave.haptics.rawValue)
     
     func callVibration() {
         guard isOnVibrationMode else { return }

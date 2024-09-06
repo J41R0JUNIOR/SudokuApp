@@ -18,19 +18,18 @@ class SudokuGenerator{
     
     init() {
         _ = fillGrid()
-        self.easyMode = removeNumbers(qtd: 25)
-        self.mediumMode = removeNumbers(qtd: 45)
-        self.hardMode = removeNumbers(qtd: 62)
-        
     }
     
     func getGame(mode: GameSelectionMode) -> [[Int]]{
         switch mode {
         case .easy:
+            self.easyMode = removeNumbers(qtd: 25)
             return easyMode
         case .medium:
+            self.mediumMode = removeNumbers(qtd: 45)
             return mediumMode
         case .hard:
+            self.hardMode = removeNumbers(qtd: 62)
             return hardMode
         }
     }

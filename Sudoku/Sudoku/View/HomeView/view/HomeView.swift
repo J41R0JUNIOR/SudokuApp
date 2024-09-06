@@ -13,8 +13,7 @@ struct HomeView: View {
     @Query(sort: [SortDescriptor(\GameBoard.mode, order: .reverse)]) var games: [GameBoard]
     @Bindable var viewModel = HomeViewModel()
     
-    var frameWidth = UIScreen.main.bounds.width  * 0.3
-//    var frameHeight = UIScreen.main.bounds.width  * 1
+    var averageFrame = UIScreen.main.bounds.width  * 0.3
     
     var body: some View {
         VStack {
@@ -23,7 +22,7 @@ struct HomeView: View {
             Image("Logo")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .frame(width: frameWidth, height: frameWidth)              
+                .frame(width: averageFrame, height: averageFrame)
             
             Text("SudoKu")
                 .bold()
@@ -36,14 +35,17 @@ struct HomeView: View {
                     Text("Continue")
                         .foregroundStyle(.background)
                 }
-                .buttonStyle(.borderedProminent)
                 
-     
-                Button("New game") {
+                
+                Button{
                     viewModel.showAlert.toggle()
                     haptics.callVibration()
+                    
+                }label: {
+                    Text("New game")
+                        .foregroundStyle(.background)
                 }
-             
+                
                 .alert("It'll delete your progress. \nAre you sure?", isPresented: $viewModel.showAlert) {
                     Button("Yes") {
                         haptics.callVibration()
@@ -56,10 +58,12 @@ struct HomeView: View {
                 }
                 .sheet(isPresented: $viewModel.showNewGameSheet) {
                     HomeSelectionMode().presentationDetents([.fraction(0.3)])
+                    
                 }
             }else{
                 NavigationModal(.sheet, value: NavigationContentViewCoordinator.homeSelectionMode, data: NavigationContentViewCoordinator.self, presentationDetents: [.fraction(0.3)]) {
                     Text("New game")
+                        .foregroundStyle(.background)
                 } anyFunction: {
                     haptics.callVibration()
                 }
@@ -70,7 +74,7 @@ struct HomeView: View {
         }
         .tint(.primary)
         .padding()
-        .buttonStyle(.bordered)
+        .buttonStyle(.borderedProminent)
         .onAppear(perform: {
             viewModel.dataManager = DataManager(modelContext: modelContext)
         })
