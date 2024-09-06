@@ -2,13 +2,7 @@
 
 ## Description
 
-**iSudoku** is a Sudoku game developed with the goal of refreshing knowledge on API usage. The application allows users to play Sudoku generated dynamically from an API and solve the puzzles using the app's features.
-
-## API Used
-
-The application uses the following API to generate and solve Sudoku puzzles:
-
-- **API:** [Sudoku Game and API](https://sudoku-game-and-api.netlify.app)
+**iSudoku** is a Sudoku game developed with the goal of refreshing knowledge on Swift.
 
 ## Features
 
@@ -19,7 +13,6 @@ The application uses the following API to generate and solve Sudoku puzzles:
 
 - SwiftUI
 - Swift
-- RESTful API
 - SwiftData
 
 ## Navigation
