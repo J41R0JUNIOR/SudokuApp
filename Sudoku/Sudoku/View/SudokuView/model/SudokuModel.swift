@@ -23,6 +23,4 @@ class SudokuModel{
     var hilightRC = false
     var rowHilight: Rectangle = .init()
     var columnHilight: Rectangle = .init()
-    
-
 }
