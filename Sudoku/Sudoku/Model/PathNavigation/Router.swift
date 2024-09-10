@@ -1,15 +1,19 @@
 import SwiftUI
 
 @Observable
-public class Router: ObservableObject {
+public class Router: ObservableObject { 
     public var path = NavigationPath()
     public static var shared: Router = Router()
     
-    public func changeRoute(_ route: RoutePath) {
+    func push(_ route: RoutePath) {
         path.append(route)
     }
     
-    public func backRoute() {
+    func push(_ view: Routes){
+        path.append(RoutePath(view))
+    }
+    
+    func pop() {
         if !path.isEmpty {
             path.removeLast()
         }

@@ -25,7 +25,7 @@ struct HomeView: View {
                 HStack{
                     Spacer()
                     Button {
-                        router.changeRoute(RoutePath(.settings))
+                        router.push(.settings)
                         
                     } label: {
                         Image(systemName: "gear").bold()
@@ -50,7 +50,7 @@ struct HomeView: View {
                 
                 if !games.isEmpty {
                     Button("Continue"){
-                        router.changeRoute(RoutePath(.sudoku))
+                        router.push(.sudoku)
                     } .foregroundStyle(.background)
                     
                     Button{

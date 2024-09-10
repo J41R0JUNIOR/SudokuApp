@@ -1,9 +1,9 @@
 import SwiftUI
 
-public struct RoutePath: Hashable {
+public struct RoutePath: Hashable { 
     var route: Routes
     
-     init(_ route: Routes) {
+    init(_ route: Routes) {
         self.route = route
     }
     
@@ -14,12 +14,10 @@ public struct RoutePath: Hashable {
             HomeView()
         case .sudoku:
             SudokuView()
-        case .none:
-            EmptyView()
         case .settings:
             SettingsView()
+        case .none:
+            EmptyView()
         }
     }
 }
-
-

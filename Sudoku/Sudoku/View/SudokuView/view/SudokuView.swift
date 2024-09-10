@@ -24,7 +24,7 @@ struct SudokuView: View {
                     Spacer()
                     
                     Button {
-                        router.changeRoute(RoutePath(.settings))
+                        router.push(.settings)
                         
                     } label: {
                         Image(systemName: "gear").bold()

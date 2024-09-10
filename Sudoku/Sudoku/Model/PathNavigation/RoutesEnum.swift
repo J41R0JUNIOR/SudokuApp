@@ -1,13 +1,13 @@
 import Foundation
 
-enum Routes {
+enum Routes { 
     case home
     case sudoku
     case settings
     case none
 }
 
-extension Routes: Equatable, Hashable{
+extension Routes: Equatable, Hashable {
     static func == (lhs: Routes, rhs: Routes) -> Bool {
         return lhs.hashValue == rhs.hashValue
     }

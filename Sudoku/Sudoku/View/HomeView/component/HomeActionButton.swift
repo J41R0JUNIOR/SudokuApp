@@ -42,6 +42,6 @@ struct HomeActionButton: View {
         dataManager?.addGameBoard(grid: grid, solution: solution, mode: mode)
         presentationMode.wrappedValue.dismiss()
         
-        router.changeRoute(RoutePath(.sudoku))
+        router.push(.sudoku)
     }
 }
