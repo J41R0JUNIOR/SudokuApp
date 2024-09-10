@@ -9,7 +9,7 @@ import SwiftUI
 import SwiftData
 
 struct SudokuView: View {
-    var selectedMode: GameSelectionMode?
+//    var selectedMode: GameSelectionMode?
     @State private var viewModel = SudokuViewModel()
     @Environment(\.modelContext) var modelContext
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
@@ -156,7 +156,7 @@ struct SudokuView: View {
     let modelContent: ModelContainer = .appContainer
     let themeManager = ThemeManager()
     let hapticsManager = HapticsManager()
-    return SudokuView(selectedMode: .medium).modelContainer(modelContent)
+    return SudokuView().modelContainer(modelContent)
         .environmentObject(themeManager)
         .environmentObject(hapticsManager)
         .preferredColorScheme(themeManager.isDarkMode ? .dark : .light)

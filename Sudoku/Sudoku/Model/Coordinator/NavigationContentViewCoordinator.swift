@@ -23,7 +23,7 @@ enum NavigationContentViewCoordinator: View{
             HomeSelectionMode()
             
         case .sudoku(let selectedMode):
-            SudokuView(selectedMode: selectedMode)
+            SudokuView()
 
         case .settings:
             SettingComponents()

@@ -1,35 +1,50 @@
 import Foundation
 import SwiftUI
 
-public enum Routes {
-    case first, second
+
+enum Routes {
+    case home
+    case sudoku
+    
     case none
 }
 
-extension Routes: Equatable {
-    public static func == (lhs: Routes, rhs: Routes) -> Bool {
+extension Routes: Equatable, Hashable{
+    static func == (lhs: Routes, rhs: Routes) -> Bool {
         return lhs.hashValue == rhs.hashValue
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        
+        switch self {
+        default:
+            hasher.combine("\(self)")
+        }
     }
 }
 
+import SwiftUI
+
 public struct RoutePath: Hashable {
-    public var route: Routes = .none
-    public init(_ route: Routes) {
+    var route: Routes
+    
+     init(_ route: Routes) {
         self.route = route
     }
     
     @ViewBuilder
     func findPath() -> some View {
         switch route {
-        case .first:
+        case .home:
             HomeView()
-        case .second:
-            Text("Second View content here")
+        case .sudoku:
+            SudokuView()
         case .none:
-            Text("None")
+            EmptyView()
         }
     }
 }
+
 
 @Observable
 public class Router {

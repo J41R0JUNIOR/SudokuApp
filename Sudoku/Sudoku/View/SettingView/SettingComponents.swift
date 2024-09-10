@@ -10,6 +10,7 @@ import SwiftUI
 struct SettingComponents: View {
     @StateObject var vibration = HapticsManager()
     @Bindable var router = Router.shared
+    
 
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
@@ -20,12 +21,12 @@ struct SettingComponents: View {
             NavigationStack(path: $router.path) {
                 VStack {
                     Button {
-                        router.changeRoute(RoutePath(.first))
+                        router.changeRoute(RoutePath(.home))
                     } label: {
                         Text("First View")
                     }
                     Button {
-                        router.changeRoute(RoutePath(.second))
+                        router.changeRoute(RoutePath(.sudoku))
                     } label: {
                         Text("Second View")
                     }
