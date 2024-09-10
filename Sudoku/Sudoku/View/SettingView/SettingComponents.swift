@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SettingComponents: View {
     @StateObject var vibration = HapticsManager()
-    @StateObject var router = Router.shared // Utilize o Router compartilhado
+    @Bindable var router = Router.shared
 
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
@@ -17,10 +17,10 @@ struct SettingComponents: View {
         VStack {
             ListSelector
             
-            NavigationStack(path: $router.path) { // Vincule a rota ao router.shared.path
+            NavigationStack(path: $router.path) {
                 VStack {
                     Button {
-                        router.changeRoute(RoutePath(.first)) // Chame diretamente a função do router
+                        router.changeRoute(RoutePath(.first))
                     } label: {
                         Text("First View")
                     }
@@ -30,16 +30,9 @@ struct SettingComponents: View {
                         Text("Second View")
                     }
                 }
+
                 .navigationDestination(for: RoutePath.self) { route in
-                    switch route.route {
-                    case .first:
-                        HomeView()
-                        Text("First View content here")
-                    case .second:
-                        Text("Second View content here")
-                    case .none:
-                        Text("None")
-                    }
+                    route.findPath()
                 }
             }
         }

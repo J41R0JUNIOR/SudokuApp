@@ -1,10 +1,3 @@
-//
-//  NavigationPath.swift
-//  Sudoku
-//
-//  Created by Jairo Júnior on 09/09/24.
-//
-
 import Foundation
 import SwiftUI
 
@@ -15,14 +8,7 @@ public enum Routes {
 
 extension Routes: Equatable {
     public static func == (lhs: Routes, rhs: Routes) -> Bool {
-        switch (lhs, rhs) {
-        case (.first, .first),
-             (.second, .second),
-             (.none, .none):
-            return true
-        default:
-            return false
-        }
+        return lhs.hashValue == rhs.hashValue
     }
 }
 
@@ -31,11 +17,23 @@ public struct RoutePath: Hashable {
     public init(_ route: Routes) {
         self.route = route
     }
+    
+    @ViewBuilder
+    func findPath() -> some View {
+        switch route {
+        case .first:
+            HomeView()
+        case .second:
+            Text("Second View content here")
+        case .none:
+            Text("None")
+        }
+    }
 }
 
-public class Router: ObservableObject {
-    @Published public var path = NavigationPath()
-    
+@Observable
+public class Router {
+    public var path = NavigationPath()
     public static var shared: Router = Router()
     
     public func changeRoute(_ route: RoutePath) {
