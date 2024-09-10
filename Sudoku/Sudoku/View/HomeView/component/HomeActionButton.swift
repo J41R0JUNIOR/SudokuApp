@@ -20,21 +20,25 @@ struct HomeActionButton: View {
     
     var body: some View {
         Button(action: {
-            haptics.callVibration()
-            
-            let grid = sudokuGenerator.getGame(mode: mode)
-            let solution = sudokuGenerator.gameArray
-            
-            dataManager?.deleteAllGameBoards(gameBoards: games)
-            dataManager?.addGameBoard(grid: grid, solution: solution, mode: mode)
-            presentationMode.wrappedValue.dismiss()
-            
-
+            buttonAction()
+       
         }, label: {
             Text(title)
                 .bold()
                 .foregroundStyle(.background)
                 .frame(width: UIScreen.main.bounds.width * labelWidth)
         })
+    }
+    
+    func buttonAction(){
+        haptics.callVibration()
+        
+        let grid = sudokuGenerator.getGame(mode: mode)
+        let solution = sudokuGenerator.gameArray
+        
+        dataManager?.deleteAllGameBoards(gameBoards: games)
+        dataManager?.addGameBoard(grid: grid, solution: solution, mode: mode)
+        presentationMode.wrappedValue.dismiss()
+        
     }
 }

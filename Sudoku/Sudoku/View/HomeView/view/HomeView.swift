@@ -87,3 +87,4 @@ struct HomeView: View {
         .navigationLinkValues(NavigationContentViewCoordinator.self)
         .modelContainer(modelContent)
 }
+
