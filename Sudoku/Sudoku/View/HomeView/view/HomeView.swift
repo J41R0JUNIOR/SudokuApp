@@ -21,6 +21,20 @@ struct HomeView: View {
         
         NavigationStack(path: $router.path) {
             VStack {
+                
+                HStack{
+                    Spacer()
+                    Button {
+                        router.changeRoute(RoutePath(.settings))
+                        
+                    } label: {
+                        Image(systemName: "gear").bold()
+                            .foregroundStyle(.background)
+                        
+                    }.buttonStyle(.borderedProminent)
+                        .cornerRadius(50)
+                   
+                }
                 Spacer()
                 
                 Image("Logo")

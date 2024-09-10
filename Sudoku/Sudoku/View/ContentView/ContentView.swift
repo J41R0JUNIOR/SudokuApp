@@ -10,17 +10,7 @@ import SwiftData
 
 struct ContentView: View {
     var body: some View {
-        TabView {
             HomeView()
-                .tabItem {
-                    Image(systemName: "house")
-                }
-            SettingComponents()
-                .tabItem {
-                    Image(systemName: "gear")
-                }
-        }
-//        .navigationLinkValues(NavigationContentViewCoordinator.self)
             .accentColor(.primary)
     }
 }

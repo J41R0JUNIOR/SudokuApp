@@ -5,7 +5,7 @@ import SwiftUI
 enum Routes {
     case home
     case sudoku
-    
+    case settings
     case none
 }
 
@@ -41,6 +41,8 @@ public struct RoutePath: Hashable {
             SudokuView()
         case .none:
             EmptyView()
+        case .settings:
+            SettingsView()
         }
     }
 }
@@ -53,6 +55,8 @@ public class Router: ObservableObject {
     
     public func changeRoute(_ route: RoutePath) {
         path.append(route)
+        print("path",path)
+        print("route",route.route)
     }
     
     public func backRoute() {

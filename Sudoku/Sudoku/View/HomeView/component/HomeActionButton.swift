@@ -43,6 +43,5 @@ struct HomeActionButton: View {
         presentationMode.wrappedValue.dismiss()
         
         router.changeRoute(RoutePath(.sudoku))
-        
     }
 }

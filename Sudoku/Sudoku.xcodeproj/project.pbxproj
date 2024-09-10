@@ -10,6 +10,7 @@
 		B3183D272C7F64AB000D7518 /* InfoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3183D262C7F64AB000D7518 /* InfoData.swift */; };
 		B3209F132C7E0239005EAD4A /* SudokuGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3209F122C7E0239005EAD4A /* SudokuGenerator.swift */; };
 		B350A2262C8FD73800B91E62 /* NavigationPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = B350A2252C8FD73800B91E62 /* NavigationPath.swift */; };
+		B350A2282C8FF44E00B91E62 /* SudokuViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B350A2272C8FF44E00B91E62 /* SudokuViewExtension.swift */; };
 		B359CE572C7972CD008F259F /* ArrayOfNumbers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B359CE562C7972CD008F259F /* ArrayOfNumbers.swift */; };
 		B3DE96F72C73BD8000AEFFB9 /* SudokuApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DE96F62C73BD8000AEFFB9 /* SudokuApp.swift */; };
 		B3DE96FB2C73BD8100AEFFB9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B3DE96FA2C73BD8100AEFFB9 /* Assets.xcassets */; };
@@ -21,7 +22,7 @@
 		B3DE97262C7510D300AEFFB9 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DE97252C7510D300AEFFB9 /* HomeView.swift */; };
 		B3DE972C2C75153B00AEFFB9 /* GameSelectionMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DE972B2C75153B00AEFFB9 /* GameSelectionMode.swift */; };
 		B3DE97382C752CC100AEFFB9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DE97372C752CC100AEFFB9 /* ContentView.swift */; };
-		B3DE97482C75310400AEFFB9 /* SettingComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DE97472C75310400AEFFB9 /* SettingComponents.swift */; };
+		B3DE97482C75310400AEFFB9 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DE97472C75310400AEFFB9 /* SettingsView.swift */; };
 		B3DE97512C753B6100AEFFB9 /* HomeSelectionMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DE97502C753B6100AEFFB9 /* HomeSelectionMode.swift */; };
 		B3DE97552C7571A900AEFFB9 /* SudokuModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DE97542C7571A900AEFFB9 /* SudokuModel.swift */; };
 		B3DE97582C75724F00AEFFB9 /* SudokuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DE97572C75724F00AEFFB9 /* SudokuViewModel.swift */; };
@@ -65,6 +66,7 @@
 		B3183D262C7F64AB000D7518 /* InfoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoData.swift; sourceTree = "<group>"; };
 		B3209F122C7E0239005EAD4A /* SudokuGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuGenerator.swift; sourceTree = "<group>"; };
 		B350A2252C8FD73800B91E62 /* NavigationPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationPath.swift; sourceTree = "<group>"; };
+		B350A2272C8FF44E00B91E62 /* SudokuViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuViewExtension.swift; sourceTree = "<group>"; };
 		B359CE562C7972CD008F259F /* ArrayOfNumbers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayOfNumbers.swift; sourceTree = "<group>"; };
 		B3DE96F32C73BD8000AEFFB9 /* Sudoku.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sudoku.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3DE96F62C73BD8000AEFFB9 /* SudokuApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuApp.swift; sourceTree = "<group>"; };
@@ -79,7 +81,7 @@
 		B3DE97252C7510D300AEFFB9 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		B3DE972B2C75153B00AEFFB9 /* GameSelectionMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSelectionMode.swift; sourceTree = "<group>"; };
 		B3DE97372C752CC100AEFFB9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		B3DE97472C75310400AEFFB9 /* SettingComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingComponents.swift; sourceTree = "<group>"; };
+		B3DE97472C75310400AEFFB9 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		B3DE97502C753B6100AEFFB9 /* HomeSelectionMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSelectionMode.swift; sourceTree = "<group>"; };
 		B3DE97542C7571A900AEFFB9 /* SudokuModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuModel.swift; sourceTree = "<group>"; };
 		B3DE97572C75724F00AEFFB9 /* SudokuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuViewModel.swift; sourceTree = "<group>"; };
@@ -264,7 +266,7 @@
 		B3DE97462C7530FB00AEFFB9 /* SettingView */ = {
 			isa = PBXGroup;
 			children = (
-				B3DE97472C75310400AEFFB9 /* SettingComponents.swift */,
+				B3DE97472C75310400AEFFB9 /* SettingsView.swift */,
 				B3F7DCD12C768CD20045F22E /* ColorThemeComponent.swift */,
 			);
 			path = SettingView;
@@ -282,6 +284,7 @@
 			isa = PBXGroup;
 			children = (
 				B3DE97222C73CFCE00AEFFB9 /* SudokuView.swift */,
+				B350A2272C8FF44E00B91E62 /* SudokuViewExtension.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -505,8 +508,9 @@
 				B3F7DCD52C768F430045F22E /* ThemeManager.swift in Sources */,
 				B3DE97552C7571A900AEFFB9 /* SudokuModel.swift in Sources */,
 				B3DE97262C7510D300AEFFB9 /* HomeView.swift in Sources */,
-				B3DE97482C75310400AEFFB9 /* SettingComponents.swift in Sources */,
+				B3DE97482C75310400AEFFB9 /* SettingsView.swift in Sources */,
 				B3F7DCD72C769F9F0045F22E /* SudokuFinalNumbers.swift in Sources */,
+				B350A2282C8FF44E00B91E62 /* SudokuViewExtension.swift in Sources */,
 				B3209F132C7E0239005EAD4A /* SudokuGenerator.swift in Sources */,
 				B3DE978B2C7653EC00AEFFB9 /* Grid3x3View.swift in Sources */,
 				B3DE97832C76524F00AEFFB9 /* DataManager.swift in Sources */,

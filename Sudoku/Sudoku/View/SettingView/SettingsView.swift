@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SettingComponents: View {
+struct SettingsView: View {
     @StateObject var vibration = HapticsManager()
 //    @Bindable var router = Router.shared
     
@@ -40,7 +40,7 @@ struct SettingComponents: View {
     }
 }
 
-extension SettingComponents {
+extension SettingsView {
     @ViewBuilder
     private var ListSelector: some View {
         Text("Settings")
@@ -65,5 +65,5 @@ extension SettingComponents {
 }
 
 #Preview {
-    SettingComponents().environmentObject(ThemeManager())
+    SettingsView().environmentObject(ThemeManager())
 }

@@ -26,7 +26,7 @@ enum NavigationContentViewCoordinator: View{
             SudokuView()
 
         case .settings:
-            SettingComponents()
+            SettingsView()
         }
     }
 }
