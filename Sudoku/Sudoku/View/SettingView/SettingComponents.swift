@@ -9,24 +9,37 @@ import SwiftUI
 
 struct SettingComponents: View {
     @StateObject var vibration = HapticsManager()
-    @State private var notification: Bool = false
-    
-    @State var path: [String] = [] // Nada na pilha por padrão.
-    @State var strs: [String] = ["A", "B", "C", "D"]
+    @StateObject var router = Router.shared // Utilize o Router compartilhado
+
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     var body: some View {
         VStack {
             ListSelector
             
-            NavigationStack(path: $path) {
-                List {
-                    ForEach(strs, id: \.self) { s in
-                        NavigationLink(s, value: s)
+            NavigationStack(path: $router.path) { // Vincule a rota ao router.shared.path
+                VStack {
+                    Button {
+                        router.changeRoute(RoutePath(.first)) // Chame diretamente a função do router
+                    } label: {
+                        Text("First View")
+                    }
+                    Button {
+                        router.changeRoute(RoutePath(.second))
+                    } label: {
+                        Text("Second View")
                     }
                 }
-                .navigationDestination(for: String.self) { str in
-                    TestView(path: $path, strs: $strs, str: str)
-
+                .navigationDestination(for: RoutePath.self) { route in
+                    switch route.route {
+                    case .first:
+                        HomeView()
+                        Text("First View content here")
+                    case .second:
+                        Text("Second View content here")
+                    case .none:
+                        Text("None")
+                    }
                 }
             }
         }
@@ -59,33 +72,4 @@ extension SettingComponents {
 
 #Preview {
     SettingComponents().environmentObject(ThemeManager())
-}
-
-
-struct TestView: View {
-    @Binding var path: [String]
-    @Binding var strs: [String]
-    var str: String
-    
-    var body: some View {
-        VStack {
-            Text(str)
-            
-                if let nextValue = a() {
-                    NavigationLink("Go to next", value: nextValue)
-                        .buttonStyle(.borderedProminent)
-                        .tint(.primary)
-                }
-        }
-    }
-    
-    func a() -> String? {
-        if let indice = strs.firstIndex(of: str) {
-            if indice < (strs.count - 1) {
-                let nextIndex = indice + 1
-                return strs[nextIndex]
-            }
-        }
-        return nil // Retorna nil caso não haja próximo valor
-    }
 }
