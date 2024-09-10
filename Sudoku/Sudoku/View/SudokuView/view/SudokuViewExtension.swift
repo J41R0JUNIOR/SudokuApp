@@ -29,13 +29,13 @@ extension SudokuView{
             
             if let rowIndex = viewModel.model.rowIndex {
                 viewModel.model.rowHilight
-                    .fill(Color.gray)
+                    .fill(Color.clear)
                     .frame(width: viewModel.model.info.frameWidth * 9, height: viewModel.model.info.frameHeight)
                     .offset(y: CGFloat(rowIndex - 4) * viewModel.model.info.frameHeight )
             }
             if let columnIndex = viewModel.model.columnIndex {
                 viewModel.model.rowHilight
-                    .fill(Color.gray)
+                    .fill(Color.clear)
                     .frame(width: viewModel.model.info.frameWidth, height: viewModel.model.info.frameHeight * 9)
                     .offset(x: CGFloat(columnIndex - 4) * viewModel.model.info.frameHeight )
             }
