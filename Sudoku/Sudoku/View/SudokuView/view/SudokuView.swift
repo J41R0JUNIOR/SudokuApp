@@ -18,7 +18,7 @@ struct SudokuView: View {
     
     var body: some View {
         VStack {
-            NavigationStack(path: $router.path) {
+//            NavigationStack(path: $router.path) {
                 HStack{
                     Text("\(games.first?.mode.uppercased() ?? "") MODE").bold()
                     
@@ -63,40 +63,32 @@ struct SudokuView: View {
                 
                 Grid
                 
-                
-                let numberBinding = viewModel.numberToBinding(rowIndex: viewModel.model.rowIndex ?? 0, columnIndex: viewModel.model.columnIndex ?? 0, game: games.first ?? .init(), modelContext: modelContext)
-                let correctNumberBinding = viewModel.correctNumberToBinding(rowIndex: viewModel.model.rowIndex ?? 0, columnIndex: viewModel.model.columnIndex ?? 0, game: games.first ?? .init())
-                let maxQtdBinding = viewModel.maxQtdToBinding(game: games.first ?? .init())
-                let actualQtdBinding = viewModel.actualQtdBinding(game: games.first ?? .init(), modelContext: modelContext)
-                let additionalBinding = viewModel.additionalBinding(rowIndex: viewModel.model.rowIndex ?? 0, columnIndex: viewModel.model.columnIndex ?? 0, game: games.first ?? .init(), modelContext: modelContext)
-                let restNumbersBinding = viewModel.restNumbersBinding(game: games.first ?? .init(), modelContext: modelContext)
-                
-                SudokuKeyboard(selectedNumber: numberBinding, correctNumber: correctNumberBinding, maxQtd: maxQtdBinding, actualQtd: actualQtdBinding, showGameOverAlert: $viewModel.model.showGameOverAlert, showFinishAlert: $viewModel.model.showFinishAlert, additional: additionalBinding, restNumber: restNumbersBinding, editMode: $viewModel.model.editMode)
+                KeyBoard
+               
                 Spacer()
                 
-            }
-            .padding()
-            .alert("You made it.\nGet back to menu?", isPresented: $viewModel.model.showFinishAlert, actions: {
-                Button("Yes"){
-                    presentationMode.wrappedValue.dismiss()
-                    viewModel.model.dataManager?.deleteAllGameBoards(gameBoards: games)
-                }
-                
-                Button("No", role: .cancel) {}
-            })
-            .alert("Game Over\nGet back to menu?", isPresented: $viewModel.model.showGameOverAlert) {
-                Button("Yes"){
-                    presentationMode.wrappedValue.dismiss()
-                    viewModel.model.dataManager?.deleteAllGameBoards(gameBoards: games)
-                }
-                Button("No", role: .cancel) {}
-            }
-            .onAppear {
-                viewModel.model.dataManager = DataManager(modelContext: modelContext)
-            }
+//            }
+//            .navigationDestination(for: RoutePath.self) { route in
+//                route.findPath()
+//            }
         }
-        .navigationDestination(for: RoutePath.self) { route in
-            route.findPath()
+        .padding()
+        .alert("You made it.\nGet back to menu?", isPresented: $viewModel.model.showFinishAlert, actions: {
+            Button("Yes"){
+                presentationMode.wrappedValue.dismiss()
+                viewModel.model.dataManager?.deleteAllGameBoards(gameBoards: games)
+            }
+            Button("No", role: .cancel) {}
+        })
+        .alert("Game Over\nGet back to menu?", isPresented: $viewModel.model.showGameOverAlert) {
+            Button("Yes"){
+                presentationMode.wrappedValue.dismiss()
+                viewModel.model.dataManager?.deleteAllGameBoards(gameBoards: games)
+            }
+            Button("No", role: .cancel) {}
+        }
+        .onAppear {
+            viewModel.model.dataManager = DataManager(modelContext: modelContext)
         }
     }
 }

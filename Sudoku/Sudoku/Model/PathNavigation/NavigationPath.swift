@@ -55,8 +55,6 @@ public class Router: ObservableObject {
     
     public func changeRoute(_ route: RoutePath) {
         path.append(route)
-        print("path",path)
-        print("route",route.route)
     }
     
     public func backRoute() {

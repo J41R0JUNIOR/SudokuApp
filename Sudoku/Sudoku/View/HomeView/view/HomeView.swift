@@ -86,12 +86,11 @@ struct HomeView: View {
                 
                 Spacer()
             }
-            .sheet(isPresented: $viewModel.showNewGameSheet) {
-                HomeSelectionMode().presentationDetents([.fraction(0.3)])
-                
-            }
             .navigationDestination(for: RoutePath.self) { route in
                 route.findPath()
+            }
+            .sheet(isPresented: $viewModel.showNewGameSheet) {
+                HomeSelectionMode().presentationDetents([.fraction(0.3)])
             }
             .onAppear(perform: {
                 viewModel.dataManager = DataManager(modelContext: modelContext)
