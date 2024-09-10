@@ -35,10 +35,15 @@ extension SettingsView {
                 Toggle("Vibration", isOn: $vibration.isOnVibrationMode)
                     .toggleStyle(.switch)
             }
+            .listRowBackground(Color.hilight)
+            
+            Section(header: Text("About")) {
+                Link("Source Code", destination: URL(string: "https://github.com/J41R0JUNIOR/SudokuApp")!)
+            }
+            .listRowBackground(Color.hilight)
         }
-        .tint(.black)
         .scrollContentBackground(.hidden)
-        
+
         Spacer()
     }
 }
