@@ -53,7 +53,7 @@ struct SudokuNumbersComponent: View {
     let modelContent: ModelContainer = .appContainer
     let themeManager = ThemeManager()
     let hapticsManager = HapticsManager()
-    return SudokuView(selectedMode: .medium).modelContainer(modelContent)
+    return SudokuView().modelContainer(modelContent)
         .environmentObject(themeManager)
         .environmentObject(hapticsManager)
         .preferredColorScheme(themeManager.isDarkMode ? .dark : .light)

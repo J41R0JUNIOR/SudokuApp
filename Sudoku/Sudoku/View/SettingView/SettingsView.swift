@@ -7,18 +7,19 @@
 
 import SwiftUI
 
-struct SettingComponents: View {
+struct SettingsView: View {
     @StateObject var vibration = HapticsManager()
-    @State private var notification: Bool = false
-   
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    
     var body: some View {
         VStack {
             ListSelector
+            
         }
     }
 }
 
-extension SettingComponents {
+extension SettingsView {
     @ViewBuilder
     private var ListSelector: some View {
         Text("Settings")
@@ -33,15 +34,7 @@ extension SettingComponents {
                 
                 Toggle("Vibration", isOn: $vibration.isOnVibrationMode)
                     .toggleStyle(.switch)
-                
-//                Toggle("Notification", isOn: $notification)
-//                    .toggleStyle(.switch)
             }
-            
-//            Section(header: Text("Game Preferences")) {
-//                Text("Auto-complete")
-//                Text("etc...")
-//            }
         }
         .tint(.black)
         .scrollContentBackground(.hidden)
@@ -51,5 +44,5 @@ extension SettingComponents {
 }
 
 #Preview {
-    SettingComponents().environmentObject(ThemeManager())
+    SettingsView().environmentObject(ThemeManager())
 }
