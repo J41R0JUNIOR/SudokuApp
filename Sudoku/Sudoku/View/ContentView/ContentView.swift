@@ -20,7 +20,6 @@ struct ContentView: View {
     let themeManager = ThemeManager()
     let hapticsManager = HapticsManager()
     return ContentView()
-        .navigationLinkValues(NavigationContentViewCoordinator.self)
         .modelContainer(modelContent)
         .environmentObject(themeManager)
         .environmentObject(hapticsManager)

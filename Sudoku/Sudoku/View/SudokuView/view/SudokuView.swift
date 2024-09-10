@@ -18,7 +18,6 @@ struct SudokuView: View {
     
     var body: some View {
         VStack {
-//            NavigationStack(path: $router.path) {
                 HStack{
                     Text("\(games.first?.mode.uppercased() ?? "") MODE").bold()
                     
@@ -67,10 +66,6 @@ struct SudokuView: View {
                
                 Spacer()
                 
-//            }
-//            .navigationDestination(for: RoutePath.self) { route in
-//                route.findPath()
-//            }
         }
         .padding()
         .alert("You made it.\nGet back to menu?", isPresented: $viewModel.model.showFinishAlert, actions: {

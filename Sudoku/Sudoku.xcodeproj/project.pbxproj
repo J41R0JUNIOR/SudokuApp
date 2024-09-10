@@ -32,9 +32,6 @@
 		B3DE97832C76524F00AEFFB9 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DE977B2C76524F00AEFFB9 /* DataManager.swift */; };
 		B3DE97842C76524F00AEFFB9 /* GameBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DE977C2C76524F00AEFFB9 /* GameBoard.swift */; };
 		B3DE97852C76524F00AEFFB9 /* ModelContainerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DE977D2C76524F00AEFFB9 /* ModelContainerExtension.swift */; };
-		B3DE97862C76524F00AEFFB9 /* NavigationContentViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DE977F2C76524F00AEFFB9 /* NavigationContentViewCoordinator.swift */; };
-		B3DE97872C76524F00AEFFB9 /* NavigationModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DE97802C76524F00AEFFB9 /* NavigationModal.swift */; };
-		B3DE97882C76524F00AEFFB9 /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DE97812C76524F00AEFFB9 /* View+.swift */; };
 		B3DE978B2C7653EC00AEFFB9 /* Grid3x3View.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DE978A2C7653EC00AEFFB9 /* Grid3x3View.swift */; };
 		B3DE97972C766BCB00AEFFB9 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DE97962C766BCB00AEFFB9 /* HomeViewModel.swift */; };
 		B3E9ECED2C7FE9CA008E87C3 /* AppManagment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E9ECEC2C7FE9CA008E87C3 /* AppManagment.swift */; };
@@ -91,9 +88,6 @@
 		B3DE977B2C76524F00AEFFB9 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		B3DE977C2C76524F00AEFFB9 /* GameBoard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameBoard.swift; sourceTree = "<group>"; };
 		B3DE977D2C76524F00AEFFB9 /* ModelContainerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelContainerExtension.swift; sourceTree = "<group>"; };
-		B3DE977F2C76524F00AEFFB9 /* NavigationContentViewCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationContentViewCoordinator.swift; sourceTree = "<group>"; };
-		B3DE97802C76524F00AEFFB9 /* NavigationModal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationModal.swift; sourceTree = "<group>"; };
-		B3DE97812C76524F00AEFFB9 /* View+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
 		B3DE978A2C7653EC00AEFFB9 /* Grid3x3View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grid3x3View.swift; sourceTree = "<group>"; };
 		B3DE97962C766BCB00AEFFB9 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		B3E9ECEC2C7FE9CA008E87C3 /* AppManagment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppManagment.swift; sourceTree = "<group>"; };
@@ -248,7 +242,6 @@
 				B350A2242C8FD70300B91E62 /* PathNavigation */,
 				B3F7DCD32C768F2F0045F22E /* Controls */,
 				B3DE97892C76530A00AEFFB9 /* GridGenerator */,
-				B3DE97822C76524F00AEFFB9 /* Coordinator */,
 				B3DE977E2C76524F00AEFFB9 /* SwiftData */,
 				B3183D2A2C7F65FC000D7518 /* General */,
 			);
@@ -305,16 +298,6 @@
 				B3DE977D2C76524F00AEFFB9 /* ModelContainerExtension.swift */,
 			);
 			path = SwiftData;
-			sourceTree = "<group>";
-		};
-		B3DE97822C76524F00AEFFB9 /* Coordinator */ = {
-			isa = PBXGroup;
-			children = (
-				B3DE977F2C76524F00AEFFB9 /* NavigationContentViewCoordinator.swift */,
-				B3DE97802C76524F00AEFFB9 /* NavigationModal.swift */,
-				B3DE97812C76524F00AEFFB9 /* View+.swift */,
-			);
-			path = Coordinator;
 			sourceTree = "<group>";
 		};
 		B3DE97892C76530A00AEFFB9 /* GridGenerator */ = {
@@ -517,10 +500,7 @@
 				B3DE97232C73CFCE00AEFFB9 /* SudokuView.swift in Sources */,
 				B350A2262C8FD73800B91E62 /* NavigationPath.swift in Sources */,
 				B3F23AA72C76D86700E67F01 /* HapticsManager.swift in Sources */,
-				B3DE97862C76524F00AEFFB9 /* NavigationContentViewCoordinator.swift in Sources */,
-				B3DE97882C76524F00AEFFB9 /* View+.swift in Sources */,
 				B3183D272C7F64AB000D7518 /* InfoData.swift in Sources */,
-				B3DE97872C76524F00AEFFB9 /* NavigationModal.swift in Sources */,
 				B3DE97382C752CC100AEFFB9 /* ContentView.swift in Sources */,
 				B3DE97842C76524F00AEFFB9 /* GameBoard.swift in Sources */,
 				B3DE97512C753B6100AEFFB9 /* HomeSelectionMode.swift in Sources */,

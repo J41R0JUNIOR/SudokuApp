@@ -95,8 +95,8 @@ struct HomeView: View {
             .onAppear(perform: {
                 viewModel.dataManager = DataManager(modelContext: modelContext)
             })
-            .tint(.primary)
             .padding()
+            .tint(.primary)
             .buttonStyle(.borderedProminent)
         }
     }
@@ -105,7 +105,6 @@ struct HomeView: View {
 #Preview {
     let modelContent: ModelContainer = .appContainer
     return HomeView()
-        .navigationLinkValues(NavigationContentViewCoordinator.self)
         .modelContainer(modelContent)
 }
 
