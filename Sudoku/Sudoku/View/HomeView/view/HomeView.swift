@@ -10,74 +10,82 @@ import SwiftData
 struct HomeView: View {
     @Environment(\.modelContext) var modelContext
     @EnvironmentObject var haptics: HapticsManager
+    @EnvironmentObject var router: Router
+    
     @Query(sort: [SortDescriptor(\GameBoard.mode, order: .reverse)]) var games: [GameBoard]
     @Bindable var viewModel = HomeViewModel()
     
     var averageFrame = UIScreen.main.bounds.width  * 0.3
     
     var body: some View {
-        VStack {
-            Spacer()
-            
-            Image("Logo")
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: averageFrame, height: averageFrame)
-            
-            Text("SudoKu")
-                .bold()
-                .padding()
-            
-            Spacer()
-            
-            if !games.isEmpty {
-                NavigationLink(value: NavigationContentViewCoordinator.sudoku(selectedMode: viewModel.choice)) {
-                    Text("Continue")
-                        .foregroundStyle(.background)
-                }
+        
+        NavigationStack(path: $router.path) {
+            VStack {
+                Spacer()
                 
+                Image("Logo")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: averageFrame, height: averageFrame)
                 
-                Button{
-                    viewModel.showAlert.toggle()
-                    haptics.callVibration()
+                Text("SudoKu")
+                    .bold()
+                    .padding()
+                
+                Spacer()
+                
+                if !games.isEmpty {
+                    Button("Continue"){
+                        router.changeRoute(RoutePath(.sudoku))
+                    } .foregroundStyle(.background)
                     
-                }label: {
-                    Text("New game")
-                        .foregroundStyle(.background)
-                }
-                
-                .alert("It'll delete your progress. \nAre you sure?", isPresented: $viewModel.showAlert) {
-                    Button("Yes") {
-                        haptics.callVibration()
+                    Button{
                         viewModel.showAlert.toggle()
-                        viewModel.showNewGameSheet.toggle()
-                    }
-                    Button("No", role: .cancel, action: {
                         haptics.callVibration()
-                    })
-                }
-                .sheet(isPresented: $viewModel.showNewGameSheet) {
-                    HomeSelectionMode().presentationDetents([.fraction(0.3)])
+                        
+                    }label: {
+                        Text("New game")
+                            .foregroundStyle(.background)
+                    }
                     
+                    .alert("It'll delete your progress. \nAre you sure?", isPresented: $viewModel.showAlert) {
+                        Button("Yes") {
+                            haptics.callVibration()
+                            viewModel.showAlert.toggle()
+                            viewModel.showNewGameSheet.toggle()
+                        }
+                        Button("No", role: .cancel, action: {
+                            haptics.callVibration()
+                        })
+                    }
+                   
+                }else{
+                    Button{
+                        haptics.callVibration()
+                        viewModel.showNewGameSheet.toggle()
+
+                    }label: {
+                        Text("New game")
+                            .foregroundStyle(.background)
+                    }
                 }
-            }else{
-                NavigationModal(.sheet, value: NavigationContentViewCoordinator.homeSelectionMode, data: NavigationContentViewCoordinator.self, presentationDetents: [.fraction(0.3)]) {
-                    Text("New game")
-                        .foregroundStyle(.background)
-                } anyFunction: {
-                    haptics.callVibration()
-                }
+                
+                Spacer()
             }
-            
-            Spacer()
-            
+            .sheet(isPresented: $viewModel.showNewGameSheet) {
+                HomeSelectionMode().presentationDetents([.fraction(0.3)])
+                
+            }
+            .navigationDestination(for: RoutePath.self) { route in
+                route.findPath()
+            }
+            .onAppear(perform: {
+                viewModel.dataManager = DataManager(modelContext: modelContext)
+            })
+            .tint(.primary)
+            .padding()
+            .buttonStyle(.borderedProminent)
         }
-        .tint(.primary)
-        .padding()
-        .buttonStyle(.borderedProminent)
-        .onAppear(perform: {
-            viewModel.dataManager = DataManager(modelContext: modelContext)
-        })
     }
 }
 

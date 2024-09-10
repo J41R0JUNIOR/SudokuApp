@@ -47,7 +47,7 @@ public struct RoutePath: Hashable {
 
 
 @Observable
-public class Router {
+public class Router: ObservableObject {
     public var path = NavigationPath()
     public static var shared: Router = Router()
     

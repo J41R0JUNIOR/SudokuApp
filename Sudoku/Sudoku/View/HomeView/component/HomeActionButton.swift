@@ -11,6 +11,8 @@ import SwiftData
 struct HomeActionButton: View {
     @Query(sort: [SortDescriptor(\GameBoard.mode, order: .reverse)]) var games: [GameBoard]
     @EnvironmentObject var haptics: HapticsManager
+    @EnvironmentObject var router: Router
+    
     var title: String
     var mode: GameSelectionMode
     var dataManager: DataManager?
@@ -21,7 +23,7 @@ struct HomeActionButton: View {
     var body: some View {
         Button(action: {
             buttonAction()
-       
+
         }, label: {
             Text(title)
                 .bold()
@@ -39,6 +41,8 @@ struct HomeActionButton: View {
         dataManager?.deleteAllGameBoards(gameBoards: games)
         dataManager?.addGameBoard(grid: grid, solution: solution, mode: mode)
         presentationMode.wrappedValue.dismiss()
+        
+        router.changeRoute(RoutePath(.sudoku))
         
     }
 }

@@ -19,7 +19,8 @@ struct ContentView: View {
                 .tabItem {
                     Image(systemName: "gear")
                 }
-        }.navigationLinkValues(NavigationContentViewCoordinator.self)
+        }
+//        .navigationLinkValues(NavigationContentViewCoordinator.self)
             .accentColor(.primary)
     }
 }

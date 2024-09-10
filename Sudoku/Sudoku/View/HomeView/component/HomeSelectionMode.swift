@@ -13,6 +13,7 @@ struct HomeSelectionMode: View {
     @Environment(\.modelContext) var modelContext
     @Query(sort: [SortDescriptor(\GameBoard.mode, order: .reverse)]) var games: [GameBoard]
     
+    
     @State var selectedMode: GameSelectionMode?
     @State var hasChosen: Bool?
     @State var dataManager: DataManager?
