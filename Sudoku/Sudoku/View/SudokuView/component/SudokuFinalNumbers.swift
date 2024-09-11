@@ -24,5 +24,5 @@ struct SudokuFinalNumbers: View {
 
 #Preview {
     let modelContent: ModelContainer = .appContainer
-    return SudokuView(selectedMode: .medium).modelContainer(modelContent)
+    return SudokuView().modelContainer(modelContent)
 }

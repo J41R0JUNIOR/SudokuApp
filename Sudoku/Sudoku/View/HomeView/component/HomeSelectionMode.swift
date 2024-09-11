@@ -13,6 +13,7 @@ struct HomeSelectionMode: View {
     @Environment(\.modelContext) var modelContext
     @Query(sort: [SortDescriptor(\GameBoard.mode, order: .reverse)]) var games: [GameBoard]
     
+    
     @State var selectedMode: GameSelectionMode?
     @State var hasChosen: Bool?
     @State var dataManager: DataManager?
@@ -31,7 +32,7 @@ struct HomeSelectionMode: View {
                 )
             }
             
-        }.navigationLinkValues(NavigationContentViewCoordinator.self)
+        }
         .buttonStyle(.borderedProminent)
         .onAppear(perform: {
             dataManager = DataManager(modelContext: modelContext)
@@ -40,7 +41,7 @@ struct HomeSelectionMode: View {
 }
 
 #Preview {
-    HomeSelectionMode().navigationLinkValues(NavigationContentViewCoordinator.self)
+    HomeSelectionMode()
 }
 
 extension NavigationLink{

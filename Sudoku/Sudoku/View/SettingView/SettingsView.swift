@@ -7,18 +7,19 @@
 
 import SwiftUI
 
-struct SettingComponents: View {
+struct SettingsView: View {
     @StateObject var vibration = HapticsManager()
-    @State private var notification: Bool = false
-   
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    
     var body: some View {
         VStack {
             ListSelector
+            
         }
     }
 }
 
-extension SettingComponents {
+extension SettingsView {
     @ViewBuilder
     private var ListSelector: some View {
         Text("Settings")
@@ -33,23 +34,20 @@ extension SettingComponents {
                 
                 Toggle("Vibration", isOn: $vibration.isOnVibrationMode)
                     .toggleStyle(.switch)
-                
-//                Toggle("Notification", isOn: $notification)
-//                    .toggleStyle(.switch)
             }
+            .listRowBackground(Color.hilight)
             
-//            Section(header: Text("Game Preferences")) {
-//                Text("Auto-complete")
-//                Text("etc...")
-//            }
+            Section(header: Text("About")) {
+                Link("Source Code", destination: URL(string: "https://github.com/J41R0JUNIOR/SudokuApp")!)
+            }
+            .listRowBackground(Color.hilight)
         }
-        .tint(.black)
         .scrollContentBackground(.hidden)
-        
+
         Spacer()
     }
 }
 
 #Preview {
-    SettingComponents().environmentObject(ThemeManager())
+    SettingsView().environmentObject(ThemeManager())
 }
