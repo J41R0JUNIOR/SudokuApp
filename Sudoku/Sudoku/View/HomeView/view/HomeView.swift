@@ -12,6 +12,9 @@ struct HomeView: View {
     @EnvironmentObject var haptics: HapticsManager
     @EnvironmentObject var router: Router
     
+    var info: InfoData = .init()
+
+    
     @Query(sort: [SortDescriptor(\GameBoard.mode, order: .reverse)]) var games: [GameBoard]
     @Bindable var viewModel = HomeViewModel()
     
@@ -36,11 +39,13 @@ struct HomeView: View {
                    
                 }
                 Spacer()
+//                
+//                Image("Logo")
+//                    .resizable()
+//                    .aspectRatio(contentMode: .fit)
+//                    .frame(width: averageFrame, height: averageFrame)
                 
-                Image("Logo")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: averageFrame, height: averageFrame)
+                Grid3x3View()
                 
                 Text("SudoKu")
                     .bold()
@@ -104,7 +109,11 @@ struct HomeView: View {
 
 #Preview {
     let modelContent: ModelContainer = .appContainer
+    let haptics = HapticsManager()
+    let router = Router()
     return HomeView()
         .modelContainer(modelContent)
+        .environmentObject(haptics)
+        .environmentObject(router)
 }
 

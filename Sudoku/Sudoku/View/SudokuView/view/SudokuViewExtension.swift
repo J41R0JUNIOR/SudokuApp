@@ -25,7 +25,7 @@ extension SudokuView{
     @ViewBuilder
      var Grid: some View {
         ZStack {
-            Grid3x3View()
+            Grid9x9View()
             
             if let rowIndex = viewModel.model.rowIndex {
                 viewModel.model.rowHilight

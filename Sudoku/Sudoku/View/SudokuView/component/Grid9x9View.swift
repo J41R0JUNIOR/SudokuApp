@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Grid3x3View: View {
+struct Grid9x9View: View {
     var info: InfoData = .init()
     let rows = 3
     let columns = 3
@@ -29,6 +29,6 @@ struct Grid3x3View: View {
 
 struct Grid3x3View_Previews: PreviewProvider {
     static var previews: some View {
-        Grid3x3View()
+        Grid9x9View()
     }
 }
