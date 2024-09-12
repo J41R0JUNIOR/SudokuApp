@@ -11,9 +11,9 @@ struct SudokuKeyboard: View {
     @Binding var showFinishAlert: Bool
     @Binding var additional: [Int]
     @Binding var restNumber: Int
-    @State var gameState = GameState.playing
+    @Binding var gameState: GameState
     
-    @Binding var editMode: Bool
+//    @Binding var editMode: Bool
     @EnvironmentObject var haptics: HapticsManager
     
     var dataManager: DataManager?
@@ -64,28 +64,26 @@ struct SudokuKeyboard: View {
     }
     
     private func handlePlayingState(for number: Int) {
-        if !editMode {
-            if selectedNumber == number {
-                selectedNumber = 0
-            } else if actualQtd < maxQtd || restNumber > 0 {
-                selectedNumber = number
-                additional = []
-                
-                if selectedNumber == correctNumber {
-                    if restNumber <= 0 {
-                        showFinishAlert = true
-                    } else {
-                        restNumber -= 1
-                    }
-                } else if selectedNumber != correctNumber && actualQtd < maxQtd {
-                    actualQtd += 1
-                    if actualQtd == maxQtd {
-                        showGameOverAlert = true
-                    }
+        if selectedNumber == number {
+            selectedNumber = 0
+        } else if actualQtd < maxQtd || restNumber > 0 {
+            selectedNumber = number
+            additional = []
+            
+            if selectedNumber == correctNumber {
+                if restNumber <= 0 {
+                    showFinishAlert = true
+                } else {
+                    restNumber -= 1
                 }
-            } else {
-                showGameOverAlert = true
+            } else if selectedNumber != correctNumber && actualQtd < maxQtd {
+                actualQtd += 1
+                if actualQtd == maxQtd {
+                    showGameOverAlert = true
+                }
             }
+        } else {
+            showGameOverAlert = true
         }
     }
     

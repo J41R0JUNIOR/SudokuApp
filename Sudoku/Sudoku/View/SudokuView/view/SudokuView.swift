@@ -9,7 +9,7 @@ import SwiftUI
 import SwiftData
 
 struct SudokuView: View {
-    @State var viewModel = SudokuViewModel()
+    @Bindable var viewModel = SudokuViewModel()
     @Environment(\.modelContext) var modelContext
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @EnvironmentObject var router: Router
@@ -26,11 +26,13 @@ struct SudokuView: View {
                         router.push(.settings)
                         
                     } label: {
-                        Image(systemName: "gear").bold()
-                            .foregroundStyle(.background)
+                        Image(systemName: "gear")
+                            .font(.system(size: 25, weight: .bold))
+                            .foregroundStyle(.foreground)
                         
-                    }.buttonStyle(.borderedProminent)
-                        .cornerRadius(50)
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .tint(.clear)
                     
                 }
                 Spacer()
@@ -47,11 +49,11 @@ struct SudokuView: View {
                     Spacer()
                     
                     Button {
-                        viewModel.model.editMode.toggle()
+                        viewModel.model.gameState = viewModel.model.gameState == .playing ? .editing : .playing
                     } label: {
                         Image(systemName: "pencil")
                             .bold()
-                        viewModel.model.editMode ?Text("On") : Text("Off")
+                        viewModel.model.gameState == .editing ? Text("On") : Text("Off")
                         
                     } .foregroundStyle(.background)
                         .buttonStyle(.borderedProminent)

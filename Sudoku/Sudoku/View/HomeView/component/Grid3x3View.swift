@@ -62,7 +62,7 @@ struct Grid3x3View: View {
             grid.append(Array(flatNumbers[start..<end]))
         }
         
-        let qtd = Int.random(in: 0...3)
+        let qtd = Int.random(in: 0...4)
         grid = removeNumbers(qtd: qtd, gridCopy: grid)
         
         return grid

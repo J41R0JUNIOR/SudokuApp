@@ -24,26 +24,22 @@ struct HomeView: View {
         
         NavigationStack(path: $router.path) {
             VStack {
-                
                 HStack{
                     Spacer()
+                    
                     Button {
                         router.push(.settings)
-                        
                     } label: {
-                        Image(systemName: "gear").bold()
                             .foregroundStyle(.background)
-                        
-                    }.buttonStyle(.borderedProminent)
-                        .cornerRadius(50)
+                        Image(systemName: "gear")
+                            .font(.system(size: 25, weight: .bold))
+                            .foregroundStyle(.foreground)
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .tint(.clear)
                    
                 }
                 Spacer()
-//                
-//                Image("Logo")
-//                    .resizable()
-//                    .aspectRatio(contentMode: .fit)
-//                    .frame(width: averageFrame, height: averageFrame)
                 
                 Grid3x3View()
                 

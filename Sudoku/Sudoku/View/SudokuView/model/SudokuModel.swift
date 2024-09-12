@@ -16,11 +16,12 @@ class SudokuModel{
     var dataManager: DataManager?
     var showGameOverAlert: Bool = false
     var showFinishAlert: Bool = false
-    var editMode: Bool = false
+//    var editMode: Bool = false
     var rowIndex: Int?
     var columnIndex: Int?
     var info: InfoData = .init()
     var hilightRC = false
     var rowHilight: Rectangle = .init()
     var columnHilight: Rectangle = .init()
+    var gameState = GameState.playing
 }
