@@ -30,7 +30,6 @@ struct HomeView: View {
                     Button {
                         router.push(.settings)
                     } label: {
-                            .foregroundStyle(.background)
                         Image(systemName: "gear")
                             .font(.system(size: 25, weight: .bold))
                             .foregroundStyle(.foreground)
