@@ -8,7 +8,7 @@ struct SudokuKeyboard: View {
     @Binding var maxQtd: Int
     @Binding var actualQtd: Int
     @Binding var showGameOverAlert: Bool
-    @Binding var showFinishAlert: Bool
+    @Binding var showWonAlert: Bool
     @Binding var additional: [Int]
     @Binding var restNumber: Int
     @Binding var gameState: GameState
@@ -40,12 +40,16 @@ struct SudokuKeyboard: View {
         }
         .onChange(of: restNumber, {
             if restNumber == 0 {
-                showFinishAlert = true
+                showWonAlert = true
             }
         })
         .onAppear {
             if restNumber == 0 {
-                showFinishAlert = true
+                showWonAlert = true
+                gameState = .won
+            }else if actualQtd == maxQtd{
+                showGameOverAlert = true
+                gameState = .gameOver
             }
         }
     }
@@ -56,11 +60,22 @@ struct SudokuKeyboard: View {
             handlePlayingState(for: number)
         case .editing:
             handleEditingState(for: number)
-        case .gameStopped, .gameOver, .won, .none:
+        case .gameStopped:
             break
+        case .gameOver:
+            handleGameOverState()
+        case .won:
+            handleWonState()
         }
-        
         haptics.callVibration()
+    }
+    
+    private func handleGameOverState(){
+        showGameOverAlert = true
+    }
+    
+    private func handleWonState(){
+        showWonAlert = true
     }
     
     private func handlePlayingState(for number: Int) {
@@ -72,18 +87,18 @@ struct SudokuKeyboard: View {
             
             if selectedNumber == correctNumber {
                 if restNumber <= 0 {
-                    showFinishAlert = true
+                    handleWonState()
                 } else {
                     restNumber -= 1
                 }
             } else if selectedNumber != correctNumber && actualQtd < maxQtd {
                 actualQtd += 1
                 if actualQtd == maxQtd {
-                    showGameOverAlert = true
+                    handleGameOverState()
                 }
             }
         } else {
-            showGameOverAlert = true
+            handleGameOverState()
         }
     }
     
@@ -102,5 +117,5 @@ enum GameState {
     case gameStopped
     case gameOver
     case won
-    case none
+//    case none
 }
