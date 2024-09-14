@@ -18,8 +18,9 @@ extension SudokuView{
         let actualQtdBinding = viewModel.actualQtdBinding(game: games.first ?? .init(), modelContext: modelContext)
         let additionalBinding = viewModel.additionalBinding(rowIndex: viewModel.model.rowIndex ?? 0, columnIndex: viewModel.model.columnIndex ?? 0, game: games.first ?? .init(), modelContext: modelContext)
         let restNumbersBinding = viewModel.restNumbersBinding(game: games.first ?? .init(), modelContext: modelContext)
+        let howMuchNumberBinding = viewModel.countOccurrences(in: games.first ?? .init())
         
-        SudokuKeyboard(selectedNumber: numberBinding, correctNumber: correctNumberBinding, maxQtd: maxQtdBinding, actualQtd: actualQtdBinding, showGameOverAlert: $viewModel.model.showGameOverAlert, showWonAlert: $viewModel.model.showFinishAlert, additional: additionalBinding, restNumber: restNumbersBinding, gameState: $viewModel.model.gameState)
+        SudokuKeyboard(selectedNumber: numberBinding, correctNumber: correctNumberBinding, maxQtd: maxQtdBinding, actualQtd: actualQtdBinding, showGameOverAlert: $viewModel.model.showGameOverAlert, showWonAlert: $viewModel.model.showFinishAlert, additional: additionalBinding, restNumber: restNumbersBinding, gameState: $viewModel.model.gameState, howMuchNumber: howMuchNumberBinding)
     }
     
     @ViewBuilder

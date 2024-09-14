@@ -12,14 +12,15 @@ struct SudokuKeyboard: View {
     @Binding var additional: [Int]
     @Binding var restNumber: Int
     @Binding var gameState: GameState
+    @Binding var howMuchNumber: [Int]
     
-//    @Binding var editMode: Bool
+    //    @Binding var editMode: Bool
     @EnvironmentObject var haptics: HapticsManager
     
     var dataManager: DataManager?
     
     var frameWidth = UIScreen.main.bounds.width / 10
-    var frameHeight = UIScreen.main.bounds.width / 10
+    var frameHeight = UIScreen.main.bounds.height / 10
     
     var body: some View {
         HStack(spacing: 10) {
@@ -28,12 +29,18 @@ struct SudokuKeyboard: View {
                     Button {
                         handleButtonPress(for: number)
                     } label: {
-                        Text("\(number)")
-                            .font(.title)
-                            .frame(width: frameWidth, height: frameHeight)
+                        VStack{
+                            Text("\(number)")
+                                .font(.title)
+                                .bold()
+Spacer()
+                            Text("\(howMuchNumber[number])")
+                                .font(.title3)
+                        }
+                            .frame(width: frameWidth)
                             .background(Color.primary)
-                            .clipShape(RoundedRectangle(cornerSize: .init(width: frameWidth, height: frameHeight), style: .circular))
                             .foregroundStyle(.background)
+                            .cornerRadius(15)
                     }
                 }
             }
@@ -117,5 +124,9 @@ enum GameState {
     case gameStopped
     case gameOver
     case won
-//    case none
+    //    case none
+}
+
+#Preview{
+    SudokuKeyboard(selectedNumber: .constant(0), correctNumber: .constant(0), maxQtd: .constant(0), actualQtd: .constant(0), showGameOverAlert: .constant(false), showWonAlert: .constant(false), additional: .constant([]), restNumber: .constant(1), gameState: .constant(.playing), howMuchNumber: .constant([3]))
 }
