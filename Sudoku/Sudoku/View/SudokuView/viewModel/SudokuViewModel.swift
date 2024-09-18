@@ -2,8 +2,8 @@ import Foundation
 import SwiftUI
 import SwiftData
 
-@Observable
-class SudokuViewModel {
+@MainActor
+@Observable class SudokuViewModel {
     var model = SudokuModel()
 
     func correctNumberToBinding(rowIndex: Int, columnIndex: Int, game: GameBoard) -> Binding<Int> {
