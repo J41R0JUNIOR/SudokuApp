@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct Grid3x3View: View {
-    let rows = 3
-    let columns = 3
+    private let rows = 3
+    private let columns = 3
     
     @State private var numbers: [[Int]] = [[0,0,0], [0,0,0], [0,0,0]]
     
-    var averageFrame = UIScreen.main.bounds.width  * 0.3
+    private var averageFrame = UIScreen.main.bounds.width  * 0.3
     
     var body: some View {
         ZStack{

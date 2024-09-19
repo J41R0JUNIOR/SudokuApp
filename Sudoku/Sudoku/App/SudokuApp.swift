@@ -18,8 +18,8 @@ struct SudokuApp: App {
                 .environmentObject(navigator)
                 .environmentObject(themeManager)
                 .environmentObject(hapticsManager)
+            
                 .preferredColorScheme(themeManager.isDarkMode ? .dark : .light)
-
         }.modelContainer(for: GameBoard.self)
     }
 }
