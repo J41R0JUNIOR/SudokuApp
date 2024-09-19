@@ -30,12 +30,9 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		B3A808CA2C9C9808001F210B /* View */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = View; sourceTree = "<group>"; };
-		B3A808DE2C9C980C001F210B /* App */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = App; sourceTree = "<group>"; };
-		B3A808F32C9C9817001F210B /* Model */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Model; sourceTree = "<group>"; };
-		B3A809022C9C982B001F210B /* Preview Content */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = "Preview Content"; sourceTree = "<group>"; };
 		B3A809052C9C9A7E001F210B /* SudokuTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = SudokuTests; sourceTree = "<group>"; };
 		B3A809092C9C9A83001F210B /* SudokuUITests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = SudokuUITests; sourceTree = "<group>"; };
+		B3BC88932C9CAEF500137134 /* Sudoku */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Sudoku; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,7 +63,7 @@
 		B3DE96EA2C73BD8000AEFFB9 = {
 			isa = PBXGroup;
 			children = (
-				B3DE96F52C73BD8000AEFFB9 /* Sudoku */,
+				B3BC88932C9CAEF500137134 /* Sudoku */,
 				B3A809052C9C9A7E001F210B /* SudokuTests */,
 				B3A809092C9C9A83001F210B /* SudokuUITests */,
 				B3DE96F42C73BD8000AEFFB9 /* Products */,
@@ -81,17 +78,6 @@
 				B3DE970D2C73BD8100AEFFB9 /* SudokuUITests.xctest */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		B3DE96F52C73BD8000AEFFB9 /* Sudoku */ = {
-			isa = PBXGroup;
-			children = (
-				B3A808F32C9C9817001F210B /* Model */,
-				B3A808CA2C9C9808001F210B /* View */,
-				B3A808DE2C9C980C001F210B /* App */,
-				B3A809022C9C982B001F210B /* Preview Content */,
-			);
-			path = Sudoku;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -110,10 +96,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				B3A808CA2C9C9808001F210B /* View */,
-				B3A808DE2C9C980C001F210B /* App */,
-				B3A808F32C9C9817001F210B /* Model */,
-				B3A809022C9C982B001F210B /* Preview Content */,
+				B3BC88932C9CAEF500137134 /* Sudoku */,
 			);
 			name = Sudoku;
 			productName = Sudoku;
