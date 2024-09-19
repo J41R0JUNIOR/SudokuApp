@@ -2,8 +2,8 @@ import Foundation
 import SwiftUI
 import SwiftData
 
-@Observable
-class SudokuViewModel {
+@MainActor
+@Observable class SudokuViewModel {
     var model = SudokuModel()
     
     func countOccurrences(in game: GameBoard) -> Binding<[Int]> {
