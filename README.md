@@ -17,7 +17,7 @@
 
 ## Navigation
 
-- Enum Navigator
+- Path Navigator
 
 ## How to Run
 
