@@ -86,8 +86,8 @@ struct HomeView: View {
                 
                 Spacer()
             }
-            .navigationDestination(for: RoutePath.self) { route in
-                route.findPath()
+            .navigationDestination(for: Routes.self) { route in
+                route
             }
             .sheet(isPresented: $viewModel.showNewGameSheet) {
                 HomeSelectionMode().presentationDetents([.fraction(0.3)])
