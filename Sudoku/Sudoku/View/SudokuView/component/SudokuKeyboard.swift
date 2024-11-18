@@ -8,18 +8,19 @@ struct SudokuKeyboard: View {
     @Binding var maxQtd: Int
     @Binding var actualQtd: Int
     @Binding var showGameOverAlert: Bool
-    @Binding var showFinishAlert: Bool
+    @Binding var showWonAlert: Bool
     @Binding var additional: [Int]
     @Binding var restNumber: Int
-    @State var gameState = GameState.playing
+    @Binding var gameState: GameState
+    @Binding var howMuchNumber: [Int]
     
-    @Binding var editMode: Bool
+    //    @Binding var editMode: Bool
     @EnvironmentObject var haptics: HapticsManager
     
     var dataManager: DataManager?
     
     var frameWidth = UIScreen.main.bounds.width / 10
-    var frameHeight = UIScreen.main.bounds.width / 10
+    var frameHeight = UIScreen.main.bounds.height / 10
     
     var body: some View {
         HStack(spacing: 10) {
@@ -28,24 +29,34 @@ struct SudokuKeyboard: View {
                     Button {
                         handleButtonPress(for: number)
                     } label: {
-                        Text("\(number)")
-                            .font(.title)
-                            .frame(width: frameWidth, height: frameHeight)
+                        VStack{
+                            Text("\(number)")
+                                .font(.title)
+                                .bold()
+Spacer()
+                            Text("\(howMuchNumber[number])")
+                                .font(.title3)
+                        }
+                            .frame(width: frameWidth)
                             .background(Color.primary)
-                            .clipShape(RoundedRectangle(cornerSize: .init(width: frameWidth, height: frameHeight), style: .circular))
                             .foregroundStyle(.background)
+                            .cornerRadius(15)
                     }
                 }
             }
         }
         .onChange(of: restNumber, {
             if restNumber == 0 {
-                showFinishAlert = true
+                showWonAlert = true
             }
         })
         .onAppear {
             if restNumber == 0 {
-                showFinishAlert = true
+                showWonAlert = true
+                gameState = .won
+            }else if actualQtd == maxQtd{
+                showGameOverAlert = true
+                gameState = .gameOver
             }
         }
     }
@@ -56,36 +67,45 @@ struct SudokuKeyboard: View {
             handlePlayingState(for: number)
         case .editing:
             handleEditingState(for: number)
-        case .gameStopped, .gameOver, .won, .none:
+        case .gameStopped:
             break
+        case .gameOver:
+            handleGameOverState()
+        case .won:
+            handleWonState()
         }
-        
         haptics.callVibration()
     }
     
+    private func handleGameOverState(){
+        showGameOverAlert = true
+    }
+    
+    private func handleWonState(){
+        showWonAlert = true
+    }
+    
     private func handlePlayingState(for number: Int) {
-        if !editMode {
-            if selectedNumber == number {
-                selectedNumber = 0
-            } else if actualQtd < maxQtd || restNumber > 0 {
-                selectedNumber = number
-                additional = []
-                
-                if selectedNumber == correctNumber {
-                    if restNumber <= 0 {
-                        showFinishAlert = true
-                    } else {
-                        restNumber -= 1
-                    }
-                } else if selectedNumber != correctNumber && actualQtd < maxQtd {
-                    actualQtd += 1
-                    if actualQtd == maxQtd {
-                        showGameOverAlert = true
-                    }
+        if selectedNumber == number {
+            selectedNumber = 0
+        } else if actualQtd < maxQtd || restNumber > 0 {
+            selectedNumber = number
+            additional = []
+            
+            if selectedNumber == correctNumber {
+                if restNumber <= 0 {
+                    handleWonState()
+                } else {
+                    restNumber -= 1
                 }
-            } else {
-                showGameOverAlert = true
+            } else if selectedNumber != correctNumber && actualQtd < maxQtd {
+                actualQtd += 1
+                if actualQtd == maxQtd {
+                    handleGameOverState()
+                }
             }
+        } else {
+            handleGameOverState()
         }
     }
     
@@ -104,5 +124,9 @@ enum GameState {
     case gameStopped
     case gameOver
     case won
-    case none
+    //    case none
+}
+
+#Preview{
+    SudokuKeyboard(selectedNumber: .constant(0), correctNumber: .constant(0), maxQtd: .constant(0), actualQtd: .constant(0), showGameOverAlert: .constant(false), showWonAlert: .constant(false), additional: .constant([]), restNumber: .constant(1), gameState: .constant(.playing), howMuchNumber: .constant([3]))
 }

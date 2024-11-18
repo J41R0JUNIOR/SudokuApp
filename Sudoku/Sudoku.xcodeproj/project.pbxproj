@@ -3,47 +3,8 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
-
-/* Begin PBXBuildFile section */
-		B3183D272C7F64AB000D7518 /* InfoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3183D262C7F64AB000D7518 /* InfoData.swift */; };
-		B3209F132C7E0239005EAD4A /* SudokuGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3209F122C7E0239005EAD4A /* SudokuGenerator.swift */; };
-		B350A2262C8FD73800B91E62 /* RoutesEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = B350A2252C8FD73800B91E62 /* RoutesEnum.swift */; };
-		B350A2282C8FF44E00B91E62 /* SudokuViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B350A2272C8FF44E00B91E62 /* SudokuViewExtension.swift */; };
-		B350A22A2C90BBA000B91E62 /* RoutePath.swift in Sources */ = {isa = PBXBuildFile; fileRef = B350A2292C90BBA000B91E62 /* RoutePath.swift */; };
-		B350A22C2C90BBE300B91E62 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = B350A22B2C90BBE300B91E62 /* Router.swift */; };
-		B350A22E2C910CB200B91E62 /* Grid3x3View.swift in Sources */ = {isa = PBXBuildFile; fileRef = B350A22D2C910CB200B91E62 /* Grid3x3View.swift */; };
-		B359CE572C7972CD008F259F /* ArrayOfNumbers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B359CE562C7972CD008F259F /* ArrayOfNumbers.swift */; };
-		B3DE96F72C73BD8000AEFFB9 /* SudokuApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DE96F62C73BD8000AEFFB9 /* SudokuApp.swift */; };
-		B3DE96FB2C73BD8100AEFFB9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B3DE96FA2C73BD8100AEFFB9 /* Assets.xcassets */; };
-		B3DE96FE2C73BD8100AEFFB9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B3DE96FD2C73BD8100AEFFB9 /* Preview Assets.xcassets */; };
-		B3DE97082C73BD8100AEFFB9 /* SudokuTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DE97072C73BD8100AEFFB9 /* SudokuTests.swift */; };
-		B3DE97122C73BD8100AEFFB9 /* SudokuUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DE97112C73BD8100AEFFB9 /* SudokuUITests.swift */; };
-		B3DE97142C73BD8100AEFFB9 /* SudokuUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DE97132C73BD8100AEFFB9 /* SudokuUITestsLaunchTests.swift */; };
-		B3DE97232C73CFCE00AEFFB9 /* SudokuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DE97222C73CFCE00AEFFB9 /* SudokuView.swift */; };
-		B3DE97262C7510D300AEFFB9 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DE97252C7510D300AEFFB9 /* HomeView.swift */; };
-		B3DE972C2C75153B00AEFFB9 /* GameSelectionMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DE972B2C75153B00AEFFB9 /* GameSelectionMode.swift */; };
-		B3DE97382C752CC100AEFFB9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DE97372C752CC100AEFFB9 /* ContentView.swift */; };
-		B3DE97482C75310400AEFFB9 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DE97472C75310400AEFFB9 /* SettingsView.swift */; };
-		B3DE97512C753B6100AEFFB9 /* HomeSelectionMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DE97502C753B6100AEFFB9 /* HomeSelectionMode.swift */; };
-		B3DE97552C7571A900AEFFB9 /* SudokuModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DE97542C7571A900AEFFB9 /* SudokuModel.swift */; };
-		B3DE97582C75724F00AEFFB9 /* SudokuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DE97572C75724F00AEFFB9 /* SudokuViewModel.swift */; };
-		B3DE975A2C757E9100AEFFB9 /* SudokuNumbersComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DE97592C757E9100AEFFB9 /* SudokuNumbersComponent.swift */; };
-		B3DE975C2C75848F00AEFFB9 /* SudokuKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DE975B2C75848F00AEFFB9 /* SudokuKeyboard.swift */; };
-		B3DE97652C762CB300AEFFB9 /* HomeActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DE97642C762CB300AEFFB9 /* HomeActionButton.swift */; };
-		B3DE97832C76524F00AEFFB9 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DE977B2C76524F00AEFFB9 /* DataManager.swift */; };
-		B3DE97842C76524F00AEFFB9 /* GameBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DE977C2C76524F00AEFFB9 /* GameBoard.swift */; };
-		B3DE97852C76524F00AEFFB9 /* ModelContainerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DE977D2C76524F00AEFFB9 /* ModelContainerExtension.swift */; };
-		B3DE978B2C7653EC00AEFFB9 /* Grid9x9View.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DE978A2C7653EC00AEFFB9 /* Grid9x9View.swift */; };
-		B3DE97972C766BCB00AEFFB9 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DE97962C766BCB00AEFFB9 /* HomeViewModel.swift */; };
-		B3E9ECED2C7FE9CA008E87C3 /* AppManagment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E9ECEC2C7FE9CA008E87C3 /* AppManagment.swift */; };
-		B3F23AA72C76D86700E67F01 /* HapticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F23AA62C76D86700E67F01 /* HapticsManager.swift */; };
-		B3F23AA92C76D88C00E67F01 /* UserDefaultsKeysToSave.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F23AA82C76D88C00E67F01 /* UserDefaultsKeysToSave.swift */; };
-		B3F7DCD22C768CD20045F22E /* ColorThemeComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F7DCD12C768CD20045F22E /* ColorThemeComponent.swift */; };
-		B3F7DCD52C768F430045F22E /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F7DCD42C768F430045F22E /* ThemeManager.swift */; };
-		B3F7DCD72C769F9F0045F22E /* SudokuFinalNumbers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F7DCD62C769F9F0045F22E /* SudokuFinalNumbers.swift */; };
-/* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		B3DE97042C73BD8100AEFFB9 /* PBXContainerItemProxy */ = {
@@ -63,46 +24,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		B3183D262C7F64AB000D7518 /* InfoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoData.swift; sourceTree = "<group>"; };
-		B3209F122C7E0239005EAD4A /* SudokuGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuGenerator.swift; sourceTree = "<group>"; };
-		B350A2252C8FD73800B91E62 /* RoutesEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesEnum.swift; sourceTree = "<group>"; };
-		B350A2272C8FF44E00B91E62 /* SudokuViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuViewExtension.swift; sourceTree = "<group>"; };
-		B350A2292C90BBA000B91E62 /* RoutePath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutePath.swift; sourceTree = "<group>"; };
-		B350A22B2C90BBE300B91E62 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
-		B350A22D2C910CB200B91E62 /* Grid3x3View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grid3x3View.swift; sourceTree = "<group>"; };
-		B359CE562C7972CD008F259F /* ArrayOfNumbers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayOfNumbers.swift; sourceTree = "<group>"; };
 		B3DE96F32C73BD8000AEFFB9 /* Sudoku.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sudoku.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		B3DE96F62C73BD8000AEFFB9 /* SudokuApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuApp.swift; sourceTree = "<group>"; };
-		B3DE96FA2C73BD8100AEFFB9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		B3DE96FD2C73BD8100AEFFB9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B3DE97032C73BD8100AEFFB9 /* SudokuTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SudokuTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		B3DE97072C73BD8100AEFFB9 /* SudokuTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuTests.swift; sourceTree = "<group>"; };
 		B3DE970D2C73BD8100AEFFB9 /* SudokuUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SudokuUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		B3DE97112C73BD8100AEFFB9 /* SudokuUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuUITests.swift; sourceTree = "<group>"; };
-		B3DE97132C73BD8100AEFFB9 /* SudokuUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		B3DE97222C73CFCE00AEFFB9 /* SudokuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuView.swift; sourceTree = "<group>"; };
-		B3DE97252C7510D300AEFFB9 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		B3DE972B2C75153B00AEFFB9 /* GameSelectionMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSelectionMode.swift; sourceTree = "<group>"; };
-		B3DE97372C752CC100AEFFB9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		B3DE97472C75310400AEFFB9 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		B3DE97502C753B6100AEFFB9 /* HomeSelectionMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSelectionMode.swift; sourceTree = "<group>"; };
-		B3DE97542C7571A900AEFFB9 /* SudokuModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuModel.swift; sourceTree = "<group>"; };
-		B3DE97572C75724F00AEFFB9 /* SudokuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuViewModel.swift; sourceTree = "<group>"; };
-		B3DE97592C757E9100AEFFB9 /* SudokuNumbersComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuNumbersComponent.swift; sourceTree = "<group>"; };
-		B3DE975B2C75848F00AEFFB9 /* SudokuKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuKeyboard.swift; sourceTree = "<group>"; };
-		B3DE97642C762CB300AEFFB9 /* HomeActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeActionButton.swift; sourceTree = "<group>"; };
-		B3DE977B2C76524F00AEFFB9 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
-		B3DE977C2C76524F00AEFFB9 /* GameBoard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameBoard.swift; sourceTree = "<group>"; };
-		B3DE977D2C76524F00AEFFB9 /* ModelContainerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelContainerExtension.swift; sourceTree = "<group>"; };
-		B3DE978A2C7653EC00AEFFB9 /* Grid9x9View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grid9x9View.swift; sourceTree = "<group>"; };
-		B3DE97962C766BCB00AEFFB9 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
-		B3E9ECEC2C7FE9CA008E87C3 /* AppManagment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppManagment.swift; sourceTree = "<group>"; };
-		B3F23AA62C76D86700E67F01 /* HapticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticsManager.swift; sourceTree = "<group>"; };
-		B3F23AA82C76D88C00E67F01 /* UserDefaultsKeysToSave.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeysToSave.swift; sourceTree = "<group>"; };
-		B3F7DCD12C768CD20045F22E /* ColorThemeComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorThemeComponent.swift; sourceTree = "<group>"; };
-		B3F7DCD42C768F430045F22E /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
-		B3F7DCD62C769F9F0045F22E /* SudokuFinalNumbers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuFinalNumbers.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		B3A809052C9C9A7E001F210B /* SudokuTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = SudokuTests; sourceTree = "<group>"; };
+		B3A809092C9C9A83001F210B /* SudokuUITests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = SudokuUITests; sourceTree = "<group>"; };
+		B3BC88932C9CAEF500137134 /* Sudoku */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Sudoku; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		B3DE96F02C73BD8000AEFFB9 /* Frameworks */ = {
@@ -129,30 +60,12 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		B3183D2A2C7F65FC000D7518 /* General */ = {
-			isa = PBXGroup;
-			children = (
-				B3183D262C7F64AB000D7518 /* InfoData.swift */,
-			);
-			path = General;
-			sourceTree = "<group>";
-		};
-		B350A2242C8FD70300B91E62 /* PathNavigation */ = {
-			isa = PBXGroup;
-			children = (
-				B350A2252C8FD73800B91E62 /* RoutesEnum.swift */,
-				B350A2292C90BBA000B91E62 /* RoutePath.swift */,
-				B350A22B2C90BBE300B91E62 /* Router.swift */,
-			);
-			path = PathNavigation;
-			sourceTree = "<group>";
-		};
 		B3DE96EA2C73BD8000AEFFB9 = {
 			isa = PBXGroup;
 			children = (
-				B3DE96F52C73BD8000AEFFB9 /* Sudoku */,
-				B3DE97062C73BD8100AEFFB9 /* SudokuTests */,
-				B3DE97102C73BD8100AEFFB9 /* SudokuUITests */,
+				B3BC88932C9CAEF500137134 /* Sudoku */,
+				B3A809052C9C9A7E001F210B /* SudokuTests */,
+				B3A809092C9C9A83001F210B /* SudokuUITests */,
 				B3DE96F42C73BD8000AEFFB9 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -165,205 +78,6 @@
 				B3DE970D2C73BD8100AEFFB9 /* SudokuUITests.xctest */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		B3DE96F52C73BD8000AEFFB9 /* Sudoku */ = {
-			isa = PBXGroup;
-			children = (
-				B3DE97282C75129400AEFFB9 /* Model */,
-				B3DE97272C75112E00AEFFB9 /* View */,
-				B3DE97212C73BE4500AEFFB9 /* App */,
-				B3DE96FC2C73BD8100AEFFB9 /* Preview Content */,
-			);
-			path = Sudoku;
-			sourceTree = "<group>";
-		};
-		B3DE96FC2C73BD8100AEFFB9 /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				B3DE96FD2C73BD8100AEFFB9 /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		B3DE97062C73BD8100AEFFB9 /* SudokuTests */ = {
-			isa = PBXGroup;
-			children = (
-				B3DE97072C73BD8100AEFFB9 /* SudokuTests.swift */,
-			);
-			path = SudokuTests;
-			sourceTree = "<group>";
-		};
-		B3DE97102C73BD8100AEFFB9 /* SudokuUITests */ = {
-			isa = PBXGroup;
-			children = (
-				B3DE97112C73BD8100AEFFB9 /* SudokuUITests.swift */,
-				B3DE97132C73BD8100AEFFB9 /* SudokuUITestsLaunchTests.swift */,
-			);
-			path = SudokuUITests;
-			sourceTree = "<group>";
-		};
-		B3DE97202C73BDAB00AEFFB9 /* SudokuView */ = {
-			isa = PBXGroup;
-			children = (
-				B3DE97562C75724200AEFFB9 /* viewModel */,
-				B3DE97532C75718800AEFFB9 /* view */,
-				B3DE97522C75717E00AEFFB9 /* model */,
-				B3DE97982C7679B700AEFFB9 /* component */,
-			);
-			path = SudokuView;
-			sourceTree = "<group>";
-		};
-		B3DE97212C73BE4500AEFFB9 /* App */ = {
-			isa = PBXGroup;
-			children = (
-				B3DE96F62C73BD8000AEFFB9 /* SudokuApp.swift */,
-				B3DE96FA2C73BD8100AEFFB9 /* Assets.xcassets */,
-			);
-			path = App;
-			sourceTree = "<group>";
-		};
-		B3DE97242C7510A000AEFFB9 /* HomeView */ = {
-			isa = PBXGroup;
-			children = (
-				B3DE97932C766B7700AEFFB9 /* view */,
-				B3DE97952C766BB800AEFFB9 /* viewModel */,
-				B3DE97942C766B8600AEFFB9 /* component */,
-			);
-			path = HomeView;
-			sourceTree = "<group>";
-		};
-		B3DE97272C75112E00AEFFB9 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				B3DE97362C752CB100AEFFB9 /* ContentView */,
-				B3DE97462C7530FB00AEFFB9 /* SettingView */,
-				B3DE97242C7510A000AEFFB9 /* HomeView */,
-				B3DE97202C73BDAB00AEFFB9 /* SudokuView */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		B3DE97282C75129400AEFFB9 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				B350A2242C8FD70300B91E62 /* PathNavigation */,
-				B3F7DCD32C768F2F0045F22E /* Controls */,
-				B3DE97892C76530A00AEFFB9 /* GridGenerator */,
-				B3DE977E2C76524F00AEFFB9 /* SwiftData */,
-				B3183D2A2C7F65FC000D7518 /* General */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		B3DE97362C752CB100AEFFB9 /* ContentView */ = {
-			isa = PBXGroup;
-			children = (
-				B3DE97372C752CC100AEFFB9 /* ContentView.swift */,
-			);
-			path = ContentView;
-			sourceTree = "<group>";
-		};
-		B3DE97462C7530FB00AEFFB9 /* SettingView */ = {
-			isa = PBXGroup;
-			children = (
-				B3DE97472C75310400AEFFB9 /* SettingsView.swift */,
-				B3F7DCD12C768CD20045F22E /* ColorThemeComponent.swift */,
-			);
-			path = SettingView;
-			sourceTree = "<group>";
-		};
-		B3DE97522C75717E00AEFFB9 /* model */ = {
-			isa = PBXGroup;
-			children = (
-				B3DE97542C7571A900AEFFB9 /* SudokuModel.swift */,
-			);
-			path = model;
-			sourceTree = "<group>";
-		};
-		B3DE97532C75718800AEFFB9 /* view */ = {
-			isa = PBXGroup;
-			children = (
-				B3DE97222C73CFCE00AEFFB9 /* SudokuView.swift */,
-				B350A2272C8FF44E00B91E62 /* SudokuViewExtension.swift */,
-			);
-			path = view;
-			sourceTree = "<group>";
-		};
-		B3DE97562C75724200AEFFB9 /* viewModel */ = {
-			isa = PBXGroup;
-			children = (
-				B3DE97572C75724F00AEFFB9 /* SudokuViewModel.swift */,
-			);
-			path = viewModel;
-			sourceTree = "<group>";
-		};
-		B3DE977E2C76524F00AEFFB9 /* SwiftData */ = {
-			isa = PBXGroup;
-			children = (
-				B3DE977B2C76524F00AEFFB9 /* DataManager.swift */,
-				B3DE977C2C76524F00AEFFB9 /* GameBoard.swift */,
-				B3DE977D2C76524F00AEFFB9 /* ModelContainerExtension.swift */,
-			);
-			path = SwiftData;
-			sourceTree = "<group>";
-		};
-		B3DE97892C76530A00AEFFB9 /* GridGenerator */ = {
-			isa = PBXGroup;
-			children = (
-				B3DE972B2C75153B00AEFFB9 /* GameSelectionMode.swift */,
-				B3209F122C7E0239005EAD4A /* SudokuGenerator.swift */,
-			);
-			path = GridGenerator;
-			sourceTree = "<group>";
-		};
-		B3DE97932C766B7700AEFFB9 /* view */ = {
-			isa = PBXGroup;
-			children = (
-				B3DE97252C7510D300AEFFB9 /* HomeView.swift */,
-			);
-			path = view;
-			sourceTree = "<group>";
-		};
-		B3DE97942C766B8600AEFFB9 /* component */ = {
-			isa = PBXGroup;
-			children = (
-				B3DE97502C753B6100AEFFB9 /* HomeSelectionMode.swift */,
-				B3DE97642C762CB300AEFFB9 /* HomeActionButton.swift */,
-				B350A22D2C910CB200B91E62 /* Grid3x3View.swift */,
-			);
-			path = component;
-			sourceTree = "<group>";
-		};
-		B3DE97952C766BB800AEFFB9 /* viewModel */ = {
-			isa = PBXGroup;
-			children = (
-				B3DE97962C766BCB00AEFFB9 /* HomeViewModel.swift */,
-			);
-			path = viewModel;
-			sourceTree = "<group>";
-		};
-		B3DE97982C7679B700AEFFB9 /* component */ = {
-			isa = PBXGroup;
-			children = (
-				B3DE97592C757E9100AEFFB9 /* SudokuNumbersComponent.swift */,
-				B359CE562C7972CD008F259F /* ArrayOfNumbers.swift */,
-				B3DE975B2C75848F00AEFFB9 /* SudokuKeyboard.swift */,
-				B3DE978A2C7653EC00AEFFB9 /* Grid9x9View.swift */,
-				B3F7DCD62C769F9F0045F22E /* SudokuFinalNumbers.swift */,
-			);
-			path = component;
-			sourceTree = "<group>";
-		};
-		B3F7DCD32C768F2F0045F22E /* Controls */ = {
-			isa = PBXGroup;
-			children = (
-				B3F7DCD42C768F430045F22E /* ThemeManager.swift */,
-				B3F23AA62C76D86700E67F01 /* HapticsManager.swift */,
-				B3E9ECEC2C7FE9CA008E87C3 /* AppManagment.swift */,
-				B3F23AA82C76D88C00E67F01 /* UserDefaultsKeysToSave.swift */,
-			);
-			path = Controls;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -380,6 +94,9 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				B3BC88932C9CAEF500137134 /* Sudoku */,
 			);
 			name = Sudoku;
 			productName = Sudoku;
@@ -399,6 +116,9 @@
 			dependencies = (
 				B3DE97052C73BD8100AEFFB9 /* PBXTargetDependency */,
 			);
+			fileSystemSynchronizedGroups = (
+				B3A809052C9C9A7E001F210B /* SudokuTests */,
+			);
 			name = SudokuTests;
 			productName = SudokuTests;
 			productReference = B3DE97032C73BD8100AEFFB9 /* SudokuTests.xctest */;
@@ -417,6 +137,9 @@
 			dependencies = (
 				B3DE970F2C73BD8100AEFFB9 /* PBXTargetDependency */,
 			);
+			fileSystemSynchronizedGroups = (
+				B3A809092C9C9A83001F210B /* SudokuUITests */,
+			);
 			name = SudokuUITests;
 			productName = SudokuUITests;
 			productReference = B3DE970D2C73BD8100AEFFB9 /* SudokuUITests.xctest */;
@@ -430,7 +153,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1540;
-				LastUpgradeCheck = 1540;
+				LastUpgradeCheck = 1600;
 				TargetAttributes = {
 					B3DE96F22C73BD8000AEFFB9 = {
 						CreatedOnToolsVersion = 15.4;
@@ -470,8 +193,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B3DE96FE2C73BD8100AEFFB9 /* Preview Assets.xcassets in Resources */,
-				B3DE96FB2C73BD8100AEFFB9 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -496,37 +217,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B359CE572C7972CD008F259F /* ArrayOfNumbers.swift in Sources */,
-				B3F7DCD52C768F430045F22E /* ThemeManager.swift in Sources */,
-				B3DE97552C7571A900AEFFB9 /* SudokuModel.swift in Sources */,
-				B3DE97262C7510D300AEFFB9 /* HomeView.swift in Sources */,
-				B350A22A2C90BBA000B91E62 /* RoutePath.swift in Sources */,
-				B3DE97482C75310400AEFFB9 /* SettingsView.swift in Sources */,
-				B3F7DCD72C769F9F0045F22E /* SudokuFinalNumbers.swift in Sources */,
-				B350A2282C8FF44E00B91E62 /* SudokuViewExtension.swift in Sources */,
-				B3209F132C7E0239005EAD4A /* SudokuGenerator.swift in Sources */,
-				B3DE978B2C7653EC00AEFFB9 /* Grid9x9View.swift in Sources */,
-				B3DE97832C76524F00AEFFB9 /* DataManager.swift in Sources */,
-				B3DE97232C73CFCE00AEFFB9 /* SudokuView.swift in Sources */,
-				B350A2262C8FD73800B91E62 /* RoutesEnum.swift in Sources */,
-				B3F23AA72C76D86700E67F01 /* HapticsManager.swift in Sources */,
-				B3183D272C7F64AB000D7518 /* InfoData.swift in Sources */,
-				B3DE97382C752CC100AEFFB9 /* ContentView.swift in Sources */,
-				B350A22E2C910CB200B91E62 /* Grid3x3View.swift in Sources */,
-				B3DE97842C76524F00AEFFB9 /* GameBoard.swift in Sources */,
-				B3DE97512C753B6100AEFFB9 /* HomeSelectionMode.swift in Sources */,
-				B3DE97852C76524F00AEFFB9 /* ModelContainerExtension.swift in Sources */,
-				B3E9ECED2C7FE9CA008E87C3 /* AppManagment.swift in Sources */,
-				B3DE97582C75724F00AEFFB9 /* SudokuViewModel.swift in Sources */,
-				B3DE97652C762CB300AEFFB9 /* HomeActionButton.swift in Sources */,
-				B350A22C2C90BBE300B91E62 /* Router.swift in Sources */,
-				B3DE97972C766BCB00AEFFB9 /* HomeViewModel.swift in Sources */,
-				B3DE972C2C75153B00AEFFB9 /* GameSelectionMode.swift in Sources */,
-				B3DE975C2C75848F00AEFFB9 /* SudokuKeyboard.swift in Sources */,
-				B3DE96F72C73BD8000AEFFB9 /* SudokuApp.swift in Sources */,
-				B3DE975A2C757E9100AEFFB9 /* SudokuNumbersComponent.swift in Sources */,
-				B3F23AA92C76D88C00E67F01 /* UserDefaultsKeysToSave.swift in Sources */,
-				B3F7DCD22C768CD20045F22E /* ColorThemeComponent.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -534,7 +224,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B3DE97082C73BD8100AEFFB9 /* SudokuTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -542,8 +231,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B3DE97122C73BD8100AEFFB9 /* SudokuUITests.swift in Sources */,
-				B3DE97142C73BD8100AEFFB9 /* SudokuUITestsLaunchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -703,7 +390,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.1;
+				MARKETING_VERSION = 2.2;
 				PRODUCT_BUNDLE_IDENTIFIER = jairo.SudoKu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -733,7 +420,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.1;
+				MARKETING_VERSION = 2.2;
 				PRODUCT_BUNDLE_IDENTIFIER = jairo.SudoKu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -745,7 +432,6 @@
 		B3DE971B2C73BD8100AEFFB9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -765,7 +451,6 @@
 		B3DE971C2C73BD8100AEFFB9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -785,7 +470,6 @@
 		B3DE971E2C73BD8100AEFFB9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = KV78S9S54R;
@@ -803,7 +487,6 @@
 		B3DE971F2C73BD8100AEFFB9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = KV78S9S54R;

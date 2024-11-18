@@ -27,16 +27,13 @@ struct SudokuNumbersComponent: View {
         VStack{
             if number == correctNumber {
                 Text("\(number)").foregroundStyle(.blue)
-                
             } else {
-                
                 if number == 0 && !additional.isEmpty {
                     ArrayOfNumbers(array: $additional)
                         .foregroundStyle(.primary)
                 }
                 else if number == 0 && additional.isEmpty {
                     Text(" ")
-                    
                 }
                 else{
                     Text("\(number)").foregroundStyle(.red)
@@ -44,7 +41,6 @@ struct SudokuNumbersComponent: View {
             }
         }
         .font(.system(size: 30, weight: .bold))
-        
     }
 }
 

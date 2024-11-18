@@ -2,9 +2,31 @@ import Foundation
 import SwiftUI
 import SwiftData
 
-@Observable
-class SudokuViewModel {
+@MainActor
+@Observable class SudokuViewModel {
     var model = SudokuModel()
+    
+    func countOccurrences(in game: GameBoard) -> Binding<[Int]> {
+        let count = Binding<[Int]> {
+            var counts = [Int](repeating: 0, count: 10)
+            
+            for row in game.grid {
+                for value in row {
+                    if value >= 0 && value <= 9 {
+                        counts[value] += 1
+                    }
+                }
+            }
+            return counts
+        } set: { _ in
+            
+        }
+
+       
+        
+        return count
+    }
+
 
     func correctNumberToBinding(rowIndex: Int, columnIndex: Int, game: GameBoard) -> Binding<Int> {
         let correctNumberBinding = Binding<Int>(
