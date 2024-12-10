@@ -1,4 +1,4 @@
-# iSudoku
+# SudoKu
 
 ## Description
 
