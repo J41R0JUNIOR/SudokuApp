@@ -2,7 +2,7 @@
 
 ## Description
 
-**iSudoku** is a Sudoku game developed with the goal of refreshing knowledge on Swift.
+**SudoKu** is a Sudoku game developed with the goal of refreshing knowledge on Swift.
 
 ## Features
 
