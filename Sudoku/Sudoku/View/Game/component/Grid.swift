@@ -33,15 +33,15 @@ struct GridView: View {
                             col: col
                         )
                         
-                        let isFixed = !engine.canEditCell(
-                            incomplete: gameGrids.incomplete,
+                        let wrong = engine.isWrong(
+                            userGrid: gameGrids.userGrid,
+                            complete: gameGrids.complete,
                             row: row,
                             col: col
                         )
                         
-                        let wrong = engine.isWrong(
-                            userGrid: gameGrids.userGrid,
-                            complete: gameGrids.complete,
+                        let isFixed = !engine.canEditCell(
+                            incomplete: gameGrids.incomplete,
                             row: row,
                             col: col
                         )
@@ -53,6 +53,10 @@ struct GridView: View {
                         
                         Text(value == 0 ? "" : "\(value)")
                             .font(.title2)
+                            .foregroundStyle(
+                                   isFixed  ? Color.black :
+                                   wrong ? Color.red : Color.blue
+                               )
                             .frame(width: 40, height: 40)
                             .background(
                                 Group {
@@ -61,10 +65,9 @@ struct GridView: View {
                                     } else if isHighlighted {
                                         Color.blue.opacity(0.1)
                                     } else {
-                                        // Xadrez 3x3: blocos alternados
                                         (row / 3 + col / 3) % 2 == 0
                                             ? Color.white
-                                            : Color.gray.opacity(0.1)
+                                            : Color.black.opacity(0.1)
                                     }
                                 }
                             )
@@ -72,7 +75,7 @@ struct GridView: View {
                             .shadow(color: Color.black.opacity(0.15), radius: 2, x: 0, y: 1)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 10)
-                                    .stroke(isFixed ? Color.gray.opacity(0.9) : Color.gray.opacity(0.4), lineWidth: 1)
+                                    .stroke(Color.gray.opacity(0.3), lineWidth: 1)
                             )
                             .onTapGesture {
                                 onSelectCell?(Indice(row: row, col: col))
@@ -89,7 +92,56 @@ struct GridView: View {
 }
 
 #Preview {
-    let g: Grid = Grid(id: "1", incomplete: [[1,1,0,0,0,0,0,0,0],[1,1,0,1,0,0,0,0,0],[1,1,0,0,0,0,0,0,0],[1,1,0,0,0,0,0,0,0],[1,1,0,0,0,0,0,0,0],[1,1,0,0,0,0,0,0,0],[1,1,0,0,0,0,0,0,0],[1,1,0,0,0,0,0,0,0],[1,1,0,0,0,0,0,0,0]], complete: [[1,1,0,0,0,0,0,0,0],[1,1,0,0,0,0,0,0,0],[1,1,0,0,0,0,0,0,0],[1,1,0,0,0,0,0,0,0],[1,1,0,0,0,0,0,0,0],[1,1,0,0,0,0,0,0,0],[1,1,0,0,0,0,0,0,0],[1,1,0,0,0,0,0,0,0],[1,1,0,0,0,0,0,0,0]], userGrid: [[1,1,0,0,0,0,0,0,0],[1,1,0,0,0,0,0,0,0],[1,1,0,0,0,0,0,0,0],[1,1,0,0,0,0,0,0,0],[1,1,0,0,0,0,0,0,0],[1,1,0,0,0,0,0,0,0],[1,1,0,0,0,0,0,0,0],[1,1,0,0,0,0,0,0,0],[1,1,0,0,0,0,0,0,0]])
+    let g = Grid(
+        id: "1",
+        
+        incomplete: [
+            [5,3,0, 0,7,0, 0,0,0],
+            [6,0,0, 1,9,5, 0,0,0],
+            [0,9,8, 0,0,0, 0,6,0],
+
+            [8,0,0, 0,6,0, 0,0,3],
+            [4,0,0, 8,0,3, 0,0,1],
+            [7,0,0, 0,2,0, 0,0,6],
+
+            [0,6,0, 0,0,0, 2,8,0],
+            [0,0,0, 4,1,9, 0,0,5],
+            [0,0,0, 0,8,0, 0,7,9]
+        ],
+        
+        complete: [
+            [5,3,4, 6,7,8, 9,1,2],
+            [6,7,2, 1,9,5, 3,4,8],
+            [1,9,8, 3,4,2, 5,6,7],
+
+            [8,5,9, 7,6,1, 4,2,3],
+            [4,2,6, 8,5,3, 7,9,1],
+            [7,1,3, 9,2,4, 8,5,6],
+
+            [9,6,1, 5,3,7, 2,8,4],
+            [2,8,7, 4,1,9, 6,3,5],
+            [3,4,5, 2,8,6, 1,7,9]
+        ],
+        
+        userGrid: [
+            [5,3,0, 6,7,7, 9,1,2],
+            [6,7,2, 1,9,5, 3,4,8],
+            [1,9,8, 3,4,2, 5,6,7],
+
+            [8,5,9, 7,6,1, 4,2,3],
+            [4,2,6, 8,5,3, 7,9,1],
+            [7,1,3, 9,2,4, 8,5,6],
+
+            [9,6,1, 5,3,7, 2,8,4],
+            [2,8,7, 4,1,9, 0,0,5],
+            
+            [3,4,5, 3,8,5, 1,7,1]
+        ]
+    )
     
-    GridView(gameGrids: g, selectedCell: .init(row: 3, col: 3), onSelectCell: {_ in})
+    GridView(
+        gameGrids: g,
+        selectedCell: .init(row: 8, col: 8),
+        onSelectCell: { _ in }
+    )
 }

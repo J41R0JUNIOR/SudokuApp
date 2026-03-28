@@ -30,6 +30,14 @@ class GameViewModel {
         }
     }
     
+    func handleSelection(indice: Indice){
+        if (indice.row == selectedCell?.row && indice.col == selectedCell?.col) {
+            selectedCell = nil
+            return
+        }
+        selectedCell = (indice.row, indice.col)
+    }
+    
     func handleInput(value: Int8?) {
         guard let selectedCell = selectedCell else { return }
         guard var game = gameGrids else { return }

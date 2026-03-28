@@ -25,7 +25,7 @@ struct GameView: View {
                         Indice(row: $0.row, col: $0.col)
                     },
                     onSelectCell: { indice in
-                        vm.selectedCell = (indice.row, indice.col)
+                        vm.handleSelection(indice: indice)
                     }
                 )
                 
@@ -46,4 +46,20 @@ struct GameView: View {
             self.viewModel = vm
         }
     }
+}
+
+#Preview {
+    let modelContainer: ModelContainer = .appContainer
+    
+    let haptics = HapticsManager()
+    let router = Router()
+    let theme = ThemeManager()
+    let engine = Engine()
+    
+    return GameView()
+        .modelContainer(modelContainer)
+        .environmentObject(haptics)
+        .environmentObject(router)
+        .environmentObject(theme)
+        .environmentObject(engine)
 }
