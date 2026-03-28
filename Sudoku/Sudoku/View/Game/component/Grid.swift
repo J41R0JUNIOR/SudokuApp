@@ -13,12 +13,12 @@ struct Indice: Equatable {
 }
 
 struct GridView: View {
+    @EnvironmentObject var theme: ThemeManager
     
     var gameGrids: Grid
     var selectedCell: Indice?
     var onSelectCell: ((Indice) -> Void)?
-    
-    private let engine = Engine.shared
+    let engine = Engine.shared
     
     var body: some View {
         VStack(spacing: 2) {
@@ -52,22 +52,24 @@ struct GridView: View {
                         let isHighlighted = isSameRow || isSameCol
                         
                         Text(value == 0 ? "" : "\(value)")
-                            .font(.title2)
+                            .font(.title)
                             .foregroundStyle(
-                                   isFixed  ? Color.black :
-                                   wrong ? Color.red : Color.blue
+                                   isFixed  ? theme.colors.textFixed :
+                                   wrong ? theme.colors.textWrong : theme.colors.textCorrect
                                )
                             .frame(width: 40, height: 40)
                             .background(
                                 Group {
                                     if isSelected {
-                                        Color.blue.opacity(0.3)
+                                        theme.colors.selected.opacity(0.3)
+                                    } else if wrong {
+                                        theme.colors.textWrong.opacity(0.15)
                                     } else if isHighlighted {
-                                        Color.blue.opacity(0.1)
+                                        theme.colors.highlighted.opacity(0.2)
                                     } else {
                                         (row / 3 + col / 3) % 2 == 0
-                                            ? Color.white
-                                            : Color.black.opacity(0.1)
+                                            ? theme.colors.cellBackground
+                                            : theme.colors.cellAltBackground
                                     }
                                 }
                             )
@@ -85,13 +87,14 @@ struct GridView: View {
             }
         }
         .padding(4)
-        .background(Color(white: 0.95))
+        .background(theme.colors.background)
         .cornerRadius(12)
-        .shadow(color: Color.black.opacity(0.1), radius: 3, x: 0, y: 2)
+        .shadow(color: theme.colors.primary.opacity(0.3), radius: 3, x: 0, y: 2)
     }
 }
 
 #Preview {
+    let theme = ThemeManager()
     let g = Grid(
         id: "1",
         
@@ -144,4 +147,5 @@ struct GridView: View {
         selectedCell: .init(row: 8, col: 8),
         onSelectCell: { _ in }
     )
+    .environmentObject(theme)
 }

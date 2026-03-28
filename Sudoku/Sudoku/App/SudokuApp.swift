@@ -11,7 +11,6 @@ struct SudokuApp: App {
     @StateObject private var themeManager = ThemeManager()
     @StateObject private var hapticsManager = HapticsManager()
     @StateObject private var navigator = Router.shared
-    @StateObject private var engine = Engine.shared
     @Environment(\.modelContext) private var context
 
     var body: some Scene {
@@ -20,7 +19,6 @@ struct SudokuApp: App {
                 .environmentObject(navigator)
                 .environmentObject(themeManager)
                 .environmentObject(hapticsManager)
-                .environmentObject(engine)
                 .accentColor(.primary)
                 .preferredColorScheme(
                     themeManager.isDarkMode ? .dark : .light

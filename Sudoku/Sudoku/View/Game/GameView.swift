@@ -18,7 +18,6 @@ struct GameView: View {
     var body: some View {
         VStack {
             if let vm = viewModel, let game = vm.gameGrids {
-                
                 GridView(
                     gameGrids: game,
                     selectedCell: vm.selectedCell.map {
@@ -50,16 +49,13 @@ struct GameView: View {
 
 #Preview {
     let modelContainer: ModelContainer = .appContainer
-    
     let haptics = HapticsManager()
     let router = Router()
     let theme = ThemeManager()
-    let engine = Engine()
     
     return GameView()
         .modelContainer(modelContainer)
         .environmentObject(haptics)
         .environmentObject(router)
         .environmentObject(theme)
-        .environmentObject(engine)
 }

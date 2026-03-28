@@ -8,7 +8,6 @@ import Foundation
 
 @Observable
 class HomeViewModel {
-    
     var showAlert: Bool = false
     var showNewGameSheet: Bool = false
     var choice: GameSelectionMode = .medium
