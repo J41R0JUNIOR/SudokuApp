@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct ColorThemeComponent: View {
-//    @AppStorage("isDarkMode") private var isDarkMode: Bool = false
     @EnvironmentObject var themeManager: ThemeManager
     @EnvironmentObject var haptics: HapticsManager
 

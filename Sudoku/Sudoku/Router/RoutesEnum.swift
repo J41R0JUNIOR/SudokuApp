@@ -1,4 +1,5 @@
 import Foundation
+import SwiftData
 import SwiftUI
 
 enum Routes: View {
@@ -13,7 +14,7 @@ enum Routes: View {
         case .home:
             HomeView()
         case .sudoku:
-            SudokuView()
+            GameView()
         case .settings:
             SettingsView()
         case .none:
@@ -27,9 +28,7 @@ extension Routes: Equatable, Hashable, Identifiable {
     var id: UUID {
         .init()
     }
-    
-//    var body: some View { view }
-    
+        
     static func == (lhs: Routes, rhs: Routes) -> Bool {
         return lhs.hashValue == rhs.hashValue
     }

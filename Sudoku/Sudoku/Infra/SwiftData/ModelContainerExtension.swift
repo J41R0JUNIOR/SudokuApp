@@ -11,7 +11,7 @@ import SwiftData
 extension ModelContainer{
     static let appContainer: ModelContainer = {
         do{
-            let container = try ModelContainer(for: GameBoard.self, configurations: ModelConfiguration(isStoredInMemoryOnly: true))
+            let container = try ModelContainer(for: SD_Grid_Model.self, configurations: ModelConfiguration(isStoredInMemoryOnly: true))
             return container
         }catch{
             fatalError("Failed to create appcontainer")

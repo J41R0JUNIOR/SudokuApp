@@ -12,9 +12,9 @@ struct InfoData{
     var width = UIScreen.main.bounds.width
     var height = UIScreen.main.bounds.height
 
-    var bigGridFrame = 0.0
-    var frameWidth = 0.0
-    var frameHeight = 0.0
+    var bigGridFrame: CGFloat
+    var frameWidth: CGFloat
+    var frameHeight: CGFloat
     
     
     init(){

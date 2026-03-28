@@ -1,49 +1,51 @@
 //
-//  SelectionGameMode.swift
+//  Untitled.swift
 //  Sudoku
 //
-//  Created by Jairo Júnior on 20/08/24.
+//  Created by The Godfather Júnior on 27/03/26.
 //
 
 import SwiftUI
-import SwiftData
 
 struct HomeSelectionMode: View {
+    @EnvironmentObject var haptics: HapticsManager
+    @EnvironmentObject var router: Router
+    @EnvironmentObject var engine: Engine
+    let repository: GridRepository
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @Environment(\.modelContext) var modelContext
-    @Query(sort: [SortDescriptor(\GameBoard.mode, order: .reverse)]) var games: [GameBoard]
-    
-    
-    @State var selectedMode: GameSelectionMode?
-    @State var hasChosen: Bool?
-    @State var dataManager: DataManager?
 
+    
+    
     var body: some View {
-        VStack { 
-            Text("Chose the gamemode:").bold()
-            
-            ForEach(GameSelectionMode.allCases, id: \.self) { mode in
-                HomeActionButton(
-                    title: mode.rawValue,
-                    mode: mode,
-                    dataManager: dataManager,
-                    presentationMode: presentationMode,
-                    labelWidth: 0.8
-                )
+        VStack{
+            ForEach(GameSelectionMode.allCases, id: \.self){ mode in
+                Button(action: {
+                    buttonAction(mode: mode)
+                    }, label: {
+                        Text(mode.rawValue)
+                            .bold()
+                            .foregroundStyle(.background)
+                    })
             }
-            
         }
-        .buttonStyle(.borderedProminent)
-        .onAppear(perform: {
-            dataManager = DataManager(modelContext: modelContext)
-        })
+    }
+    
+    func buttonAction(mode: GameSelectionMode){
+            haptics.callVibration()
+            
+            let grid = engine.generateGrid(mode: mode)
+            
+            repository.deleteAll()
+            repository.create(data: grid)
+            presentationMode.wrappedValue.dismiss()
+            
+            router.push(.sudoku)
     }
 }
 
-#Preview {
-    HomeSelectionMode()
-}
-
-extension NavigationLink{
-    
-}
+//#Preview {
+//    let content = 
+//    let context =
+//    HomeSelectionMode(repository: SD_Grid_Repository(modelContext: <#T##ModelContext#>))
+//}
