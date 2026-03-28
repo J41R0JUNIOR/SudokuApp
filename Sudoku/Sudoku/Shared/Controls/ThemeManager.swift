@@ -11,7 +11,7 @@ import SwiftUI
 class ThemeManager: ObservableObject {
     
     @AppStorage(UserDefaultsKeysToSave.darkMode.rawValue)
-    var isDarkMode: Bool = true
+    var isDarkMode: Bool = false
     
     var colors: AppColors {
         isDarkMode ? darkTheme : lightTheme
@@ -20,7 +20,7 @@ class ThemeManager: ObservableObject {
     // MARK: - Light Theme
     private let lightTheme = AppColors(
         primary: Color.black,
-        background: Color(.white),
+        background: Color.white,
         cellBackground: Color(hex: "#FFFFFF"),
         cellAltBackground: Color(hex: "#EDEDED"),
         selected: Color(hex: "#4A90E2"),

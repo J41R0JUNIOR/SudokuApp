@@ -8,18 +8,13 @@
 import SwiftUI
 
 struct GameKeyboardView: View {
-    
+    @EnvironmentObject var theme: ThemeManager
+
     let onInput: (Int8?) -> Void
-    
-    // Cores
-    private let numberColor = Color.black.opacity(1.0)
-    private let deleteColor = Color.black.opacity(1.0)
-    private let textColor = Color.white
-    
+        
     var body: some View {
         VStack(spacing: 15) {
             
-            // Botão de apagar
             Button(action: {
                 onInput(nil)
             }) {
@@ -27,10 +22,9 @@ struct GameKeyboardView: View {
                     .font(.title2.bold())
                     .frame(maxWidth: .infinity)
                     .padding()
-                    .background(deleteColor)
-                    .foregroundColor(textColor)
+                    .background(theme.colors.textPrimary)
+                    .foregroundColor(theme.colors.cellBackground)
                     .clipShape(Capsule())
-                    .shadow(color: .black.opacity(0.2), radius: 3, x: 2, y: 2)
             }
             .padding(.horizontal)
             
@@ -42,23 +36,22 @@ struct GameKeyboardView: View {
                         Text("\(num)")
                             .font(.title.bold())
                             .frame(maxWidth: .infinity, minHeight: 50)
-                            .background(numberColor)
-                            .foregroundColor(textColor)
+                            .background(theme.colors.cellBackground)
+                            .foregroundColor(theme.colors.textPrimary)
                             .clipShape(Capsule())
-                            .shadow(color: .black.opacity(0.2), radius: 3, x: 2, y: 2)
                     }
                 }
             }
             .padding(.horizontal)
         }
         .padding(.vertical)
-        .background(Color(UIColor.systemBackground).opacity(0.95))
+        .background(theme.colors.background.opacity(0.95))
         .cornerRadius(20)
-        .shadow(color: .black.opacity(0.1), radius: 5, x: 0, y: 3)
     }
 }
 
-
 #Preview {
+    var theme = ThemeManager()
     GameKeyboardView(onInput: { _ in })
+        .environmentObject(theme)
 }
