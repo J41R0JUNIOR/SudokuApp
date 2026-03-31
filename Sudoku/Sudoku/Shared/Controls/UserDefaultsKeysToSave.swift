@@ -10,4 +10,5 @@ import Foundation
 enum UserDefaultsKeysToSave: String{
     case darkMode = "darkModeKey"
     case haptics = "hapticsKey"
+    case state = "stateKey"
 }

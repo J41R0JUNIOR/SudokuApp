@@ -12,25 +12,42 @@ struct GameView: View {
     
     @Environment(\.modelContext) private var context
     @EnvironmentObject var router: Router
+    @EnvironmentObject var theme: ThemeManager
+
     
     @State private var viewModel: GameViewModel?
+    @State private var isOverlayVisible = true
     
     var body: some View {
-        VStack {
+        ZStack {
             if let vm = viewModel, let game = vm.gameGrids {
-                GridView(
-                    gameGrids: game,
-                    selectedCell: vm.selectedCell.map {
-                        Indice(row: $0.row, col: $0.col)
-                    },
-                    onSelectCell: { indice in
-                        vm.handleSelection(indice: indice)
-                    }
-                )
                 
-                GameKeyboardView(onInput: { val in
-                    vm.handleInput(value: val)
-                })
+                VStack {
+                    GridView(
+                        gameGrids: game,
+                        selectedCell: vm.selectedCell.map {
+                            Indice(row: $0.row, col: $0.col)
+                        },
+                        onSelectCell: { indice in
+                            vm.handleSelection(indice: indice)
+                        }
+                    )
+                    
+                    GameKeyboardView(onInput: { val in
+                        vm.handleInput(value: val)
+                    })
+                }
+                .blur(radius: shouldBlockUI(game: game) ? 5 : 0)
+                .disabled(shouldBlockUI(game: game))
+                .animation(.easeInOut, value: game.state)
+                
+                if game.state == GameState.completed.rawValue && isOverlayVisible {
+                    overlayView(title: "🎉 You Won!")
+                }
+                
+                if game.state == GameState.failed.rawValue && isOverlayVisible {
+                    overlayView(title: "💀 Game Over")
+                }
                 
             } else {
                 Text("Loading...")
@@ -41,9 +58,58 @@ struct GameView: View {
             let vm = GameViewModel(gridRepository: repo)
             
             vm.loadGame()
-            
             self.viewModel = vm
         }
+        .onChange(of: viewModel?.gameGrids?.state) { _, newState in
+            if newState == GameState.completed.rawValue ||
+               newState == GameState.failed.rawValue {
+                withAnimation {
+                    isOverlayVisible = true
+                }
+            }
+        }
+    }
+    
+    private func shouldBlockUI(game: Grid) -> Bool {
+        return game.state != GameState.playing.rawValue && isOverlayVisible
+    }
+
+    func overlayView(title: String) -> some View {
+        ZStack {
+            
+            Color.black.opacity(0.4)
+                .ignoresSafeArea()
+            
+            VStack(spacing: 16) {
+                Text(title)
+                    .font(.largeTitle)
+                    .bold()
+                
+                Button{
+                    isOverlayVisible = false
+                } label: {
+                    Text("Continue")
+                        .foregroundStyle(theme.colors.textPrimary)
+                }
+                
+                Button{
+                    router.pop()
+                } label: {
+                    Text("Back to menu")
+                        .foregroundStyle(theme.colors.textPrimary)
+                }
+            }
+            .padding(24)
+            .background(.ultraThinMaterial)
+            .cornerRadius(20)
+            .shadow(radius: 20)
+            .overlay(
+                RoundedRectangle(cornerRadius: 20)
+                    .stroke(Color.white.opacity(0.2))
+            )
+        }
+        .transition(.opacity.combined(with: .scale))
+        .animation(.spring(), value: isOverlayVisible)
     }
 }
 

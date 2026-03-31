@@ -22,7 +22,7 @@ class ThemeManager: ObservableObject {
         primary: Color.black,
         background: Color.white,
         cellBackground: Color(hex: "#FFFFFF"),
-        cellAltBackground: Color(hex: "#EDEDED"),
+        cellAltBackground: Color(hex: "#DBDBDB"),
         selected: Color(hex: "#4A90E2"),
         highlighted: Color(hex: "#A7C7E7"),
         
@@ -34,21 +34,6 @@ class ThemeManager: ObservableObject {
     )
     
     // MARK: - Dark Theme
-//    private let darkTheme = AppColors(
-//        primary: Color.white,
-//        background: Color(hex: "#121212"),
-//        cellBackground: Color(hex: "#262626"),
-//        cellAltBackground: Color.black,
-//        selected: Color(hex: "#5AC8FA"),
-//        highlighted: Color(hex: "#3A7CA5"),
-//        
-//        textPrimary: Color.white,
-//        textSecondary: Color.black,
-//        textFixed: Color.white,
-//        textCorrect: Color(hex: "#4DA3FF"),
-//        textWrong: Color(hex: "#FF6B6B")
-//    )
-    
     private let darkTheme = AppColors(
         primary: Color.white,
         background: Color(hex: "#121212"),

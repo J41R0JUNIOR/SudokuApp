@@ -45,22 +45,15 @@ class GameViewModel {
         let row = selectedCell.row
         let col = selectedCell.col
         
-        if !engine.canEditCell(
-            incomplete: game.incomplete,
+        engine.makeMove(
+            grid: &game,
             row: row,
-            col: col
-        ) {
-            return
-        }
-        
-        game.userGrid[row][col] = value ?? 0
+            col: col,
+            value: value ?? 0
+        )
         
         self.gameGrids = game
         
-        if gridRepository.load() != nil {
-            gridRepository.update(data: game)
-        } else {
-            gridRepository.create(data: game)
-        }
+        gridRepository.update(data: game)
     }
 }

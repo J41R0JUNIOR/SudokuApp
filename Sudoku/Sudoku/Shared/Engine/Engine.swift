@@ -35,6 +35,8 @@ class Engine: ObservableObject {
         
         return Grid(
             id: UUID().uuidString,
+            mistakes: 0,
+            state: GameState.playing.rawValue,
             incomplete: incomplete,
             complete: complete,
             userGrid: incomplete
@@ -42,43 +44,43 @@ class Engine: ObservableObject {
     }
     
     func getCellValue(
-           incomplete: [[Int8]],
-           userGrid: [[Int8]],
-           row: Int,
-           col: Int
-       ) -> Int8 {
-           return incomplete[row][col] != 0
-               ? incomplete[row][col]
-               : userGrid[row][col]
-       }
-       
-       func canEditCell(
-           incomplete: [[Int8]],
-           row: Int,
-           col: Int
-       ) -> Bool {
-           return incomplete[row][col] == 0
-       }
-       
-       func isCorrect(
-           userGrid: [[Int8]],
-           complete: [[Int8]],
-           row: Int,
-           col: Int
-       ) -> Bool {
-           return userGrid[row][col] != 0 &&
-                  userGrid[row][col] == complete[row][col]
-       }
-       
-       func isWrong(
-           userGrid: [[Int8]],
-           complete: [[Int8]],
-           row: Int,
-           col: Int
-       ) -> Bool {
-           return userGrid[row][col] != 0 &&
-                  userGrid[row][col] != complete[row][col]
-       }
+        incomplete: [[Int8]],
+        userGrid: [[Int8]],
+        row: Int,
+        col: Int
+    ) -> Int8 {
+        return incomplete[row][col] != 0
+            ? incomplete[row][col]
+            : userGrid[row][col]
+    }
+   
+    func canEditCell(
+        incomplete: [[Int8]],
+        row: Int,
+        col: Int
+    ) -> Bool {
+        return incomplete[row][col] == 0
+    }
+   
+    func isCorrect(
+        userGrid: [[Int8]],
+        complete: [[Int8]],
+        row: Int,
+        col: Int
+    ) -> Bool {
+        return userGrid[row][col] != 0 &&
+                userGrid[row][col] == complete[row][col]
+    }
+   
+    func isWrong(
+        userGrid: [[Int8]],
+        complete: [[Int8]],
+        row: Int,
+        col: Int
+    ) -> Bool {
+        return userGrid[row][col] != 0 &&
+                userGrid[row][col] != complete[row][col]
+    }
         
     private func fillDiagonal(grid: inout [[Int8]]) {
         for i in stride(from: 0, to: 9, by: 3) {
@@ -181,12 +183,92 @@ class Engine: ObservableObject {
             let i = cellId / 9
             let j = cellId % 9
             
-            if newGrid[i][j] != 0 {
-                newGrid[i][j] = 0
+            if newGrid[i][j] == 0 { continue }
+            
+            let backup = newGrid[i][j]
+            newGrid[i][j] = 0
+            
+            var copy = newGrid
+            let solutions = countSolutions(grid: &copy)
+            
+            if solutions != 1 {
+                newGrid[i][j] = backup
+            } else {
                 remaining -= 1
             }
         }
         
         return newGrid
+    }
+    
+    private func countSolutions(grid: inout [[Int8]], limit: Int = 2) -> Int {
+        var count = 0
+        
+        func solve(_ i: Int, _ j: Int) {
+            if count >= limit { return }
+            
+            if i == 9 {
+                count += 1
+                return
+            }
+            
+            let nextI = j == 8 ? i + 1 : i
+            let nextJ = j == 8 ? 0 : j + 1
+            
+            if grid[i][j] != 0 {
+                solve(nextI, nextJ)
+            } else {
+                for num in 1...9 {
+                    let value = Int8(num)
+                    
+                    if checkIfSafe(grid: grid, i: i, j: j, num: value) {
+                        grid[i][j] = value
+                        solve(nextI, nextJ)
+                        grid[i][j] = 0
+                    }
+                }
+            }
+        }
+        
+        solve(0, 0)
+        return count
+    }
+    
+    func makeMove(
+        grid: inout Grid,
+        row: Int,
+        col: Int,
+        value: Int8
+    ) {
+        if grid.state != GameState.playing.rawValue { return }
+        
+        guard canEditCell(incomplete: grid.incomplete, row: row, col: col) else {
+            return
+        }
+        
+        grid.userGrid[row][col] = value
+        
+        if isWrong(userGrid: grid.userGrid, complete: grid.complete, row: row, col: col) {
+            grid.mistakes += 1
+            
+            if grid.mistakes >= 3 {
+                grid.state = GameState.failed.rawValue
+            }
+        }
+        
+        if checkIfCompleted(grid: grid) {
+            grid.state = GameState.completed.rawValue
+        }
+    }
+    
+    func checkIfCompleted(grid: Grid) -> Bool {
+        for i in 0..<9 {
+            for j in 0..<9 {
+                if grid.userGrid[i][j] != grid.complete[i][j] {
+                    return false
+                }
+            }
+        }
+        return true
     }
 }
