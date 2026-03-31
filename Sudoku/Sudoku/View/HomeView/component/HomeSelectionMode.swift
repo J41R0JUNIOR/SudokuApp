@@ -77,9 +77,10 @@ struct HomeSelectionMode: View {
     
     func description(for mode: GameSelectionMode) -> String {
         switch mode {
-        case .easy: return "Mais tempo pra pensar"
-        case .medium: return "Desafio equilibrado"
-        case .hard: return "Só pra quem é brabo"
+        case .easy: return "Mommy, i'm scared"
+        case .medium: return "I can handle myself"
+        case .hard: return "Yeah, let me cook"
+        case .extreme: return "I think i lost my mind"
         }
     }
 }

@@ -9,6 +9,8 @@ import SwiftUI
 
 struct GameKeyboardView: View {
     @EnvironmentObject var theme: ThemeManager
+    @EnvironmentObject var haptics: HapticsManager
+
 
     let onInput: (Int8?) -> Void
         
@@ -16,6 +18,7 @@ struct GameKeyboardView: View {
         VStack(spacing: 15) {
             
             Button(action: {
+                haptics.callVibration()
                 onInput(nil)
             }) {
                 Text("⌫")
@@ -31,6 +34,7 @@ struct GameKeyboardView: View {
             LazyVGrid(columns: [GridItem](repeating: GridItem(.flexible(), spacing: 10, ), count: 9)) {
                 ForEach(1...9, id: \.self) { num in
                     Button(action: {
+                        haptics.callVibration()
                         onInput(Int8(num))
                     }) {
                         Text("\(num)")
@@ -51,7 +55,7 @@ struct GameKeyboardView: View {
 }
 
 #Preview {
-    var theme = ThemeManager()
+    let theme = ThemeManager()
     GameKeyboardView(onInput: { _ in })
         .environmentObject(theme)
 }

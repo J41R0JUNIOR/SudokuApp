@@ -10,27 +10,29 @@ class Engine: ObservableObject {
     
     public static let shared = Engine()
     
+    // MARK: - Public
+    
     func generateGrid(mode: GameSelectionMode) -> Grid {
-        var k = 30
+        let k: Int
+        var m: Int = 3
         
         switch mode {
         case .easy: k = 30
         case .medium: k = 40
         case .hard: k = 50
+        case .extreme: k = 55; m = 1
         }
         
-        return generateGrid(k: k)
+        return generateGrid(k: k, max_mistakes: m)
     }
-        
+    
     func generateGrid(k: Int, max_mistakes: Int = 3) -> Grid {
         var grid = Array(repeating: Array(repeating: Int8(0), count: 9), count: 9)
         
         fillDiagonal(grid: &grid)
-        
-        _ = fillRemaining(grid: &grid, i: 0, j: 0)
+        _ = fillRemaining(grid: &grid)
         
         let complete = grid
-        
         let incomplete = removeNumbers(grid: grid, k: k)
         
         return Grid(
@@ -43,44 +45,27 @@ class Engine: ObservableObject {
             userGrid: incomplete
         )
     }
-    
+        
     func getCellValue(
         incomplete: [[Int8]],
         userGrid: [[Int8]],
         row: Int,
         col: Int
     ) -> Int8 {
-        return incomplete[row][col] != 0
-            ? incomplete[row][col]
-            : userGrid[row][col]
+        let fixed = incomplete[row][col]
+        return fixed != 0 ? fixed : userGrid[row][col]
     }
-   
-    func canEditCell(
-        incomplete: [[Int8]],
-        row: Int,
-        col: Int
-    ) -> Bool {
-        return incomplete[row][col] == 0
+    
+    func canEditCell(incomplete: [[Int8]], row: Int, col: Int) -> Bool {
+        incomplete[row][col] == 0
     }
-   
-    func isCorrect(
-        userGrid: [[Int8]],
-        complete: [[Int8]],
-        row: Int,
-        col: Int
-    ) -> Bool {
-        return userGrid[row][col] != 0 &&
-                userGrid[row][col] == complete[row][col]
+    
+    func isWrong(userGrid: [[Int8]], complete: [[Int8]], row: Int, col: Int) -> Bool {
+        userGrid[row][col] != 0 && userGrid[row][col] != complete[row][col]
     }
-   
-    func isWrong(
-        userGrid: [[Int8]],
-        complete: [[Int8]],
-        row: Int,
-        col: Int
-    ) -> Bool {
-        return userGrid[row][col] != 0 &&
-                userGrid[row][col] != complete[row][col]
+    
+    func isCorrect(userGrid: [[Int8]], complete: [[Int8]], row: Int, col: Int) -> Bool {
+        userGrid[row][col] != 0 && userGrid[row][col] == complete[row][col]
     }
         
     private func fillDiagonal(grid: inout [[Int8]]) {
@@ -88,82 +73,33 @@ class Engine: ObservableObject {
             fillBox(grid: &grid, row: i, col: i)
         }
     }
-        
+    
     private func fillBox(grid: inout [[Int8]], row: Int, col: Int) {
-        var num: Int8
+        let numbers = (1...9).shuffled()
+        var idx = 0
         
         for i in 0..<3 {
             for j in 0..<3 {
-                repeat {
-                    num = Int8.random(in: 1...9)
-                } while !unUsedInBox(grid: grid, rowStart: row, colStart: col, num: num)
-                
-                grid[row + i][col + j] = num
+                grid[row + i][col + j] = Int8(numbers[idx])
+                idx += 1
             }
         }
     }
     
-    private func unUsedInBox(grid: [[Int8]], rowStart: Int, colStart: Int, num: Int8) -> Bool {
-        for i in 0..<3 {
-            for j in 0..<3 {
-                if grid[rowStart + i][colStart + j] == num {
-                    return false
-                }
-            }
-        }
-        return true
-    }
-    
-    private func unUsedInRow(grid: [[Int8]], row: Int, num: Int8) -> Bool {
-        for col in 0..<9 {
-            if grid[row][col] == num {
-                return false
-            }
-        }
-        return true
-    }
-    
-    private func unUsedInCol(grid: [[Int8]], col: Int, num: Int8) -> Bool {
-        for row in 0..<9 {
-            if grid[row][col] == num {
-                return false
-            }
-        }
-        return true
-    }
-    
-    private func checkIfSafe(grid: [[Int8]], i: Int, j: Int, num: Int8) -> Bool {
-        return unUsedInRow(grid: grid, row: i, num: num)
-        && unUsedInCol(grid: grid, col: j, num: num)
-        && unUsedInBox(
-            grid: grid,
-            rowStart: i - i % 3,
-            colStart: j - j % 3,
-            num: num
-        )
-    }
-        
-    private func fillRemaining(grid: inout [[Int8]], i: Int, j: Int) -> Bool {
-        
-        if i == 9 {
+    private func fillRemaining(grid: inout [[Int8]]) -> Bool {
+        guard let (i, j) = findBestCell(grid: grid) else {
             return true
         }
         
-        if j == 9 {
-            return fillRemaining(grid: &grid, i: i + 1, j: 0)
-        }
+        let numbers = (1...9).shuffled()
         
-        if grid[i][j] != 0 {
-            return fillRemaining(grid: &grid, i: i, j: j + 1)
-        }
-        
-        for num in 1...9 {
-            let value = Int8(num)
+        for num in numbers {
+            let val = Int8(num)
             
-            if checkIfSafe(grid: grid, i: i, j: j, num: value) {
-                grid[i][j] = value
+            if isSafe(grid: grid, i: i, j: j, num: val) {
+                grid[i][j] = val
                 
-                if fillRemaining(grid: &grid, i: i, j: j + 1) {
+                if fillRemaining(grid: &grid) {
                     return true
                 }
                 
@@ -178,74 +114,130 @@ class Engine: ObservableObject {
         var newGrid = grid
         var remaining = k
         
-        while remaining > 0 {
-            let cellId = Int.random(in: 0..<81)
+        let cells = Array(0..<81).shuffled()
+        var attempts = 0
+        let maxAttempts = 200
+        
+        for cellId in cells {
+            if remaining <= 0 || attempts >= maxAttempts { break }
+            attempts += 1
             
             let i = cellId / 9
             let j = cellId % 9
             
+            let mi = 8 - i
+            let mj = 8 - j
+            
             if newGrid[i][j] == 0 { continue }
             
-            let backup = newGrid[i][j]
+            let backup1 = newGrid[i][j]
+            let backup2 = newGrid[mi][mj]
+            
             newGrid[i][j] = 0
+            newGrid[mi][mj] = 0
+            
+            if attempts % 3 != 0 {
+                remaining -= (i == mi && j == mj) ? 1 : 2
+                continue
+            }
             
             var copy = newGrid
-            let solutions = countSolutions(grid: &copy)
+            let solutions = countSolutions(grid: &copy, limit: 2)
             
             if solutions != 1 {
-                newGrid[i][j] = backup
+                newGrid[i][j] = backup1
+                newGrid[mi][mj] = backup2
             } else {
-                remaining -= 1
+                remaining -= (i == mi && j == mj) ? 1 : 2
             }
         }
         
         return newGrid
     }
-    
+        
     private func countSolutions(grid: inout [[Int8]], limit: Int = 2) -> Int {
         var count = 0
         
-        func solve(_ i: Int, _ j: Int) {
+        func solve() {
             if count >= limit { return }
             
-            if i == 9 {
+            guard let (i, j) = findBestCell(grid: grid) else {
                 count += 1
                 return
             }
             
-            let nextI = j == 8 ? i + 1 : i
-            let nextJ = j == 8 ? 0 : j + 1
+            let numbers = (1...9).shuffled()
             
-            if grid[i][j] != 0 {
-                solve(nextI, nextJ)
-            } else {
-                for num in 1...9 {
-                    let value = Int8(num)
+            for num in numbers {
+                if count >= limit { return }
+                
+                let val = Int8(num)
+                
+                if isSafe(grid: grid, i: i, j: j, num: val) {
+                    grid[i][j] = val
+                    solve()
+                    grid[i][j] = 0
+                }
+            }
+        }
+        
+        solve()
+        return count
+    }
+        
+    private func findBestCell(grid: [[Int8]]) -> (Int, Int)? {
+        var minOptions = 10
+        var best: (Int, Int)?
+        
+        for i in 0..<9 {
+            for j in 0..<9 {
+                if grid[i][j] == 0 {
+                    var options = 0
                     
-                    if checkIfSafe(grid: grid, i: i, j: j, num: value) {
-                        grid[i][j] = value
-                        solve(nextI, nextJ)
-                        grid[i][j] = 0
+                    for num in 1...9 {
+                        if isSafe(grid: grid, i: i, j: j, num: Int8(num)) {
+                            options += 1
+                        }
+                    }
+                    
+                    if options < minOptions {
+                        minOptions = options
+                        best = (i, j)
+                        
+                        if options == 1 { return best }
                     }
                 }
             }
         }
         
-        solve(0, 0)
-        return count
+        return best
     }
-    
-    func makeMove(
-        grid: inout Grid,
-        row: Int,
-        col: Int,
-        value: Int8
-    ) {
+        
+    private func isSafe(grid: [[Int8]], i: Int, j: Int, num: Int8) -> Bool {
+        for x in 0..<9 {
+            if grid[i][x] == num || grid[x][j] == num {
+                return false
+            }
+        }
+        
+        let row = i - i % 3
+        let col = j - j % 3
+        
+        for x in 0..<3 {
+            for y in 0..<3 {
+                if grid[row + x][col + y] == num {
+                    return false
+                }
+            }
+        }
+        
+        return true
+    }
+        
+    func makeMove(grid: inout Grid, row: Int, col: Int, value: Int8) {
         if grid.state != GameState.playing.rawValue { return }
         
-        guard canEditCell(incomplete: grid.incomplete, row: row, col: col) else {
-            return
-        }
+        guard canEditCell(incomplete: grid.incomplete, row: row, col: col) else { return }
         
         grid.userGrid[row][col] = value
         

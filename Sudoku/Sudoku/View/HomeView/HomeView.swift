@@ -12,6 +12,7 @@ struct HomeView: View {
     @EnvironmentObject var haptics: HapticsManager
     @EnvironmentObject var router: Router
     @EnvironmentObject var theme: ThemeManager
+    
     @State private var viewModel: HomeViewModel?
     
     var body: some View {
@@ -121,8 +122,11 @@ struct HomeView: View {
         if viewModel == nil {
             let repository = SD_Grid_Repository(modelContext: context)
             let vm = HomeViewModel(repository: repository)
-            vm.loadLastGame()
             viewModel = vm
+        }
+        
+        if let vm = viewModel {
+            vm.loadLastGame()
         }
     }
 }

@@ -11,4 +11,5 @@ enum GameSelectionMode: String, CaseIterable{
     case easy 
     case medium
     case hard
+    case extreme
 }

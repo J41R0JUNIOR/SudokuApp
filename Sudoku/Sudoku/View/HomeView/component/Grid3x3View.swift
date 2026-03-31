@@ -15,6 +15,8 @@ struct Grid3x3View: View {
     @EnvironmentObject var theme: ThemeManager
 
     private var averageFrame = UIScreen.main.bounds.width  * 0.3
+//    private var averageFrame = UIScreen().bounds.width  * 0.3
+
     
     var body: some View {
         ZStack{
