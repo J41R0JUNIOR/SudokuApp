@@ -12,7 +12,8 @@ struct Grid3x3View: View {
     private let columns = 3
     
     @State private var numbers: [[Int]] = [[0,0,0], [0,0,0], [0,0,0]]
-    
+    @EnvironmentObject var theme: ThemeManager
+
     private var averageFrame = UIScreen.main.bounds.width  * 0.3
     
     var body: some View {
@@ -26,20 +27,19 @@ struct Grid3x3View: View {
                         ForEach(0..<columns, id: \.self) { column in
                             ZStack{
                                 Rectangle()
-                                    .stroke(.background, lineWidth: 2)
+                                    .stroke(theme.colors.background, lineWidth: 2)
                                     .frame(width: averageFrame/3, height: averageFrame/3)
                                     
                                 if numbers[row][column] != 0 {
                                     Text("\(numbers[row][column])")
-                                        .foregroundStyle(.background)
+                                        .foregroundStyle(theme.colors.textSecondary)
                                         .font(.system(size: 30, weight: .bold))
                                    
                                 }else{
                                     Text(" ")
-                                        .foregroundStyle(.background)
+                                        .foregroundStyle(theme.colors.textSecondary)
                                         .font(.system(size: 30, weight: .bold))
                                 }
-                               
                             }
                         }
                     }
@@ -86,5 +86,7 @@ struct Grid3x3View: View {
 }
 
 #Preview {
+    let theme = ThemeManager()
     Grid3x3View()
+        .environmentObject(theme)
 }

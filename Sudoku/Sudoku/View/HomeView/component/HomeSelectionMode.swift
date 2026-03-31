@@ -1,49 +1,107 @@
 //
-//  SelectionGameMode.swift
+//  Untitled.swift
 //  Sudoku
 //
-//  Created by Jairo Júnior on 20/08/24.
+//  Created by The Godfather Júnior on 27/03/26.
 //
 
 import SwiftUI
 import SwiftData
 
 struct HomeSelectionMode: View {
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @EnvironmentObject var haptics: HapticsManager
+    @EnvironmentObject var router: Router
+    @Environment(\.presentationMode) var presentationMode
     @Environment(\.modelContext) var modelContext
-    @Query(sort: [SortDescriptor(\GameBoard.mode, order: .reverse)]) var games: [GameBoard]
+    @EnvironmentObject var theme: ThemeManager
     
-    
-    @State var selectedMode: GameSelectionMode?
-    @State var hasChosen: Bool?
-    @State var dataManager: DataManager?
+    let engine: Engine = .shared
+    let repository: GridRepository
 
     var body: some View {
-        VStack { 
-            Text("Chose the gamemode:").bold()
-            
-            ForEach(GameSelectionMode.allCases, id: \.self) { mode in
-                HomeActionButton(
-                    title: mode.rawValue,
-                    mode: mode,
-                    dataManager: dataManager,
-                    presentationMode: presentationMode,
-                    labelWidth: 0.8
-                )
+        VStack(spacing: 16) {
+            ScrollView(){
+                ForEach(GameSelectionMode.allCases, id: \.self) { mode in
+                    Button {
+                        buttonAction(mode: mode)
+                    } label: {
+                        HStack {
+                            VStack(alignment: .leading, spacing: 4) {
+                                Text(mode.rawValue)
+                                    .font(.title3)
+                                    .bold()
+                                  
+                                
+                                Text(description(for: mode))
+                                    .font(.caption)
+                                    .opacity(0.7)
+                            }  .foregroundStyle(theme.colors.textSecondary)
+                            
+                            Spacer()
+                            
+                            Image(systemName: "chevron.right")
+                                .opacity(0.5)
+                        }
+                        .padding()
+                        .foregroundStyle(theme.colors.textSecondary)
+                        .frame(maxWidth: .infinity)
+                        .background(
+                            RoundedRectangle(cornerRadius: 16)
+                                .fill(theme.colors.primary)
+                        )
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 16)
+                                .stroke(theme.colors.background.opacity(0.2), lineWidth: 1)
+                        )
+                        .shadow(color: .black.opacity(0.05), radius: 8, x: 0, y: 4)
+                    }
+                    .foregroundStyle(theme.colors.textPrimary)
+                    .buttonStyle(ScaleButtonStyle())
+                }
             }
-            
         }
-        .buttonStyle(.borderedProminent)
-        .onAppear(perform: {
-            dataManager = DataManager(modelContext: modelContext)
-        })
+        .padding()
+    }
+    
+    func buttonAction(mode: GameSelectionMode){
+        haptics.callVibration()
+        
+        let grid = engine.generateGrid(mode: mode)
+        
+        repository.deleteAll()
+        repository.create(data: grid)
+        presentationMode.wrappedValue.dismiss()
+        
+        router.push(.sudoku)
+    }
+    
+    func description(for mode: GameSelectionMode) -> String {
+        switch mode {
+        case .easy: return "Mais tempo pra pensar"
+        case .medium: return "Desafio equilibrado"
+        case .hard: return "Só pra quem é brabo"
+        }
+    }
+}
+
+struct ScaleButtonStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .scaleEffect(configuration.isPressed ? 0.97 : 1)
+            .animation(.easeInOut(duration: 0.15), value: configuration.isPressed)
     }
 }
 
 #Preview {
-    HomeSelectionMode()
-}
-
-extension NavigationLink{
+    let modelContainer: ModelContainer = .appContainer
+    let haptics = HapticsManager()
+    let router = Router()
+    let theme = ThemeManager()
+    let context = modelContainer.mainContext
     
+    return HomeSelectionMode(repository: SD_Grid_Repository(modelContext: context))
+        .modelContainer(modelContainer)
+        .environmentObject(haptics)
+        .environmentObject(router)
+        .environmentObject(theme)
 }
