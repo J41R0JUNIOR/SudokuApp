@@ -9,7 +9,8 @@ import Foundation
 
 struct Grid {
     var id: String
-    var mistakes: Int
+    var act_mistakes: Int
+    var max_mistakes: Int
     var state: String
     var incomplete: [[Int8]]
     var complete: [[Int8]]

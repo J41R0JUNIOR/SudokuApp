@@ -97,7 +97,8 @@ struct GridView: View {
     let theme = ThemeManager()
     let g = Grid(
         id: "1",
-        mistakes:0,
+        act_mistakes:0,
+        max_mistakes: 3,
         state: GameState.playing.rawValue,
         
         incomplete: [

@@ -22,7 +22,7 @@ class Engine: ObservableObject {
         return generateGrid(k: k)
     }
         
-    func generateGrid(k: Int) -> Grid {
+    func generateGrid(k: Int, max_mistakes: Int = 3) -> Grid {
         var grid = Array(repeating: Array(repeating: Int8(0), count: 9), count: 9)
         
         fillDiagonal(grid: &grid)
@@ -35,7 +35,8 @@ class Engine: ObservableObject {
         
         return Grid(
             id: UUID().uuidString,
-            mistakes: 0,
+            act_mistakes: 0,
+            max_mistakes: max_mistakes,
             state: GameState.playing.rawValue,
             incomplete: incomplete,
             complete: complete,
@@ -249,9 +250,9 @@ class Engine: ObservableObject {
         grid.userGrid[row][col] = value
         
         if isWrong(userGrid: grid.userGrid, complete: grid.complete, row: row, col: col) {
-            grid.mistakes += 1
+            grid.act_mistakes += 1
             
-            if grid.mistakes >= 3 {
+            if grid.act_mistakes >= grid.max_mistakes {
                 grid.state = GameState.failed.rawValue
             }
         }

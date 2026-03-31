@@ -46,7 +46,8 @@ class SD_Grid_Repository: GridRepository {
             grid.incomplete = data.incomplete
             grid.complete = data.complete
             grid.userGrid = data.userGrid
-            grid.mistakes = data.mistakes
+            grid.act_mistakes = data.act_mistakes
+            grid.max_mistakes = data.max_mistakes
             grid.state = data.state
             
             try? modelContext.save()
