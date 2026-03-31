@@ -30,7 +30,8 @@ class ThemeManager: ObservableObject {
         textSecondary: Color.white,
         textFixed: Color(hex: "#000000"),
         textCorrect: Color(hex: "#1E90FF"),
-        textWrong: Color(hex: "#FF3B30")
+        textWrong: Color(hex: "#FF3B30"),
+        keyboard_bg: Color(hex: "#EBEBEB")
     )
     
     // MARK: - Dark Theme
@@ -46,7 +47,8 @@ class ThemeManager: ObservableObject {
         textSecondary: Color.black,
         textFixed: Color.white,
         textCorrect: Color(hex: "#4DA3FF"),
-        textWrong: Color(hex: "#FF6B6B")
+        textWrong: Color(hex: "#FF6B6B"),
+        keyboard_bg: Color(hex: "#121212")
     )
 }
 
@@ -64,6 +66,7 @@ struct AppColors {
     let textFixed: Color
     let textCorrect: Color
     let textWrong: Color
+    let keyboard_bg: Color
 }
 
 // MARK: - HEX Support

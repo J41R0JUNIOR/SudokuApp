@@ -45,7 +45,7 @@ struct GameKeyboardView: View {
             .padding(.horizontal)
         }
         .padding(.vertical)
-        .background(theme.colors.background.opacity(0.95))
+        .background(theme.colors.keyboard_bg.opacity(0.95))
         .cornerRadius(20)
     }
 }

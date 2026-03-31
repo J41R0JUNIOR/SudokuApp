@@ -23,7 +23,14 @@ struct GameView: View {
                 
                 VStack {
                     Text("Mistakes")
-                    Text("\(game.act_mistakes)/\(game.max_mistakes)")
+                    HStack {
+                        Text(game.act_mistakes, format: .number)
+                            .foregroundStyle(theme.colors.textWrong)
+                        
+                        Text("/")
+                        
+                        Text(game.max_mistakes, format: .number)
+                    }
                     
                     GridView(
                         gameGrids: game,

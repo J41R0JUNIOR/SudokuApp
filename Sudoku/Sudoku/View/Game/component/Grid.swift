@@ -89,7 +89,7 @@ struct GridView: View {
         .padding(4)
         .background(theme.colors.background)
         .cornerRadius(12)
-//        .shadow(color: theme.colors.primary.opacity(0.3), radius: 3, x: 0, y: 2)
+        .shadow(color: theme.colors.primary.opacity(0.3), radius: 3, x: 0, y: 2)
     }
 }
 
