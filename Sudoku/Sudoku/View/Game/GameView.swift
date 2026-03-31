@@ -23,7 +23,9 @@ struct GameView: View {
             if let vm = viewModel, let game = vm.gameGrids {
                 
                 VStack {
+                    Text("Mistakes")
                     Text("\(game.act_mistakes)/\(game.max_mistakes)")
+                    
                     GridView(
                         gameGrids: game,
                         selectedCell: vm.selectedCell.map {
