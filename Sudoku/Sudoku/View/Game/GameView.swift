@@ -14,7 +14,6 @@ struct GameView: View {
     @EnvironmentObject var router: Router
     @EnvironmentObject var theme: ThemeManager
 
-    
     @State private var viewModel: GameViewModel?
     @State private var isOverlayVisible = true
     
@@ -40,7 +39,8 @@ struct GameView: View {
                         vm.handleInput(value: val)
                     })
                 }
-                .blur(radius: shouldBlockUI(game: game) ? 5 : 0)
+                .foregroundStyle(theme.colors.textPrimary)
+                .blur(radius: shouldBlockUI(game: game) ? 3 : 0)
                 .disabled(shouldBlockUI(game: game))
                 .animation(.easeInOut, value: game.state)
                 
@@ -79,7 +79,6 @@ struct GameView: View {
 
     func overlayView(title: String) -> some View {
         ZStack {
-            
             Color.black.opacity(0.4)
                 .ignoresSafeArea()
             
@@ -88,18 +87,12 @@ struct GameView: View {
                     .font(.largeTitle)
                     .bold()
                 
-                Button{
+                Button("Continue"){
                     isOverlayVisible = false
-                } label: {
-                    Text("Continue")
-                        .foregroundStyle(theme.colors.textPrimary)
                 }
                 
-                Button{
+                Button("Back to menu"){
                     router.pop()
-                } label: {
-                    Text("Back to menu")
-                        .foregroundStyle(theme.colors.textPrimary)
                 }
             }
             .padding(24)
@@ -111,6 +104,7 @@ struct GameView: View {
                     .stroke(Color.white.opacity(0.2))
             )
         }
+        .foregroundStyle(theme.colors.textPrimary)
         .transition(.opacity.combined(with: .scale))
         .animation(.spring(), value: isOverlayVisible)
     }
