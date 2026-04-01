@@ -34,15 +34,8 @@ struct HomeView: View {
                         }
                         .buttonStyle(.plain)
                     }
-                    
-                    Spacer()
-                    
+                                        
                     Grid3x3View()
-                    
-                    Text("Sudoku")
-                        .foregroundStyle(theme.colors.textPrimary)
-                        .bold()
-                        .padding()
                     
                     Spacer()
                     

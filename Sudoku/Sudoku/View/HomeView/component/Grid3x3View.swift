@@ -14,31 +14,25 @@ struct Grid3x3View: View {
     @State private var numbers: [[Int]] = [[0,0,0], [0,0,0], [0,0,0]]
     @EnvironmentObject var theme: ThemeManager
 
-    private var averageFrame = UIScreen.main.bounds.width  * 0.3
-//    private var averageFrame = UIScreen().bounds.width  * 0.3
-
-    
     var body: some View {
-        ZStack{
-            RoundedRectangle(cornerSize: CGSize(width: 10, height: 10))
-                .frame(width: averageFrame, height: averageFrame)
+        GeometryReader { geo in
+            let averageFrame = geo.size.width * 0.3
             
-            VStack(spacing: 0) {
-                ForEach(0..<rows, id: \.self) { row in
-                    HStack(spacing: 0) {
-                        ForEach(0..<columns, id: \.self) { column in
-                            ZStack{
-                                Rectangle()
-                                    .stroke(theme.colors.background, lineWidth: 2)
-                                    .frame(width: averageFrame/3, height: averageFrame/3)
+            ZStack {
+                RoundedRectangle(cornerSize: CGSize(width: 10, height: 10))
+                    .frame(width: averageFrame, height: averageFrame)
+//                theme.colors.primary
+
+                VStack(spacing: 0) {
+                    ForEach(0..<rows, id: \.self) { row in
+                        HStack(spacing: 0) {
+                            ForEach(0..<columns, id: \.self) { column in
+                                ZStack {
+                                    Rectangle()
+                                        .stroke(theme.colors.background, lineWidth: 2)
+                                        .frame(width: averageFrame/3, height: averageFrame/3)
                                     
-                                if numbers[row][column] != 0 {
-                                    Text("\(numbers[row][column])")
-                                        .foregroundStyle(theme.colors.textSecondary)
-                                        .font(.system(size: 30, weight: .bold))
-                                   
-                                }else{
-                                    Text(" ")
+                                    Text(numbers[row][column] != 0 ? "\(numbers[row][column])" : " ")
                                         .foregroundStyle(theme.colors.textSecondary)
                                         .font(.system(size: 30, weight: .bold))
                                 }
@@ -46,12 +40,12 @@ struct Grid3x3View: View {
                         }
                     }
                 }
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
             }
-            
-        } .onAppear {
-            numbers = generateNumbers()
+            .onAppear {
+                numbers = generateNumbers()
+            }
         }
-    
     }
     
     func generateNumbers() -> [[Int]] {
