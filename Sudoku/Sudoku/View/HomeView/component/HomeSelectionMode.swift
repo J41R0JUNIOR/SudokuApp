@@ -66,13 +66,16 @@ struct HomeSelectionMode: View {
     func buttonAction(mode: GameSelectionMode){
         haptics.callVibration()
         
-        let grid = engine.generateGrid(mode: mode)
+        let newGrid = engine.generateGrid(mode: mode)
         
         repository.deleteAll()
-        repository.create(data: grid)
+        repository.create(data: newGrid)
+        
+        guard let loadedGrid = repository.load() else { return }
+        
         presentationMode.wrappedValue.dismiss()
         
-        router.push(.sudoku(grid: grid))
+        router.push(.sudoku(grid: loadedGrid))
     }
     
     func description(for mode: GameSelectionMode) -> String {

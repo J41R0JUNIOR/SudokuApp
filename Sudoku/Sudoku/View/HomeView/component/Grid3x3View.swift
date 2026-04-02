@@ -21,7 +21,6 @@ struct Grid3x3View: View {
             ZStack {
                 RoundedRectangle(cornerSize: CGSize(width: 10, height: 10))
                     .frame(width: averageFrame, height: averageFrame)
-//                theme.colors.primary
 
                 VStack(spacing: 0) {
                     ForEach(0..<rows, id: \.self) { row in

@@ -25,5 +25,6 @@ struct SudokuApp: App {
                 )
         }
         .modelContainer(for: SD_Grid_Model.self)
+//        .modelContainer(.appContainer)
     }
 }
