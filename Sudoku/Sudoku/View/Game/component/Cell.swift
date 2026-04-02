@@ -9,6 +9,8 @@ import SwiftUI
 
 struct CellView: View {
     
+    @EnvironmentObject var theme: ThemeManager
+    
     var row: Int
     var col: Int
     var value: Int8
@@ -19,40 +21,45 @@ struct CellView: View {
     var onTap: () -> Void
     
     var body: some View {
-        Button (action: {
-            onTap()
-        },label:{
-            ZStack{
-                Rectangle()
-                    .fill(backgroundColor)
-                    .frame(width: 42, height: 42)
-                    .overlay(
-                        Rectangle()
-                            .stroke(Color.primary.opacity(0.3), lineWidth: 0.2)
-                    )
-                    .overlay(borders)
-                
-                Text(value != 0 ? "\(value)" : "")
-                    .font(.system(size: 20))
-                    .foregroundColor(textColor)
+        Text(value == 0 ? "" : "\(value)")
+            .font(.title)
+            .foregroundStyle(textColor)
+            .frame(width: 40, height: 40)
+            .background(backgroundColor)
+            .cornerRadius(10)
+            .overlay(
+                RoundedRectangle(cornerRadius: 10)
+                    .stroke(Color.gray.opacity(0.3), lineWidth: 1)
+            )
+            .onTapGesture {
+                onTap()
             }
-        })
+    }
+    
+    // MARK: - Cores
+    
+    private var textColor: Color {
+        if isFixed {
+            return theme.colors.textFixed
+        } else if wrong {
+            return theme.colors.textWrong
+        } else {
+            return theme.colors.textCorrect
+        }
     }
     
     private var backgroundColor: Color {
         if isSelected {
-            return Color.blue.opacity(0.3)
+            return theme.colors.selected.opacity(0.3)
+        } else if wrong {
+            return theme.colors.textWrong.opacity(0.15)
+        } else if isHighlighted {
+            return theme.colors.highlighted.opacity(0.2)
+        } else {
+            return (row / 3 + col / 3) % 2 == 0
+                ? theme.colors.cellBackground
+                : theme.colors.cellAltBackground
         }
-        if isHighlighted {
-            return Color.gray.opacity(0.15)
-        }
-        return Color.clear
-    }
-    
-    private var textColor: Color {
-        if wrong { return .red }
-        if isFixed { return .primary }
-        return .blue
     }
 }
 

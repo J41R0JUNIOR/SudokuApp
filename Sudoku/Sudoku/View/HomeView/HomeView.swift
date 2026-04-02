@@ -43,7 +43,9 @@ struct HomeView: View {
                         if vm.grid != nil {
                             
                             Button("Continue") {
-                                router.push(.sudoku)
+                                if let grid = vm.grid{
+                                    router.push(.sudoku(grid: grid))
+                                }
                             }
                             .foregroundStyle(theme.colors.textSecondary)
                             .tint(theme.colors.primary)

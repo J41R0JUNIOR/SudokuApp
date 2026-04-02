@@ -10,28 +10,53 @@ import Observation
 @Observable
 class GameViewModel {
     
-    var gameGrids: Grid?
+    var grid: Grid
     var selectedCell: (row: Int, col: Int)?
+    var cells: [[CellState]] = []
     
     let gridRepository: GridRepository
     let engine = Engine.shared
     
-    init(gridRepository: GridRepository) {
+    init(gridRepository: GridRepository, grid: Grid) {
         self.gridRepository = gridRepository
+        self.grid = grid
+        computeCells()
     }
     
-    func loadGame() {
-        if let saved = gridRepository.load() {
-            self.gameGrids = saved
-        } else {
-            let newGame = engine.generateGrid(mode: .easy)
-            self.gameGrids = newGame
-            gridRepository.create(data: newGame)
+    func computeCells() {
+        cells = (0..<9).map { row in
+            (0..<9).map { col in
+                let value = engine.getCellValue(
+                    incomplete: grid.incomplete,
+                    userGrid: grid.userGrid,
+                    row: row,
+                    col: col
+                )
+                
+                let wrong = engine.isWrong(
+                    userGrid: grid.userGrid,
+                    complete: grid.complete,
+                    row: row,
+                    col: col
+                )
+                
+                let isFixed = !engine.canEditCell(
+                    incomplete: grid.incomplete,
+                    row: row,
+                    col: col
+                )
+                
+                return CellState(
+                    value: value,
+                    wrong: wrong,
+                    isFixed: isFixed
+                )
+            }
         }
     }
     
     func handleSelection(indice: Indice){
-        if (indice.row == selectedCell?.row && indice.col == selectedCell?.col) {
+        if indice.row == selectedCell?.row && indice.col == selectedCell?.col {
             selectedCell = nil
             return
         }
@@ -39,21 +64,17 @@ class GameViewModel {
     }
     
     func handleInput(value: Int8?) {
-        guard let selectedCell = selectedCell else { return }
-        guard var game = gameGrids else { return }
-        
-        let row = selectedCell.row
-        let col = selectedCell.col
+        guard let selectedCell else { return }
         
         engine.makeMove(
-            grid: &game,
-            row: row,
-            col: col,
+            grid: &grid,
+            row: selectedCell.row,
+            col: selectedCell.col,
             value: value ?? 0
         )
         
-        self.gameGrids = game
+        computeCells()
         
-        gridRepository.update(data: game)
+        gridRepository.update(data: grid)
     }
 }

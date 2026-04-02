@@ -13,12 +13,12 @@ struct Indice: Equatable {
 }
 
 struct GridView: View {
+    
     @EnvironmentObject var theme: ThemeManager
     
-    var gameGrids: Grid
+    var cells: [[CellState]]
     var selectedCell: Indice?
     var onSelectCell: ((Indice) -> Void)?
-    let engine = Engine.shared
     
     var body: some View {
         VStack(spacing: 2) {
@@ -26,62 +26,24 @@ struct GridView: View {
                 HStack(spacing: 2) {
                     ForEach(0..<9, id: \.self) { col in
                         
-                        let value = engine.getCellValue(
-                            incomplete: gameGrids.incomplete,
-                            userGrid: gameGrids.userGrid,
-                            row: row,
-                            col: col
-                        )
-                        
-                        let wrong = engine.isWrong(
-                            userGrid: gameGrids.userGrid,
-                            complete: gameGrids.complete,
-                            row: row,
-                            col: col
-                        )
-                        
-                        let isFixed = !engine.canEditCell(
-                            incomplete: gameGrids.incomplete,
-                            row: row,
-                            col: col
-                        )
+                        let cell = cells[row][col]
                         
                         let isSelected = selectedCell == Indice(row: row, col: col)
                         let isSameRow = selectedCell?.row == row
                         let isSameCol = selectedCell?.col == col
                         let isHighlighted = isSameRow || isSameCol
                         
-                        Text(value == 0 ? "" : "\(value)")
-                            .font(.title)
-                            .foregroundStyle(
-                                   isFixed  ? theme.colors.textFixed :
-                                   wrong ? theme.colors.textWrong : theme.colors.textCorrect
-                               )
-                            .frame(width: 40, height: 40)
-                            .background(
-                                Group {
-                                    if isSelected {
-                                        theme.colors.selected.opacity(0.3)
-                                    } else if wrong {
-                                        theme.colors.textWrong.opacity(0.15)
-                                    } else if isHighlighted {
-                                        theme.colors.highlighted.opacity(0.2)
-                                    } else {
-                                        (row / 3 + col / 3) % 2 == 0
-                                            ? theme.colors.cellBackground
-                                            : theme.colors.cellAltBackground
-                                    }
-                                }
-                            )
-                            .cornerRadius(10)
-                            .shadow(color: Color.black.opacity(0.15), radius: 2, x: 0, y: 1)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 10)
-                                    .stroke(Color.gray.opacity(0.3), lineWidth: 1)
-                            )
-                            .onTapGesture {
-                                onSelectCell?(Indice(row: row, col: col))
-                            }
+                        CellView(
+                            row: row,
+                            col: col,
+                            value: cell.value,
+                            isFixed: cell.isFixed,
+                            wrong: cell.wrong,
+                            isSelected: isSelected,
+                            isHighlighted: isHighlighted
+                        ) {
+                            onSelectCell?(Indice(row: row, col: col))
+                        }
                     }
                 }
             }
@@ -89,15 +51,16 @@ struct GridView: View {
         .padding(4)
         .background(theme.colors.background)
         .cornerRadius(12)
-        .shadow(color: theme.colors.primary.opacity(0.3), radius: 3, x: 0, y: 2)
     }
 }
 
 #Preview {
     let theme = ThemeManager()
+    let engine = Engine.shared
+    
     let g = Grid(
         id: "1",
-        act_mistakes:0,
+        act_mistakes: 0,
         max_mistakes: 3,
         state: GameState.playing.rawValue,
         
@@ -145,8 +108,38 @@ struct GridView: View {
         ]
     )
     
-    GridView(
-        gameGrids: g,
+    let cells: [[CellState]] = (0..<9).map { row in
+        (0..<9).map { col in
+            let value = engine.getCellValue(
+                incomplete: g.incomplete,
+                userGrid: g.userGrid,
+                row: row,
+                col: col
+            )
+            
+            let wrong = engine.isWrong(
+                userGrid: g.userGrid,
+                complete: g.complete,
+                row: row,
+                col: col
+            )
+            
+            let isFixed = !engine.canEditCell(
+                incomplete: g.incomplete,
+                row: row,
+                col: col
+            )
+            
+            return CellState(
+                value: value,
+                wrong: wrong,
+                isFixed: isFixed
+            )
+        }
+    }
+    
+    return GridView(
+        cells: cells,
         selectedCell: .init(row: 8, col: 8),
         onSelectCell: { _ in }
     )

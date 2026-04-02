@@ -72,7 +72,7 @@ struct HomeSelectionMode: View {
         repository.create(data: grid)
         presentationMode.wrappedValue.dismiss()
         
-        router.push(.sudoku)
+        router.push(.sudoku(grid: grid))
     }
     
     func description(for mode: GameSelectionMode) -> String {

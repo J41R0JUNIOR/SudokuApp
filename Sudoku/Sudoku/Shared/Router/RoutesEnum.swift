@@ -5,7 +5,7 @@ import SwiftUI
 enum Routes: View {
     
     case home
-    case sudoku
+    case sudoku(grid: Grid)
     case settings
     case none
     
@@ -13,15 +13,14 @@ enum Routes: View {
         switch self {
         case .home:
             HomeView()
-        case .sudoku:
-            GameView()
+        case .sudoku(let grid):
+            GameView(grid: grid)
         case .settings:
             SettingsView()
         case .none:
             EmptyView()
         }
     }
-   
 }
 
 extension Routes: Equatable, Hashable, Identifiable {
